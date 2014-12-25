@@ -39,4 +39,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'binding_of_caller'
+gem 'better_errors'
+
 ruby '2.1.3'
