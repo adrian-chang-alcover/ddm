@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141225041132) do
+ActiveRecord::Schema.define(version: 20141225042326) do
 
   create_table "careers", force: true do |t|
     t.string   "short_name"
     t.string   "full_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "curriculum_types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :curriculum_types
+
   resources :subjects
 
   resources :evaluation_types

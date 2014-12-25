@@ -1,0 +1,25 @@
+<h1>Listing curriculum_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @curriculum_types.each do |curriculum_type| %>
+      <tr>
+        <td><%= curriculum_type.name %></td>
+        <td><%= link_to 'Show', curriculum_type %></td>
+        <td><%= link_to 'Edit', edit_curriculum_type_path(curriculum_type) %></td>
+        <td><%= link_to 'Destroy', curriculum_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Curriculum type', new_curriculum_type_path %>
