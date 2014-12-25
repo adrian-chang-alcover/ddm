@@ -69,6 +69,6 @@ class EvaluationTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_type_params
-      params.require(:evaluation_type).permit(:name)
+      params.require(:evaluation_type).permit(:short_name, :full_name)
     end
 end
