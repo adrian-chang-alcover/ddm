@@ -3,7 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Short Name</th>
+      <th>Full Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -11,7 +12,8 @@
   <tbody>
     <% @evaluation_types.each do |evaluation_type| %>
       <tr>
-        <td><%= evaluation_type.name %></td>
+        <td><%= evaluation_type.short_name %></td>
+        <td><%= evaluation_type.full_name %></td>
         <td><%= link_to 'Show', evaluation_type %></td>
         <td><%= link_to 'Edit', edit_evaluation_type_path(evaluation_type) %></td>
         <td><%= link_to 'Destroy', evaluation_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
