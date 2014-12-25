@@ -41,5 +41,6 @@ gem 'spring',        group: :development
 
 gem 'binding_of_caller'
 gem 'better_errors'
+gem 'rails-i18n'
 
 ruby '2.1.3'
