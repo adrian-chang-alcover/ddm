@@ -10,5 +10,10 @@
   <%= @career.full_name %>
 </p>
 
+<p>
+  <strong>Faculty:</strong>
+  <%= @career.faculty.full_name %>
+</p>
+
 <%= link_to 'Edit', edit_career_path(@career) %> |
 <%= link_to 'Back', careers_path %>

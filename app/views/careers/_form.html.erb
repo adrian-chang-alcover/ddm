@@ -19,6 +19,10 @@
     <%= f.label :full_name %><br>
     <%= f.text_field :full_name %>
   </div>
+  <div class="field">
+    <%= f.label :faculty %><br>
+    <%= f.select :faculty_id, Faculty.all.collect{|f| [f.full_name, f.id]} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
