@@ -11,6 +11,7 @@
       <th>Class Hours</th>
       <th>Practical Hours</th>
       <th>Evaluation type</th>
+      <th>Curriculum type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= subject.class_hours %></td>
         <td><%= subject.practical_hours %></td>
         <td><%= subject.evaluation_type.name %></td>
+        <td><%= subject.curriculum_type.name %></td>
         <td><%= link_to 'Show', subject %></td>
         <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
         <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>

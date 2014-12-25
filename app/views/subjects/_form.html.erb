@@ -39,6 +39,10 @@
     <%= f.label :evaluation_type_id %><br>
     <%= f.select :evaluation_type_id, EvaluationType.all.collect{|et|[et.name, et.id]} %>
   </div>
+  <div class="field">
+    <%= f.label :curriculum_type_id %><br>
+    <%= f.select :curriculum_type_id, CurriculumType.all.collect{|ct|[ct.name, ct.id]} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
