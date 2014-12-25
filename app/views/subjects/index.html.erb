@@ -7,7 +7,8 @@
       <th>Full name</th>
       <th>Descipline</th>
       <th>Semester</th>
-      <th>Hours</th>
+      <th>Class Hours</th>
+      <th>Practical Hours</th>
       <th>Evaluation type</th>
       <th colspan="3"></th>
     </tr>
@@ -20,7 +21,8 @@
         <td><%= subject.full_name %></td>
         <td><%= subject.descipline_id %></td>
         <td><%= subject.semester_id %></td>
-        <td><%= subject.hours %></td>
+        <td><%= subject.class_hours %></td>
+        <td><%= subject.practical_hours %></td>
         <td><%= subject.evaluation_type_id %></td>
         <td><%= link_to 'Show', subject %></td>
         <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
