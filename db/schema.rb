@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141225035250) do
+ActiveRecord::Schema.define(version: 20141225041132) do
 
   create_table "careers", force: true do |t|
     t.string   "short_name"
@@ -20,9 +20,49 @@ ActiveRecord::Schema.define(version: 20141225035250) do
     t.datetime "updated_at"
   end
 
+  create_table "disciplines", force: true do |t|
+    t.string   "name"
+    t.integer  "career_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "evaluation_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "faculties", force: true do |t|
     t.string   "short_name"
     t.string   "full_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "semesters", force: true do |t|
+    t.string   "name"
+    t.integer  "year_id"
+    t.date     "begin_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subjects", force: true do |t|
+    t.string   "short_name"
+    t.string   "full_name"
+    t.integer  "descipline_id"
+    t.integer  "semester_id"
+    t.integer  "hours"
+    t.integer  "evaluation_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "years", force: true do |t|
+    t.string   "name"
+    t.integer  "career_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :subjects
+
+  resources :evaluation_types
+
+  resources :semesters
+
+  resources :years
+
+  resources :disciplines
+
   resources :careers
 
   resources :faculties

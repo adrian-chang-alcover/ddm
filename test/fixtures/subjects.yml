@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  short_name: MyString
+  full_name: MyString
+  descipline_id: 1
+  semester_id: 1
+  hours: 1
+  evaluation_type_id: 1
+
+two:
+  short_name: MyString
+  full_name: MyString
+  descipline_id: 1
+  semester_id: 1
+  hours: 1
+  evaluation_type_id: 1

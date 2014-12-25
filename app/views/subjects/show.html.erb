@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @subject.short_name %>
+</p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @subject.full_name %>
+</p>
+
+<p>
+  <strong>Descipline:</strong>
+  <%= @subject.descipline_id %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @subject.semester_id %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @subject.hours %>
+</p>
+
+<p>
+  <strong>Evaluation type:</strong>
+  <%= @subject.evaluation_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_subject_path(@subject) %> |
+<%= link_to 'Back', subjects_path %>
