@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :discipline_id %><br>
-    <%= f.number_field :discipline_id %>
+    <%= f.select :discipline_id, Discipline.all.collect{|d|[d.name, d.id]} %>
   </div>
   <div class="field">
     <%= f.label :semester_id %><br>
-    <%= f.number_field :semester_id %>
+    <%= f.select :semester_id, Semester.all.collect{|s|[s.name,s.id]} %>
   </div>
   <div class="field">
     <%= f.label :class_hours %><br>
@@ -37,7 +37,7 @@
   </div>
   <div class="field">
     <%= f.label :evaluation_type_id %><br>
-    <%= f.number_field :evaluation_type_id %>
+    <%= f.select :evaluation_type_id, EvaluationType.all.collect{|et|[et.name, et.id]} %>
   </div>
   <div class="actions">
     <%= f.submit %>

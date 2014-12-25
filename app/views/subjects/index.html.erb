@@ -5,8 +5,9 @@
     <tr>
       <th>Short name</th>
       <th>Full name</th>
-      <th>Descipline</th>
+      <th>Discipline</th>
       <th>Semester</th>
+      <th>Year</th>
       <th>Class Hours</th>
       <th>Practical Hours</th>
       <th>Evaluation type</th>
@@ -19,11 +20,12 @@
       <tr>
         <td><%= subject.short_name %></td>
         <td><%= subject.full_name %></td>
-        <td><%= subject.discipline_id %></td>
-        <td><%= subject.semester_id %></td>
+        <td><%= subject.discipline.name %></td>
+        <td><%= subject.semester.name %></td>
+        <td><%= subject.semester.year.name %></td>
         <td><%= subject.class_hours %></td>
         <td><%= subject.practical_hours %></td>
-        <td><%= subject.evaluation_type_id %></td>
+        <td><%= subject.evaluation_type.name %></td>
         <td><%= link_to 'Show', subject %></td>
         <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
         <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>

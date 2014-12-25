@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :career_id %><br>
-    <%= f.number_field :career_id %>
+    <%= f.select :career_id, Career.all.collect{|c|[c.name, c.id]} %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :year_id %><br>
-    <%= f.number_field :year_id %>
+    <%= f.select :year_id, Year.all.collect{|y|[y.name, y.id]} %>
   </div>
   <div class="field">
     <%= f.label :begin_date %><br>

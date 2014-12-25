@@ -11,13 +11,18 @@
 </p>
 
 <p>
-  <strong>Descipline:</strong>
-  <%= @subject.discipline_id %>
+  <strong>Discipline:</strong>
+  <%= @subject.discipline.name %>
 </p>
 
 <p>
   <strong>Semester:</strong>
-  <%= @subject.semester_id %>
+  <%= @subject.semester.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @subject.semester.year.name %>
 </p>
 
 <p>
@@ -32,7 +37,7 @@
 
 <p>
   <strong>Evaluation type:</strong>
-  <%= @subject.evaluation_type_id %>
+  <%= @subject.evaluation_type.name %>
 </p>
 
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
