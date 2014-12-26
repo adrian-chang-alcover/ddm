@@ -1,74 +1,74 @@
 MARXISMO-LENINISMO	Filosofía y Sociedad I	48	48		1	1	BÁSICO		EF
-	Filosofía y Sociedad II	48	48		1	1	BÁSICO
+	Filosofía y Sociedad II	48	48		1	2	BÁSICO
 	Economía Política I	48	48		2	1	BÁSICO
-	Economía Política II	48	48		2	1	BÁSICO		EF
-	Historia de Cuba	64	64		1	1	BÁSICO		EF
+	Economía Política II	48	48		2	2	BÁSICO		EF
+	Historia de Cuba	64	64		1	2	BÁSICO		EF
 	Teoría Sociopolítica	48	48		3	1	BÁSICO
 INGLÉS	Inglés I	32	32		1	1	BÁSICO
-	Inglés II	32	32		1	1	BÁSICO
+	Inglés II	32	32		1	2	BÁSICO
 	Inglés III	32	32		2	1	BÁSICO
-	Inglés IV	32	32		2	1	BÁSICO
+	Inglés IV	32	32		2	2	BÁSICO
 EDUCACIÓN FÍSICA	Educación Física I	48	48		1	1	BÁSICO
-	Educación Física II	48	48		1	1	BÁSICO
+	Educación Física II	48	48		1	2	BÁSICO
 	Educación Física III	48	48		2	1	BÁSICO
-	Educación Física  IV	48	48		2	1	BÁSICO
+	Educación Física  IV	48	48		2	2	BÁSICO
 TEORÍAS Y SISTEMAS EN PSICOLOGÍA	Introducción a la Psicología	48	48		1	1	BÁSICO		EF
 	Historia de la Filosofía	48	48		1	1	BÁSICO
-	Historia de la Psicología	64	64		1	1	BÁSICO		EF
+	Historia de la Psicología	64	64		1	2	BÁSICO		EF
 NEUROCIENCIAS	Fundamentos Biológicos del Comportamiento	48	48		1	1	BÁSICO		EF
 PROCESOS BÁSICOS	Análisis dinámico del comportamiento	64	64		1	1	BÁSICO		EF
 	Procesos Cognitivos I	64	64		2	1	BÁSICO		EF
-	Procesos Cognitivos II	64	64		2	1	BÁSICO		EF
-METODOLOGÍA DE LA INVESTIGACIÓN EN PSICOLOGÍA	Estadística	48	48		1	1	BÁSICO
-	Metodología de la Investigación Psicológica I	64	64		1	1	BÁSICO
+	Procesos Cognitivos II	64	64		2	2	BÁSICO		EF
+METODOLOGÍA DE LA INVESTIGACIÓN EN PSICOLOGÍA	Estadística	48	48		1	2	BÁSICO
+	Metodología de la Investigación Psicológica I	64	64		1	2	BÁSICO
 	Metodología de la Investigación Psicológica II	64	64		2	1	BÁSICO		TC
 PSICOLOGÍA DE LA PERSONALIDAD	Psicología de la Personalidad I	64	64		2	1	BÁSICO
-	Psicología de la Personalidad II	48	48		2	1	BÁSICO
+	Psicología de la Personalidad II	48	48		2	2	BÁSICO
 PSICOLOGÍA DEL DESARROLLO HUMANO	Psicología del Desarrollo de las Edades Tempranas y Preescolares	56	56		3	1	BÁSICO		EF
-	Psicología del Desarrollo del Escolar	48	48		3	1	BÁSICO
+	Psicología del Desarrollo del Escolar	48	48		3	2	BÁSICO
 	Psicología del Desarrollo del Adolescente y Joven	48	48		4	1	BÁSICO
-	Psicología del Desarrollo del Adulto Medio y Mayor	48	48		4	1	BÁSICO
+	Psicología del Desarrollo del Adulto Medio y Mayor	48	48		4	2	BÁSICO
 PSICOLOGÍA CLÍNICA Y DE LA SALUD	Psicología Clínica	32	32		2	1	BÁSICO
 	Psicopatología General	64	64		3	1	BÁSICO		EF
-	Evaluación y Diagnóstico Infantil y de la Adolescencia	48	48		4	1	BÁSICO
-	Psicoterapia General	48	48		4	1	BÁSICO
-	Psicodiagnóstico Clínico	48	48		4	1	BÁSICO
+	Evaluación y Diagnóstico Infantil y de la Adolescencia	48	48		4	2	BÁSICO
+	Psicoterapia General	48	48		4	2	BÁSICO
+	Psicodiagnóstico Clínico	48	48		4	2	BÁSICO
 	Psicoterapia Infantil	48	48		5	1	BÁSICO		EF
 	Psicología de la Salud	64	64		5	1	BÁSICO
 PSICOLOGÍA SOCIAL	Psicología Social	64	64		3	1	BÁSICO		EF
-	Psicología de Grupos	48	48		3	1	BÁSICO
-	Psicología Comunitaria	64	64		3	1	BÁSICO
-PSICOLOGÍA LABORAL Y DE LAS ORGANIZACIONES	Psicología Laboral en las Organizaciones	48	48		3	1	BÁSICO		TC
-	Evaluación y Desarrollo Humano en la Organización Laboral	48	48		3	1	BÁSICO		EF
+	Psicología de Grupos	48	48		3	2	BÁSICO
+	Psicología Comunitaria	64	64		3	2	BÁSICO
+PSICOLOGÍA LABORAL Y DE LAS ORGANIZACIONES	Psicología Laboral en las Organizaciones	48	48		3	2	BÁSICO		TC
+	Evaluación y Desarrollo Humano en la Organización Laboral	48	48		3	2	BÁSICO		EF
 	Psicología Organizacional	64	64		4	1	BÁSICO		EF
 	Psicología de la Dirección	48	48		4	1	BÁSICO		EF
 PSICOLOGÍA EDUCATIVA	Psicología Educativa I	64	64		4	1	BÁSICO		TC
-	Psicología Educativa II	48	48		4	1	BÁSICO		TC
+	Psicología Educativa II	48	48		4	2	BÁSICO		TC
 	Psicología Especial	64	64		5	1	BÁSICO
 PREPARACIÓN PARA LA DEFENSA	Seguridad Nacional	36	36		3	1	BÁSICO		EF
-	Defensa Nacional	44	44		3	1	BÁSICO		EF
-PRÁCTICA DE PRODUCCIÓN EN PSICOLOGÍA	Pedagogía	32	32		1	1	BÁSICO
-	Orientación Psicológica	32	32		2	1	BÁSICO
+	Defensa Nacional	44	44		3	2	BÁSICO		EF
+PRÁCTICA DE PRODUCCIÓN EN PSICOLOGÍA	Pedagogía	32	32		1	2	BÁSICO
+	Orientación Psicológica	32	32		2	2	BÁSICO
 	Psicodiagnóstico General	48	48		3	1	BÁSICO
-	Práctica de Producción I	192		192	1	1	BÁSICO
-	Práctica de Producción II	192		192	2	1	BÁSICO
-	Práctica de Producción III	192		192	3	1	BÁSICO
-	Práctica de Producción IV	192		192	4	1	BÁSICO
+	Práctica de Producción I	192		192	1	2	BÁSICO
+	Práctica de Producción II	192		192	2	2	BÁSICO
+	Práctica de Producción III	192		192	3	2	BÁSICO
+	Práctica de Producción IV	192		192	4	2	BÁSICO
 	Práctica de Producción V	148		148	5	1	BÁSICO
 NEUROCIENCIAS	Neuropsicología y Neurociencias	64	48	16	2	1	PROPIO
-PROCESOS BÁSICOS	Psicología de las Capacidades	48	32	16	2	1	PROPIO
+PROCESOS BÁSICOS	Psicología de las Capacidades	48	32	16	2	2	PROPIO
 METODOLOGÍA DE LA INVESTIGACIÓN  EN PSICOLOGÍA	Computación	48	32	16	1	1	PROPIO
-PSICOLOGÍA DEL DESARROLLO HUMANO	Teorías Psicológicas del Desarrollo Humano	48	48		2	1	PROPIO
+PSICOLOGÍA DEL DESARROLLO HUMANO	Teorías Psicológicas del Desarrollo Humano	48	48		2	2	PROPIO
 PSICOLOGÍA CLÍNICA Y DE LA SALUD	Estudio de Casos Clínicos	48	32	16	5	1	PROPIO
 	Orientación y Terapia Sexual y de Pareja	48	32	16	5	1	PROPIO
-PSICOLOGÍA SOCIAL	Desviación de la Conducta Social	64	48	16	3	1	PROPIO
+PSICOLOGÍA SOCIAL	Desviación de la Conducta Social	64	48	16	3	2	PROPIO
 PSICOLOGÍA LABORAL Y DE LAS ORGANIZACIONES	Comunicación Organizacional	32	32		4	1	PROPIO
 PRÁCTICA DE PRODUCCIÓN	Psicología de la Familia	48	32	16	3	1	PROPIO
-ASIGNATURAS OPTATIVAS Y ELECTIVAS	Opcional I	48	32	16	1	1	OPTATIVO
-	Opcional II	48	48		2	1	OPTATIVO
+ASIGNATURAS OPTATIVAS Y ELECTIVAS	Opcional I	48	32	16	1	2	OPTATIVO
+	Opcional II	48	48		2	2	OPTATIVO
 	Opcional III	64	48	16	3	1	OPTATIVO
 	Opcional IV	64	48	16	4	1	OPTATIVO
-	Opcional V	64	48	16	4	1	OPTATIVO
+	Opcional V	64	48	16	4	2	OPTATIVO
 	Opcional VI	64	48	16	5	1	OPTATIVO
 	Opcional VII	48	32	16	5	1	OPTATIVO
 	Opcional VIII	32		32	5	1	OPTATIVO
