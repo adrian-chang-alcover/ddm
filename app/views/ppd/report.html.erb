@@ -1,2 +1,25 @@
-<h1>Ppd#report</h1>
-<p>Find me in app/views/ppd/report.html.erb</p>
+<h1>Plan de Proceso Docente</h1>
+
+<div class="control-group">
+  <%= label_tag :career, nil, :class => 'control-label' %>
+  <div class="controls">
+    <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name), :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#1" data-toggle="tab">Section 1</a></li>
+    <li><a href="#2" data-toggle="tab">Section 2</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="1">
+      <p>I'm in Section 1.</p>
+    </div>
+    <div class="tab-pane" id="2">
+      <p>Howdy, I'm in Section 2.</p>
+    </div>
+  </div>
+</div>
+
+

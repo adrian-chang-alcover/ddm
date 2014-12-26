@@ -15,8 +15,22 @@ class ParserController < ApplicationController
         end
         year = Year.find_or_create_by(career_id: career_id, name: year) unless year.blank?
         semester = Semester.find_or_create_by(year: year, name: semester) unless semester.blank?
-        curriculum = CurriculumType.all.find{|ct| ct.name.downcase.gsub(/[^a-z0-9\s]/i, '') == curriculum.downcase.gsub(/[^a-z0-9\s]/i, '')}
-        evaluation = EvaluationType.all.find{|et| et.short_name.downcase.gsub(/[^a-z0-9\s]/i, '') == evaluation.downcase.gsub(/[^a-z0-9\s]/i, '')} unless evaluation.blank?
+        curriculum = case curriculum
+                       when 'BÁSICO'
+                         CURRICULUM_TYPE_BASICO
+                       when 'PROPIO'
+                         CURRICULUM_TYPE_PROPIO
+                       when 'OPTATIVO/ELECTIVO'
+                         CURRICULUM_TYPE_OPTATIVO
+                       end
+        evaluation = case evaluation
+                       when 'EF'
+                         EVALUATION_TYPE_EXAMEN_FINAL
+                       when 'TC'
+                         EVALUATION_TYPE_TRABAJO_CURSO
+                       else
+                         nil
+                     end
 
         subject = Subject.find_or_create_by(discipline: @discipline, full_name: subject)
         subject.discipline = @discipline
