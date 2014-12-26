@@ -1,29 +1,26 @@
-<%= form_for(@career) do |f| %>
-  <% if @career.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@career.errors.count, "error") %> prohibited this career from being saved:</h2>
-
-      <ul>
-      <% @career.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @career, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :short_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :short_name, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :full_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :full_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :faculty_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :faculty_id, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :short_name %><br>
-    <%= f.text_field :short_name %>
-  </div>
-  <div class="field">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name %>
-  </div>
-  <div class="field">
-    <%= f.label :faculty %><br>
-    <%= f.select :faculty_id, Faculty.all.collect{|f| [f.full_name, f.id]}, prompt: 'Seleccione una facultad' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                careers_path, :class => 'btn' %>
   </div>
 <% end %>
