@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get 'parser/ppd_vivo'
   post 'parser/ppd_vivo'
 
+  get 'parser/ppd'
+  post 'parser/ppd'
+
   resources :curriculum_types
 
   resources :subjects

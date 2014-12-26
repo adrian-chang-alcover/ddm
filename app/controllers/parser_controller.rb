@@ -29,7 +29,41 @@ class ParserController < ApplicationController
         @subjects << subject
       end
 
-      render 'parser/ppd_vivo_results'
+      render 'subjects/_list'
+    end
+  end
+
+  def ppd
+    if request.get?
+      render 'parser/ppd'
+    elsif request.post?
+      @subjects = []
+      career_id = params['career']
+      params['data'].lines.each do |line|
+        row = line.chomp.split("\t")
+        number, discipline_or_subject, foo, class_hours, practical_hours, ef, tc, first, second, third, fourth, fifth = row
+
+        if (number = number.to_f) > 0
+          if number == number.to_i
+            discipline = Discipline.find_or_create_by(career_id: career_id, name: discipline_or_subject)
+            @discipline = discipline
+          else
+            year = [first, second, third, fourth, fifth].find_index{|i| not i.blank?}+1
+            year = Year.find_or_create_by(career_id: career_id, name: year)
+            semester = Semester.find_or_create_by(year: year, name: 1)
+
+            subject = Subject.find_or_create_by(full_name: discipline_or_subject)
+            subject.discipline = @discipline
+            subject.semester = semester
+            subject.class_hours = class_hours.to_i
+            subject.practical_hours = practical_hours.to_i
+            subject.save
+            @subjects << subject
+          end
+        end
+      end
+
+      render 'subjects/_list'
     end
   end
 end

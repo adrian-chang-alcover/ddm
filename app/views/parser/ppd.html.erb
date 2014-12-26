@@ -1,0 +1,14 @@
+<h1>Parser#ppd</h1>
+<%= form_tag '/parser/ppd', method: :post %>
+<div class="field">
+  <%= label_tag :career %><br>
+  <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name) %>
+</div>
+<div class="field">
+  <%= label_tag :data %><br>
+  <%= text_area_tag :data %>
+</div>
+<div class="actions">
+  <%= submit_tag 'Parse!' %>
+</div>
+</form>
