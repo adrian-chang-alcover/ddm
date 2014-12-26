@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :faculty_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :faculty_id, :class => 'text_field' %>
+      <%= f.select :faculty_id, Faculty.all.collect{|f|[f.name, f.id]}, prompt: t(:select_faculty) ,:class => '' %>
     </div>
   </div>
 
