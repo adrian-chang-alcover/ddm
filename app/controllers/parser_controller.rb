@@ -43,6 +43,14 @@ class ParserController < ApplicationController
         row = line.chomp.split("\t")
         number, discipline_or_subject, foo, class_hours, practical_hours, ef, tc, first, second, third, fourth, fifth = row
 
+        case number
+          when 'CURRÍCULO BÁSICO'
+            @curriculum_type = CURRICULUM_TYPE_BASICO
+          when 'CURRÍCULO PROPIO'
+            @curriculum_type = CURRICULUM_TYPE_PROPIO
+          when 'CURRÍCULO OPTATIVO'
+            @curriculum_type = CURRICULUM_TYPE_OPTATIVO
+        end
         if (number = number.to_f) > 0
           if number == number.to_i
             discipline = Discipline.find_or_create_by(career_id: career_id, name: discipline_or_subject)
@@ -52,13 +60,12 @@ class ParserController < ApplicationController
             year = Year.find_or_create_by(career_id: career_id, name: year)
             semester = Semester.find_or_create_by(year: year, name: 1)
             evaluation_type = if ef.to_i > 0
-                                'EF'
+                                EVALUATION_TYPE_EXAMEN_FINAL
                               elsif tc.to_i > 0
-                                'TC'
+                                EVALUATION_TYPE_TRABAJO_CURSO
                               else
                                 nil
                               end
-            evaluation_type = EvaluationType.find_by_short_name(evaluation_type)
 
             subject = Subject.find_or_create_by(discipline: @discipline, full_name: discipline_or_subject)
             subject.discipline = @discipline
@@ -66,6 +73,7 @@ class ParserController < ApplicationController
             subject.class_hours = class_hours.to_i
             subject.practical_hours = practical_hours.to_i
             subject.evaluation_type = evaluation_type
+            subject.curriculum_type = @curriculum_type
             subject.save
             @subjects << subject
           end
