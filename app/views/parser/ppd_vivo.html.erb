@@ -1,2 +1,14 @@
 <h1>Parser#ppd_vivo</h1>
-<p>Find me in app/views/parser/ppd_vivo.html.erb</p>
+<%= form_tag '/parser/ppd_vivo', method: :post %>
+  <div class="field">
+    <%= label_tag :career %><br>
+    <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= label_tag :data %><br>
+    <%= text_area_tag :data %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Parse!' %>
+  </div>
+</form>
