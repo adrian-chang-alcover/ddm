@@ -22,3 +22,4 @@
 es:
   hello: "Hello world"
   select_faculty: "Seleccione la Facultad"
+  select_career: "Seleccione la Carrera"
