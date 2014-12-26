@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ppd/report'
+
   get 'parser/ppd_vivo'
   post 'parser/ppd_vivo'
 
