@@ -51,12 +51,21 @@ class ParserController < ApplicationController
             year = [first, second, third, fourth, fifth].find_index{|i| not i.blank?}+1
             year = Year.find_or_create_by(career_id: career_id, name: year)
             semester = Semester.find_or_create_by(year: year, name: 1)
+            evaluation_type = if ef.to_i > 0
+                                'EF'
+                              elsif tc.to_i > 0
+                                'TC'
+                              else
+                                nil
+                              end
+            evaluation_type = EvaluationType.find_by_short_name(evaluation_type)
 
             subject = Subject.find_or_create_by(discipline: @discipline, full_name: discipline_or_subject)
             subject.discipline = @discipline
             subject.semester = semester
             subject.class_hours = class_hours.to_i
             subject.practical_hours = practical_hours.to_i
+            subject.evaluation_type = evaluation_type
             subject.save
             @subjects << subject
           end
