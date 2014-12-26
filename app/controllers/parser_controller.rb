@@ -3,6 +3,7 @@ class ParserController < ApplicationController
     if request.get?
       render 'parser/ppd_vivo'
     elsif request.post?
+      @subjects = []
       career_id = params['career']
       params['data'].lines.each do |line|
         row = line.chomp.split("\t")
@@ -25,7 +26,10 @@ class ParserController < ApplicationController
         subject.curriculum_type = curriculum
         subject.evaluation_type = evaluation
         subject.save
+        @subjects << subject
       end
+
+      render 'parser/ppd_vivo_results'
     end
   end
 end
