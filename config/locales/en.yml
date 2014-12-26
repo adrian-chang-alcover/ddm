@@ -23,3 +23,4 @@ en:
   hello: "Hello world"
   select_faculty: "Select Faculty"
   select_career: "Select Career"
+  select_year: "Select Year"
