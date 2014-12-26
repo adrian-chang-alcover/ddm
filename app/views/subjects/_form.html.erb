@@ -30,21 +30,21 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :evaluation_type_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :evaluation_type_id, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
     <%= f.label :practical_hours, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :practical_hours, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :evaluation_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :evaluation_type_id, options_from_collection_for_select(EvaluationType.all, :id, :name), prompt: t(:select_evaluation_type), :class => '' %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :curriculum_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :curriculum_type_id, :class => 'text_field' %>
+      <%= f.select :curriculum_type_id, options_from_collection_for_select(CurriculumType.all, :id, :name), prompt: t(:select_curriculum_type), :class => '' %>
     </div>
   </div>
 

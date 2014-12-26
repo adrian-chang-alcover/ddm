@@ -26,3 +26,5 @@ en:
   select_year: "Select Year"
   select_discipline: "Select Discipline"
   select_semester: "Select Semester"
+  select_evaluation_type: "Select Evaluation Type"
+  select_curriculum_type: "Select Curriculum Type"
