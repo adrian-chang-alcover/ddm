@@ -18,7 +18,7 @@ class ParserController < ApplicationController
         curriculum = CurriculumType.all.find{|ct| ct.name.downcase.gsub(/[^a-z0-9\s]/i, '') == curriculum.downcase.gsub(/[^a-z0-9\s]/i, '')}
         evaluation = EvaluationType.all.find{|et| et.short_name.downcase.gsub(/[^a-z0-9\s]/i, '') == evaluation.downcase.gsub(/[^a-z0-9\s]/i, '')} unless evaluation.blank?
 
-        subject = Subject.find_or_create_by(full_name: subject)
+        subject = Subject.find_or_create_by(discipline: @discipline, full_name: subject)
         subject.discipline = @discipline
         subject.semester = semester
         subject.class_hours = class_hours.to_i
@@ -52,7 +52,7 @@ class ParserController < ApplicationController
             year = Year.find_or_create_by(career_id: career_id, name: year)
             semester = Semester.find_or_create_by(year: year, name: 1)
 
-            subject = Subject.find_or_create_by(full_name: discipline_or_subject)
+            subject = Subject.find_or_create_by(discipline: @discipline, full_name: discipline_or_subject)
             subject.discipline = @discipline
             subject.semester = semester
             subject.class_hours = class_hours.to_i

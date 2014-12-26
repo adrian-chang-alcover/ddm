@@ -2,7 +2,7 @@
 <%= form_tag '/parser/ppd', method: :post %>
 <div class="field">
   <%= label_tag :career %><br>
-  <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name) %>
+  <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name), prompt: 'Seleccione una carrera' %>
 </div>
 <div class="field">
   <%= label_tag :data %><br>
