@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :year_id %><br>
-    <%= f.select :year_id, Year.all.collect{|y|[y.name, y.id]} %>
+    <%= f.select :year_id, Year.all.collect{|y|[y.name, y.id]}, prompt: 'Seleccione un año' %>
   </div>
   <div class="field">
     <%= f.label :begin_date %><br>

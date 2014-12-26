@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :faculty %><br>
-    <%= f.select :faculty_id, Faculty.all.collect{|f| [f.full_name, f.id]} %>
+    <%= f.select :faculty_id, Faculty.all.collect{|f| [f.full_name, f.id]}, prompt: 'Seleccione una facultad' %>
   </div>
   <div class="actions">
     <%= f.submit %>
