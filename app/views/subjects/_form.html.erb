@@ -1,49 +1,56 @@
-<%= form_for(@subject) do |f| %>
-  <% if @subject.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-
-      <ul>
-      <% @subject.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @subject, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :short_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :short_name, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :full_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :full_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :discipline_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :discipline_id, options_from_collection_for_select(Discipline.all, :id, :name), prompt: t(:select_discipline), :class => '' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :semester_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :semester_id, options_from_collection_for_select(Semester.all, :id, :name), prompt: t(:select_semester), :class => '' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :class_hours, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :class_hours, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :evaluation_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :evaluation_type_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :practical_hours, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :practical_hours, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :curriculum_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :curriculum_type_id, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :short_name %><br>
-    <%= f.text_field :short_name %>
-  </div>
-  <div class="field">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name %>
-  </div>
-  <div class="field">
-    <%= f.label :discipline_id %><br>
-    <%= f.select :discipline_id, Discipline.all.collect{|d|[d.name, d.id]}, prompt: 'Seleccione una disciplina' %>
-  </div>
-  <div class="field">
-    <%= f.label :semester_id %><br>
-    <%= f.select :semester_id, Semester.all.collect{|s|[s.name,s.id]}, prompt: 'Seleccione un semestre' %>
-  </div>
-  <div class="field">
-    <%= f.label :class_hours %><br>
-    <%= f.number_field :class_hours %>
-  </div>
-  <div class="field">
-    <%= f.label :practical_hours %><br>
-    <%= f.number_field :practical_hours %>
-  </div>
-  <div class="field">
-    <%= f.label :evaluation_type_id %><br>
-    <%= f.select :evaluation_type_id, EvaluationType.all.collect{|et|[et.name, et.id]}, prompt: 'Seleccione el tipo de evaluación', include_blank: true %>
-  </div>
-  <div class="field">
-    <%= f.label :curriculum_type_id %><br>
-    <%= f.select :curriculum_type_id, CurriculumType.all.collect{|ct|[ct.name, ct.id]}, prompt: 'Seleccione el tipo de curriculum' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                subjects_path, :class => 'btn' %>
   </div>
 <% end %>

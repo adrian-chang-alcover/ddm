@@ -24,3 +24,5 @@ es:
   select_faculty: "Seleccione la Facultad"
   select_career: "Seleccione la Carrera"
   select_year: "Seleccione un Año"
+  select_discipline: "Seleccione una Disciplina"
+  select_semester: "Seleccione un Semestre"
