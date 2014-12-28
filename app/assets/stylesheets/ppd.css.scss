@@ -5,8 +5,15 @@
 tr.curriculum-type td{
   font-weight: bold;
   text-align: center;
+  text-transform: uppercase;
 }
 
 tr.discipline td{
   font-weight: bold;
+  background-color: #808080;
+  text-transform: uppercase;
+}
+
+thead{
+  background-color: #808080;
 }
