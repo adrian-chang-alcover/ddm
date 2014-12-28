@@ -7,4 +7,8 @@ class Subject < ActiveRecord::Base
   def name
     self.full_name || self.short_name
   end
+
+  def total_hours
+    self.class_hours + self.practical_hours
+  end
 end
