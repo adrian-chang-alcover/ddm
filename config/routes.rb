@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :study_plans
+
   get 'ppd/report'
 
   get 'parser/ppd_vivo'
