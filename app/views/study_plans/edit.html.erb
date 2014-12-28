@@ -1,6 +1,5 @@
-<h1>Editing study_plan</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @study_plan %> |
-<%= link_to 'Back', study_plans_path %>
+<%- model_class = StudyPlan -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>
