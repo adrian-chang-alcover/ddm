@@ -13,7 +13,11 @@ class ParserController < ApplicationController
           discipline = Discipline.find_or_create_by(career_id: career_id, name: discipline)
           @discipline = discipline
         end
-        year = Year.find_or_create_by(career_id: career_id, name: year) unless year.blank?
+        unless year.blank?
+          year = Year.find_or_create_by(career_id: career_id, name: year) do |y|
+            y.study_plan = STUDY_PLAN_D
+          end
+        end
         semester = Semester.find_or_create_by(year: year, name: semester) unless semester.blank?
         curriculum = case curriculum
                        when 'BÁSICO'
@@ -71,7 +75,7 @@ class ParserController < ApplicationController
             @discipline = discipline
           else
             year = [first, second, third, fourth, fifth].find_index{|i| not i.blank?}+1
-            year = Year.find_or_create_by(career_id: career_id, name: year)
+            year = Year.find_or_create_by(career_id: career_id, name: year) {|y| y.study_plan = STUDY_PLAN_D}
             semester = Semester.find_or_create_by(year: year, name: 1)
             evaluation_type = if ef.to_i > 0
                                 EVALUATION_TYPE_EXAMEN_FINAL
