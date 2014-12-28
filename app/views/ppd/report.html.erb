@@ -7,6 +7,8 @@
   </div>
 </div>
 
+<input type="hidden" id="career_id" value="<%= @career.id %>">
+
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#1" data-toggle="tab"><%= t(:presentation).titleize %></a></li>
@@ -16,7 +18,12 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="1">
-      <p>I'm in Section 1.</p>
+      <dl class="dl-horizontal">
+        <dt><strong><%= t(:faculty).titleize %>:</strong></dt>
+        <dd><%= @career.faculty.name %></dd>
+        <dt><strong><%= t(:career).titleize %>:</strong></dt>
+        <dd><%= @career.name %></dd>
+      </dl>
     </div>
     <div class="tab-pane" id="2">
       <p>Howdy, I'm in Section 2.</p>
