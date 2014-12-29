@@ -33,3 +33,6 @@ es:
   presentation: "presentación"
   select_study_plan: "Seleccione un Plan de Estudio"
   faculty: "facultad"
+  discipline: "disciplina"
+  subject: "asignatura"
+  semester: "semestre"

@@ -1,0 +1,19 @@
+<dl class="dl-horizontal">
+  <dt><strong><%= t(:faculty).titleize %>:</strong></dt>
+  <dd><%= @career.faculty.name %></dd>
+  <dt><strong><%= t(:career).titleize %>:</strong></dt>
+  <dd><%= @career.name %></dd>
+</dl>
+<h2>Plan de estudio por años</h2>
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th><%= t(:year).titleize %></th>
+    <th>Plan</th>
+  </tr>
+  <% @career.years.each do |year| %>
+      <tr>
+        <td><%= year.name %></td>
+        <td><%= year.study_plan.name %></td>
+      </tr>
+  <% end %>
+</table>

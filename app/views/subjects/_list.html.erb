@@ -13,6 +13,7 @@
     <th><%= model_class.human_attribute_name(:practical_hours) %></th>
     <th><%= model_class.human_attribute_name(:evaluation_type_id) %></th>
     <th><%= model_class.human_attribute_name(:curriculum_type_id) %></th>
+    <th><%= model_class.human_attribute_name(:dictum_or_resoluteness) %></th>
     <th><%= model_class.human_attribute_name(:created_at) %></th>
     <th><%=t '.actions', :default => t("helpers.actions") %></th>
   </tr>
@@ -31,7 +32,8 @@
         <td><%= subject.practical_hours %></td>
         <td><%= subject.evaluation_type.name if subject.evaluation_type %></td>
         <td><%= subject.curriculum_type.name %></td>
-        <td><%=l subject.created_at %></td>
+        <td><%= subject.dictum_or_resoluteness %></td>
+        <td><%= subject.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_subject_path(subject), :class => 'btn btn-mini' %>
