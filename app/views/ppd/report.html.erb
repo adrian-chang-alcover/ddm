@@ -161,11 +161,42 @@
 
         <tr><td colspan="12"></td></tr>
         <tr class="total">
-          <td></td><td colspan="2">ESTRUCTURA EN PORCIENTO</td><td></td><td></td>
-          <td colspan="7">EVALUACIONES POR AÑO</td>
+          <td></td><td colspan="2">ESTRUCTURA EN PORCIENTO</td><td></td>
+          <td colspan="<%= @career.years.count + 2 %>">EVALUACIONES POR AÑO</td>
         </tr>
         <tr class="total">
-          <td></td><td>EVALUACIONES POR AÑO</td>
+          <td></td><td>CURRÍCULO BÁSICO</td>
+          <td><%= (@career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_BASICO).sum(&:total_hours).fdiv(@career.subjects.sum(&:total_hours)) * 100).round(2) %> %</td>
+          <td></td><td></td>
+          <% @career.years.each do |year| %>
+            <td><%= year.name %></td>
+          <% end %>
+          <td>Total</td>
+        </tr>
+        <tr class="total">
+          <td></td><td>CURRÍCULO PROPIO</td>
+          <td><%= (@career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_PROPIO).sum(&:total_hours).fdiv(@career.subjects.sum(&:total_hours)) * 100).round(2) %> %</td>
+          <td></td><td>EF</td>
+          <% @career.years.each do |year| %>
+            <td><%= @career.subjects_by_evaluation_type_and_year_name(ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL, year.name).count %></td>
+          <% end %>
+          <td><%= @career.subjects_by_evaluation_type(ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count %></td>
+        </tr>
+        <tr class="total">
+          <td></td><td>CURRÍCULO OPTATIVO ELECTIVO</td>
+          <td><%= (@career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_OPTATIVO).sum(&:total_hours).fdiv(@career.subjects.sum(&:total_hours)) * 100).round(2) %> %</td>
+          <td></td><td>TC</td>
+          <% @career.years.each do |year| %>
+              <td><%= @career.subjects_by_evaluation_type_and_year_name(ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO, year.name).count %></td>
+          <% end %>
+          <td><%= @career.subjects_by_evaluation_type(ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count %></td>
+        </tr>
+        <tr class="total">
+          <td></td><td></td></td><td></td><td></td><td>Total</td>
+          <% @career.years.each do |year| %>
+              <td><%= @career.subjects_by_year_name(year.name).count{|s| s.evaluation_type} %></td>
+          <% end %>
+          <td><%= @career.subjects.count{|s| s.evaluation_type} %></td>
         </tr>
         </tbody>
       </table>

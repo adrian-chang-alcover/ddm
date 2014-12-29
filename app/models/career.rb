@@ -12,4 +12,20 @@ class Career < ActiveRecord::Base
     self.disciplines.each{|d| _subjects.concat(d.subjects)}
     _subjects
   end
+
+  def subjects_by_curriculum_type(curriculum_type)
+    self.subjects.select{|s| s.curriculum_type == curriculum_type}
+  end
+
+  def subjects_by_year_name(year_name)
+    self.subjects.select{|s| s.semester.year.name == year_name}
+  end
+
+  def subjects_by_evaluation_type(evaluation_type)
+    self.subjects.select{|s| s.evaluation_type == evaluation_type}
+  end
+
+  def subjects_by_evaluation_type_and_year_name(evaluation_type, year_name)
+    self.subjects.select{|s| s.evaluation_type == evaluation_type and s.semester.year.name == year_name}
+  end
 end
