@@ -21,7 +21,11 @@
                 <td><%= subject.total_hours %></td>
                 <td><%= subject.total_hours.fdiv(semester.weeks).round(2) %></td>
               </tr>
-          <% end %>
+            <% end %>
+            <tr class="total"><td colspan="3">TOTAL DE SEMANAS</td><td><%= semester.weeks %></td></tr>
+            <tr class="total"><td colspan="3">TOTAL DE HORAS</td><td><%= semester.subjects.to_a.sum{|s|s.total_hours} %></td></tr>
+            <tr class="total"><td colspan="3">PROMEDIO DE HORAS SEMANALES</td><td><%= semester.subjects.to_a.sum{|s|s.total_hours}.fdiv(semester.weeks).round(2) %></td></tr>
+            <tr class="total"><td colspan="3">TOTAL DE EXÁMENES</td><td><%= semester.subjects.to_a.count{|s|s.evaluation_type==ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL} %></td></tr>
           </tbody>
         </table>
       </div>
