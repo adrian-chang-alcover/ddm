@@ -25,10 +25,38 @@
             <td><%= subject.semester.year.name %></td>
             <td><%= subject.semester.name %></td>
             <td><%= subject.curriculum_type.name %></td>
-            <td><%= subject.evaluation_type.name if subject.evaluation_type %></td>
+            <td><%= subject.evaluation_type.short_name if subject.evaluation_type %></td>
             <td><%= subject.dictum_or_resoluteness %></td>
           </tr>
         <% end %>
     <% end %>
+    <tr class="separator"><td colspan="10">ESTADÍSTICAS</td></tr>
+    <tr class="total">
+      <td></td><td>Horas Básico</td>
+      <td>Horas Propio</td>
+      <td>Horas Optativo Electivo</td>
+      <td>Total Horas</td>
+      <td>EF</td><td>TC</td>
+    </tr>
+    <% @career.years.each do |year| %>
+      <tr class="total">
+        <td><%= year.name %></td>
+        <td><%= @career.subjects_by_curriculum_type_and_year(ApplicationController::CURRICULUM_TYPE_BASICO, year).sum(&:total_hours) %></td>
+        <td><%= @career.subjects_by_curriculum_type_and_year(ApplicationController::CURRICULUM_TYPE_PROPIO, year).sum(&:total_hours) %></td>
+        <td><%= @career.subjects_by_curriculum_type_and_year(ApplicationController::CURRICULUM_TYPE_OPTATIVO, year).sum(&:total_hours) %></td>
+        <td><%= @career.subjects_by_year(year).sum(&:total_hours) %></td>
+        <td><%= @career.subjects_by_evaluation_type_and_year(ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL, year).count %></td>
+        <td><%= @career.subjects_by_evaluation_type_and_year(ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO, year).count %></td>
+      </tr>
+    <% end %>
+    <tr class="total">
+      <td>Total</td>
+      <td><%= @career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_BASICO).sum(&:total_hours) %></td>
+      <td><%= @career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_PROPIO).sum(&:total_hours) %></td>
+      <td><%= @career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_OPTATIVO).sum(&:total_hours) %></td>
+      <td><%= @career.subjects.sum(&:total_hours) %></td>
+      <td><%= @career.subjects_by_evaluation_type(ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count %></td>
+      <td><%= @career.subjects_by_evaluation_type(ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count %></td>
+    </tr>
   </tbody>
 </table>

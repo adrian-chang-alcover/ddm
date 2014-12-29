@@ -20,7 +20,7 @@
   </thead>
   <tbody>
   <% CurriculumType.all.each do |ct| %>
-      <tr class="curriculum-type">
+      <tr class="separator">
         <td colspan="12"><%= ct.name %></td>
       </tr>
       <% @career.disciplines.each_with_index do |d, i| %>
@@ -85,7 +85,7 @@
         <% end %>
       </tr>
   <% end %>
-  <tr class="curriculum-type">
+  <tr class="separator">
     <td colspan="12">TOTALES</td>
   </tr>
   <tr class="total">
@@ -118,7 +118,7 @@
     <% end %>
   </tr>
 
-  <tr class="curriculum-type"><td colspan="12">ESTADÍSTICAS</td></tr>
+  <tr class="separator"><td colspan="12">ESTADÍSTICAS</td></tr>
   <tr class="total">
     <td></td><td colspan="2">ESTRUCTURA EN PORCIENTO</td><td></td>
     <td colspan="<%= @career.years.count + 2 %>">EVALUACIONES POR AÑO</td>

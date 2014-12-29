@@ -21,6 +21,10 @@ class Career < ActiveRecord::Base
     self.subjects.select{|s| s.semester.year == year}
   end
 
+  def subjects_by_curriculum_type_and_year(curriculum_type, year)
+    self.subjects.select{|s| s.curriculum_type == curriculum_type and s.semester.year == year}
+  end
+
   def subjects_by_evaluation_type(evaluation_type)
     self.subjects.select{|s| s.evaluation_type == evaluation_type}
   end
