@@ -2,18 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-tr.curriculum-type td{
+table.ppd tr.curriculum-type td{
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
 }
 
-tr.discipline td{
+table.ppd tr.discipline td{
   font-weight: bold;
   background-color: #808080;
   text-transform: uppercase;
 }
 
-thead{
+table.ppd tr.total td{
+  font-weight: bold;
+  background-color: #808080;
+  text-transform: uppercase;
+}
+
+table.ppd thead{
   background-color: #808080;
 }
