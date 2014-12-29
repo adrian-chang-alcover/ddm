@@ -129,6 +129,44 @@
               <td></td><td></td><td></td><td></td><td></td>
             </tr>
         <% end %>
+        <tr class="curriculum-type">
+          <td colspan="12">TOTALES</td>
+        </tr>
+        <tr class="total">
+          <td rowspan="3">TOTAL</td>
+          <td>HORAS DEL CURRÍCULO POR FORMA Y POR AÑO</td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.total_hours} } %></td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.class_hours} } %></td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.practical_hours} } %></td>
+          <td></td>
+          <td></td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='1' }.to_a.sum { |s| s.total_hours } } %></td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='2' }.to_a.sum { |s| s.total_hours } } %></td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='3' }.to_a.sum { |s| s.total_hours } } %></td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='4' }.to_a.sum { |s| s.total_hours } } %></td>
+          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='5' }.to_a.sum { |s| s.total_hours } } %></td>
+        </tr>
+        <tr class="total">
+          <td>EXÁMENES FINALES DEL CURRÍCULO Y POR AÑO</td>
+          <td></td><td></td><td></td>
+          <td><%= @career.disciplines.to_a.sum{|d| d.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL}  } %></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="total">
+          <td>TRABAJOS DE CURSO DEL CURRÍCULO Y POR AÑO</td>
+          <td></td><td></td><td></td><td></td>
+          <td><%= @career.disciplines.to_a.sum{|d| d.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO}  } %></td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr><td colspan="12"></td></tr>
+        <tr class="total">
+          <td></td><td colspan="2">ESTRUCTURA EN PORCIENTO</td><td></td><td></td>
+          <td colspan="7">EVALUACIONES POR AÑO</td>
+        </tr>
+        <tr class="total">
+          <td></td><td>EVALUACIONES POR AÑO</td>
+        </tr>
         </tbody>
       </table>
     </div>

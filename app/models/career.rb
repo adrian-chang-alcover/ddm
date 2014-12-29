@@ -6,4 +6,10 @@ class Career < ActiveRecord::Base
   def name
     self.full_name || self.short_name
   end
+
+  def subjects
+    _subjects = []
+    self.disciplines.each{|d| _subjects.concat(d.subjects)}
+    _subjects
+  end
 end
