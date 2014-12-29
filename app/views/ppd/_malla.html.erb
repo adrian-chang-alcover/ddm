@@ -1,0 +1,35 @@
+<% @career.years.each do |year| %>
+  <h3><%= year.pretty_name.titleize %></h3>
+  <div class="row" style="margin-left: 0px">
+    <% year.semesters.each do |semester| %>
+      <div class="span<%= 12/year.semesters.count %>">
+        <table class="table table-bordered table-condensed ppd">
+          <thead>
+            <tr><td class="separator" colspan="4"><%= semester.pretty_name.upcase %></td></tr>
+            <tr>
+              <td>Asignatura</td>
+              <td>Evaluación</td>
+              <td>Horas</td>
+              <td>H / S</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% semester.subjects.each do |subject| %>
+              <tr>
+                <td><%= subject.name %></td>
+                <td><%= subject.evaluation_type.short_name if subject.evaluation_type %></td>
+                <td><%= subject.total_hours %></td>
+                <td><%= subject.total_hours.fdiv(semester.weeks).round(2) %></td>
+              </tr>
+            <% end %>
+            <tr class="total"><td colspan="3">TOTAL DE SEMANAS</td><td><%= semester.weeks %></td></tr>
+            <tr class="total"><td colspan="3">TOTAL DE HORAS</td><td><%= semester.subjects.to_a.sum{|s|s.total_hours} %></td></tr>
+            <tr class="total"><td colspan="3">PROMEDIO DE HORAS SEMANALES</td><td><%= semester.subjects.to_a.sum{|s|s.total_hours}.fdiv(semester.weeks).round(2) %></td></tr>
+            <tr class="total"><td colspan="3">TOTAL DE EXÁMENES</td><td><%= semester.subjects.to_a.count{|s|s.evaluation_type==ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL} %></td></tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

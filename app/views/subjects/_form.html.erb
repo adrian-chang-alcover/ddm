@@ -47,6 +47,12 @@
       <%= f.select :curriculum_type_id, options_from_collection_for_select(CurriculumType.all, :id, :name), prompt: t(:select_curriculum_type), :class => '' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :dictum_or_resoluteness, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :curriculum_type_id, :class => 'text_field' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

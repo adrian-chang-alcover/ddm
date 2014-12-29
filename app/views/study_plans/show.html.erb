@@ -1,24 +1,20 @@
-<%- model_class = Year -%>
+<%- model_class = StudyPlan -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @year.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:career_id) %>:</strong></dt>
-  <dd><%= @year.career_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:study_plan_id) %>:</strong></dt>
-  <dd><%= @year.study_plan_id %></dd>
+  <dd><%= @study_plan.name %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              years_path, :class => 'btn'  %>
+              study_plans_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_year_path(@year), :class => 'btn' %>
+              edit_study_plan_path(@study_plan), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              year_path(@year),
+              study_plan_path(@study_plan),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

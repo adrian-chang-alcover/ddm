@@ -11,6 +11,12 @@
       <%= f.select :career_id, options_from_collection_for_select(Career.all, :id, :name), prompt: t(:select_career), :class => '' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :study_plan_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :study_plan_id, options_from_collection_for_select(StudyPlan.all, :id, :name), prompt: t(:select_study_plan), :class => '' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

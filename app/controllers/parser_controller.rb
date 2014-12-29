@@ -13,10 +13,28 @@ class ParserController < ApplicationController
           discipline = Discipline.find_or_create_by(career_id: career_id, name: discipline)
           @discipline = discipline
         end
-        year = Year.find_or_create_by(career_id: career_id, name: year) unless year.blank?
+        unless year.blank?
+          year = Year.find_or_create_by(career_id: career_id, name: year) do |y|
+            y.study_plan = STUDY_PLAN_D
+          end
+        end
         semester = Semester.find_or_create_by(year: year, name: semester) unless semester.blank?
-        curriculum = CurriculumType.all.find{|ct| ct.name.downcase.gsub(/[^a-z0-9\s]/i, '') == curriculum.downcase.gsub(/[^a-z0-9\s]/i, '')}
-        evaluation = EvaluationType.all.find{|et| et.short_name.downcase.gsub(/[^a-z0-9\s]/i, '') == evaluation.downcase.gsub(/[^a-z0-9\s]/i, '')} unless evaluation.blank?
+        curriculum = case curriculum
+                       when 'BÁSICO'
+                         CURRICULUM_TYPE_BASICO
+                       when 'PROPIO'
+                         CURRICULUM_TYPE_PROPIO
+                       when 'OPTATIVO/ELECTIVO'
+                         CURRICULUM_TYPE_OPTATIVO
+                       end
+        evaluation = case evaluation
+                       when 'EF'
+                         EVALUATION_TYPE_EXAMEN_FINAL
+                       when 'TC'
+                         EVALUATION_TYPE_TRABAJO_CURSO
+                       else
+                         nil
+                     end
 
         subject = Subject.find_or_create_by(discipline: @discipline, full_name: subject)
         subject.discipline = @discipline
@@ -57,7 +75,7 @@ class ParserController < ApplicationController
             @discipline = discipline
           else
             year = [first, second, third, fourth, fifth].find_index{|i| not i.blank?}+1
-            year = Year.find_or_create_by(career_id: career_id, name: year)
+            year = Year.find_or_create_by(career_id: career_id, name: year) {|y| y.study_plan = STUDY_PLAN_D}
             semester = Semester.find_or_create_by(year: year, name: 1)
             evaluation_type = if ef.to_i > 0
                                 EVALUATION_TYPE_EXAMEN_FINAL

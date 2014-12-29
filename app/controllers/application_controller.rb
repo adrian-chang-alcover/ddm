@@ -9,4 +9,6 @@ class ApplicationController < ActionController::Base
 
   EVALUATION_TYPE_EXAMEN_FINAL = EvaluationType.first
   EVALUATION_TYPE_TRABAJO_CURSO = EvaluationType.second
+
+  STUDY_PLAN_D = StudyPlan.first
 end

@@ -1,0 +1,33 @@
+<h1>Plan de Proceso Docente</h1>
+
+<dl class="dl-horizontal">
+  <dt><%= label_tag :career, t(:career).titleize, :class => 'control-label' %></dt>
+  <dd><%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name), :class => 'text_field' %></dd>
+</dl>
+
+<input type="hidden" id="career_id" value="<%= @career.id %>">
+
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#1" data-toggle="tab"><%= t(:presentation).titleize %></a></li>
+    <li><a href="#2" data-toggle="tab">PPD</a></li>
+    <li><a href="#3" data-toggle="tab">PPD Vivo</a></li>
+    <li><a href="#4" data-toggle="tab">Malla Curricular</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="1">
+        <%= render 'presentation' %>
+    </div>
+    <div class="tab-pane" id="2">
+      <%= render 'ppd' %>
+    </div>
+    <div class="tab-pane" id="3">
+      <%= render 'ppd_vivo' %>
+    </div>
+    <div class="tab-pane" id="4">
+      <%= render 'malla' %>
+    </div>
+  </div>
+</div>
+
+
