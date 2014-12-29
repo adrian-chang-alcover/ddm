@@ -46,7 +46,7 @@
           <th rowspan="2">Disciplina y Asignatura</th>
           <th colspan="3">Cantidad de horas</th>
           <th colspan="2">Tipo de Evaluación</th>
-          <th colspan="5">Distribución de las horas por años</th>
+          <th colspan="<%= @career.years.count %>">Distribución de las horas por años</th>
         </tr>
         <tr>
           <th>Total</th>
@@ -54,11 +54,9 @@
           <th>Laboral</th>
           <th>EF</th>
           <th>TC</th>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
-          <th>4</th>
-          <th>5</th>
+          <% @career.years.each do |year| %>
+            <th><%= year.name %></th>
+          <% end %>
         </tr>
         </thead>
         <tbody>
@@ -76,11 +74,9 @@
                       <td><%= d.subjects_by_curriculum_type(ct).sum { |s| s.practical_hours } %></td>
                       <td><%= d.subjects_by_curriculum_type(ct).count { |s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL } %></td>
                       <td><%= d.subjects_by_curriculum_type(ct).count { |s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO } %></td>
-                      <td><%= d.subjects_by_curriculum_type_and_year_name(ct,'1').sum { |s| s.total_hours } %></td>
-                      <td><%= d.subjects_by_curriculum_type_and_year_name(ct,'2').sum { |s| s.total_hours } %></td>
-                      <td><%= d.subjects_by_curriculum_type_and_year_name(ct,'3').sum { |s| s.total_hours } %></td>
-                      <td><%= d.subjects_by_curriculum_type_and_year_name(ct,'4').sum { |s| s.total_hours } %></td>
-                      <td><%= d.subjects_by_curriculum_type_and_year_name(ct,'5').sum { |s| s.total_hours } %></td>
+                      <% @career.years.each do |year| %>
+                          <td><%= d.subjects_by_curriculum_type_and_year(ct,year).sum { |s| s.total_hours } %></td>
+                      <% end %>
                     </tr>
                     <% d.subjects.each_with_index do |s, j| %>
                         <% if s.curriculum_type == ct %>
@@ -92,11 +88,9 @@
                               <td><%= s.practical_hours %></td>
                               <td><%= s.semester.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL %></td>
                               <td><%= s.semester.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO %></td>
-                              <td><%= s.total_hours if s.semester.year.name == '1' %></td>
-                              <td><%= s.total_hours if s.semester.year.name == '2' %></td>
-                              <td><%= s.total_hours if s.semester.year.name == '3' %></td>
-                              <td><%= s.total_hours if s.semester.year.name == '4' %></td>
-                              <td><%= s.total_hours if s.semester.year.name == '5' %></td>
+                              <% @career.years.each do |year| %>
+                                  <td><%= s.total_hours if s.semester.year == year %></td>
+                              <% end %>
                             </tr>
                         <% end %>
                     <% end %>
@@ -110,23 +104,26 @@
               <td><%= @career.subjects.sum { |s| s.curriculum_type==ct ? s.practical_hours : 0 } %></td>
               <td></td>
               <td></td>
-              <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.curriculum_type==ct and s.semester.year.name=='1' }.to_a.sum { |s| s.total_hours } } %></td>
-              <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.curriculum_type==ct and s.semester.year.name=='2' }.to_a.sum { |s| s.total_hours } } %></td>
-              <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.curriculum_type==ct and s.semester.year.name=='3' }.to_a.sum { |s| s.total_hours } } %></td>
-              <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.curriculum_type==ct and s.semester.year.name=='4' }.to_a.sum { |s| s.total_hours } } %></td>
-              <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.curriculum_type==ct and s.semester.year.name=='5' }.to_a.sum { |s| s.total_hours } } %></td>
+              <% @career.years.each do |year| %>
+                <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.curriculum_type==ct and s.semester.year==year }.to_a.sum { |s| s.total_hours } } %></td>
+              <% end %>
             </tr>
             <tr class="total">
               <td><%= "EXÁMENES FINALES DEL CURRÍCULO #{I18n.transliterate(ct.name).upcase}" %></td>
               <td></td><td></td><td></td>
               <td><%= @career.disciplines.to_a.sum{|d| d.subjects.select { |s| s.curriculum_type==ct}.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL}  } %></td>
-              <td></td><td></td><td></td><td></td><td></td><td></td>
+              <td></td>
+              <% @career.years.count.times do %>
+                <td></td>
+              <% end %>
             </tr>
             <tr class="total">
               <td><%= "TRABAJOS DE CURSO DEL CURRÍCULO #{I18n.transliterate(ct.name).upcase}" %></td>
               <td></td><td></td><td></td><td></td>
               <td><%= @career.disciplines.to_a.sum{|d| d.subjects.select { |s| s.curriculum_type==ct}.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO}  } %></td>
-              <td></td><td></td><td></td><td></td><td></td>
+              <% @career.years.count.times do %>
+                  <td></td>
+              <% end %>
             </tr>
         <% end %>
         <tr class="curriculum-type">
@@ -140,26 +137,29 @@
           <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.practical_hours} } %></td>
           <td></td>
           <td></td>
-          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='1' }.to_a.sum { |s| s.total_hours } } %></td>
-          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='2' }.to_a.sum { |s| s.total_hours } } %></td>
-          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='3' }.to_a.sum { |s| s.total_hours } } %></td>
-          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='4' }.to_a.sum { |s| s.total_hours } } %></td>
-          <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year.name=='5' }.to_a.sum { |s| s.total_hours } } %></td>
+          <% @career.years.each do |year| %>
+              <td><%= @career.disciplines.to_a.sum { |d| d.subjects.select { |s| s.semester.year==year }.to_a.sum { |s| s.total_hours } } %></td>
+          <% end %>
         </tr>
         <tr class="total">
           <td>EXÁMENES FINALES DEL CURRÍCULO Y POR AÑO</td>
           <td></td><td></td><td></td>
           <td><%= @career.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL} %></td>
-          <td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td>
+          <% @career.years.count.times do %>
+              <td></td>
+          <% end %>
         </tr>
         <tr class="total">
           <td>TRABAJOS DE CURSO DEL CURRÍCULO Y POR AÑO</td>
           <td></td><td></td><td></td><td></td>
           <td><%= @career.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO} %></td>
-          <td></td><td></td><td></td><td></td><td></td>
+          <% @career.years.count.times do %>
+              <td></td>
+          <% end %>
         </tr>
 
-        <tr><td colspan="12"></td></tr>
+        <tr class="curriculum-type"><td colspan="12">ESTADÍSTICAS</td></tr>
         <tr class="total">
           <td></td><td colspan="2">ESTRUCTURA EN PORCIENTO</td><td></td>
           <td colspan="<%= @career.years.count + 2 %>">EVALUACIONES POR AÑO</td>
@@ -178,7 +178,7 @@
           <td><%= (@career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_PROPIO).sum(&:total_hours).fdiv(@career.subjects.sum(&:total_hours)) * 100).round(2) %> %</td>
           <td></td><td>EF</td>
           <% @career.years.each do |year| %>
-            <td><%= @career.subjects_by_evaluation_type_and_year_name(ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL, year.name).count %></td>
+            <td><%= @career.subjects_by_evaluation_type_and_year(ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL, year).count %></td>
           <% end %>
           <td><%= @career.subjects_by_evaluation_type(ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count %></td>
         </tr>
@@ -187,14 +187,14 @@
           <td><%= (@career.subjects_by_curriculum_type(ApplicationController::CURRICULUM_TYPE_OPTATIVO).sum(&:total_hours).fdiv(@career.subjects.sum(&:total_hours)) * 100).round(2) %> %</td>
           <td></td><td>TC</td>
           <% @career.years.each do |year| %>
-              <td><%= @career.subjects_by_evaluation_type_and_year_name(ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO, year.name).count %></td>
+              <td><%= @career.subjects_by_evaluation_type_and_year(ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO, year).count %></td>
           <% end %>
           <td><%= @career.subjects_by_evaluation_type(ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count %></td>
         </tr>
         <tr class="total">
           <td></td><td></td></td><td></td><td></td><td>Total</td>
           <% @career.years.each do |year| %>
-              <td><%= @career.subjects_by_year_name(year.name).count{|s| s.evaluation_type} %></td>
+              <td><%= @career.subjects_by_year(year).count{|s| s.evaluation_type} %></td>
           <% end %>
           <td><%= @career.subjects.count{|s| s.evaluation_type} %></td>
         </tr>
