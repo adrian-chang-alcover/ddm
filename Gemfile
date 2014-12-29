@@ -46,4 +46,6 @@ gem 'rails-i18n'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
+gem 'figaro'
+
 ruby '2.1.3'
