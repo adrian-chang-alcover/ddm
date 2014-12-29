@@ -1,0 +1,49 @@
+<%- model_class = Subject -%>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= model_class.human_attribute_name(:id) %></th>
+    <th><%= model_class.human_attribute_name(:short_name) %></th>
+    <th><%= model_class.human_attribute_name(:full_name) %></th>
+    <th><%= model_class.human_attribute_name(:semester_id) %></th>
+    <th><%= t(:year).titleize %></th>
+    <th><%= model_class.human_attribute_name(:discipline_id) %></th>
+    <th><%= t(:career).titleize %></th>
+    <th><%= model_class.human_attribute_name(:class_hours) %></th>
+    <th><%= model_class.human_attribute_name(:practical_hours) %></th>
+    <th><%= model_class.human_attribute_name(:evaluation_type_id) %></th>
+    <th><%= model_class.human_attribute_name(:curriculum_type_id) %></th>
+    <th><%= model_class.human_attribute_name(:dictum_or_resoluteness) %></th>
+    <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= link_to subject.id, subject_path(subject) %></td>
+        <td><%= subject.short_name %></td>
+        <td><%= subject.full_name %></td>
+        <td><%= subject.semester.name if subject.semester %></td>
+        <td><%= subject.semester.year.name if subject.semester %></td>
+        <td><%= subject.discipline.name %></td>
+        <td><%= subject.discipline.career.name %></td>
+        <td><%= subject.class_hours %></td>
+        <td><%= subject.practical_hours %></td>
+        <td><%= subject.evaluation_type.name if subject.evaluation_type %></td>
+        <td><%= subject.curriculum_type.name %></td>
+        <td><%= subject.dictum_or_resoluteness %></td>
+        <td><%= subject.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_subject_path(subject), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      subject_path(subject),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

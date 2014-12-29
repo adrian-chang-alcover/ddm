@@ -1,0 +1,26 @@
+<%= form_for @career, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :short_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :short_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :full_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :full_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :faculty_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :faculty_id, Faculty.all.collect{|f|[f.name, f.id]}, prompt: t(:select_faculty) ,:class => '' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                careers_path, :class => 'btn' %>
+  </div>
+<% end %>

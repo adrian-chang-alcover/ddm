@@ -1,0 +1,26 @@
+<%= form_for @year, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :career_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :career_id, options_from_collection_for_select(Career.all, :id, :name), prompt: t(:select_career), :class => '' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :study_plan_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :study_plan_id, options_from_collection_for_select(StudyPlan.all, :id, :name), prompt: t(:select_study_plan), :class => '' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                years_path, :class => 'btn' %>
+  </div>
+<% end %>
