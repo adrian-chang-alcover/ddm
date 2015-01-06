@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :study_plans
 
   get 'ppd/report'
+  get 'ppd/export'
 
   get 'parser/ppd_vivo'
   post 'parser/ppd_vivo'

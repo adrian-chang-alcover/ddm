@@ -6,4 +6,8 @@ class PpdController < ApplicationController
       @career = Career.first
     end
   end
+
+  def export
+
+  end
 end
