@@ -3,11 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ (
-  -> $('select#career option').click(
+  -> $('select#ppd_career option').click(
     -> document.location.search = "?career=" + $(this).val()
   )
 )
 
 $ (
-  -> $('select#career').val($('#career_id').val())
+  -> $('select#ppd_career').val($('#career_id').val())
 )
