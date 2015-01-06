@@ -48,4 +48,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'figaro'
 
+gem 'spreadsheet'
+
 ruby '2.1.3'
