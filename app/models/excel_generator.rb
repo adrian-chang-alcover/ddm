@@ -1,7 +1,8 @@
 class ExcelGenerator
 
   def self.export_ppd(career)
-    file_name = "#{Rails.root}/tmp/PPD_#{career.name}_#{Time.now.strftime('%Y%m%d.%H%M%S')}.xls"
+    Dir.mkdir("#{Rails.root}/tmp/excels") unless Dir.exist?("#{Rails.root}/tmp/excels")
+    file_name = "#{Rails.root}/tmp/excels/PPD_#{career.name}_#{Time.now.strftime('%Y%m%d.%H%M%S')}.xls"
     book = Spreadsheet::Workbook.new
 
     sheet = book.create_worksheet
