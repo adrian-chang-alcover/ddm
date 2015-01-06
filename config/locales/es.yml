@@ -36,3 +36,4 @@ es:
   discipline: "disciplina"
   subject: "asignatura"
   semester: "semestre"
+  export_to_excel: "Exportar a Excel"
