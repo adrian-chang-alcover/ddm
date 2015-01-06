@@ -5,8 +5,10 @@ class ExcelGenerator
     file_name = "#{Rails.root}/tmp/excels/PPD_#{career.name}_#{Time.now.strftime('%Y%m%d.%H%M%S')}.xls"
     book = Spreadsheet::Workbook.new
 
-    sheet = book.create_worksheet
-    5.times {|j| 5.times {|i| sheet[j,i] = (i+1)*10**j}}
+    sheet1 = book.create_worksheet(name: 'PRESENTACION')
+    sheet1[1,1] = 'UNIVERSIDAD DE LA HABANA'
+    sheet1[3,1] = 'FACULTAD:'
+    sheet1[3,2] = career.name
 
     book.write(file_name)
     {:file_name => file_name, :type => 'application/vnd.ms-excel'}
