@@ -8,6 +8,10 @@ class PpdController < ApplicationController
   end
 
   def export
-
+    career = Career.find(params[:career])
+    info = ExcelGenerator.export_ppd(career)
+    file = File.open(info[:file_name])
+    send_file file.path, info
+    file.close
   end
 end
