@@ -1,0 +1,21 @@
+<h1>Parse PPD</h1>
+<%= form_tag '/parser/per_semester', method: :post, class: 'form-horizontal' %>
+<div class="control-group">
+  <%= label_tag :career, nil, :class => 'control-label' %>
+  <div class="controls">
+    <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name), prompt: t(:select_career), :class => 'text_field' %>
+  </div>
+</div>
+<div class="control-group">
+  <%= label_tag :data, nil, :class => 'control-label' %>
+  <div class="controls">
+    <%= text_area_tag :data, nil, :class => 'text_area' %>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= submit_tag 'Parse!', :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+              faculties_path, :class => 'btn' %>
+</div>
+</form>

@@ -101,4 +101,36 @@ class ParserController < ApplicationController
       render 'subjects/_list'
     end
   end
+
+  def per_semester
+    if request.get?
+      render 'parser/per_semester'
+    elsif request.post?
+      @subjects = []
+      career = Career.find(params['career'])
+      subjects = params['data'].split("\r\n")
+      semester_name = 1
+      year_name = 1
+      subjects.each_with_index do |subject, i|
+        subject.chomp!
+        if subject.blank? and subjects[i+1].blank?
+          year_name += 1
+          semester_name = 0
+        elsif subject.blank?
+          semester_name += 1
+        else
+          year = Year.find_or_create_by(name: year_name.to_s, career: career)
+          semester = Semester.find_or_create_by(name: semester_name, year: year)
+
+          subject = career.subjects.find{|s|I18n.transliterate(s.name).downcase==I18n.transliterate(subject).downcase}
+          if subject
+            subject.semester = semester
+            subject.save
+            @subjects << subject
+          end
+        end
+      end
+      render 'subjects/_list'
+    end
+  end
 end
