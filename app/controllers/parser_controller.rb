@@ -114,7 +114,7 @@ class ParserController < ApplicationController
       semester_name = 1
       year_name = 1
       subjects.each_with_index do |subject, i|
-        subject.chomp!
+        subject = subject.strip.chomp
         if subject.blank? and subjects[i+1].blank?
           year_name += 1
           semester_name = 0
