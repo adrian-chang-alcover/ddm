@@ -36,3 +36,8 @@ es:
   discipline: "disciplina"
   subject: "asignatura"
   semester: "semestre"
+  entities: "Entidades"
+  careers: "Carreras"
+  curriculum_types: "Tipo de Curriculos"
+  evaluation_types: "Tipo de Evaluaciones"
+  study_plans: "Planes de Estudio"

@@ -36,3 +36,7 @@ en:
   discipline: "discipline"
   subject: "subject"
   semester: "semester"
+  entities: "Entities"
+  careers: "Careers"
+  evaluation_types: "Evaluation Types"
+  study_plans: "Study Plans"
