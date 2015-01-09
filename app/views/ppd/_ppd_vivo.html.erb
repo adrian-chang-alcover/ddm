@@ -5,7 +5,7 @@
       <th><%= t(:subject).titleize %></th>
       <th>Total horas</th>
       <th>Horas clases</th>
-      <th>Horas práticas</th>
+      <th>Horas prácticas</th>
       <th><%= t(:year).titleize %></th>
       <th><%= t(:semester).titleize %></th>
       <th>Currículo</th>
@@ -17,14 +17,14 @@
     <% @career.disciplines.each do |discipline| %>
         <% discipline.subjects.each do |subject| %>
           <tr>
-            <td><%= discipline.name if subject == discipline.subjects.first %></td>
-            <td><%= subject.name %></td>
+            <td><%= link_to(discipline.name, edit_discipline_path(discipline.id), target: '_blank') if subject == discipline.subjects.first %></td>
+            <td><%= link_to(subject.name, edit_subject_path(subject.id), target: '_blank') %></td>
             <td><%= subject.total_hours %></td>
             <td><%= subject.class_hours %></td>
             <td><%= subject.practical_hours %></td>
             <td><%= subject.semester.year.name %></td>
             <td><%= subject.semester.name %></td>
-            <td><%= subject.curriculum_type.name %></td>
+            <td><%= subject.curriculum_type.name if subject.curriculum_type %></td>
             <td><%= subject.evaluation_type.short_name if subject.evaluation_type %></td>
             <td><%= subject.dictum_or_resoluteness %></td>
           </tr>

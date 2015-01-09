@@ -12,7 +12,7 @@
   </tr>
   <% @career.years.each do |year| %>
       <tr>
-        <td><%= year.pretty_name.titleize %></td>
+        <td><%= link_to(year.pretty_name.titleize, edit_year_path(year.id), target: '_blank') %></td>
         <td><%= year.study_plan.name %></td>
       </tr>
   <% end %>
