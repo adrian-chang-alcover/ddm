@@ -19,8 +19,4 @@ class Semester < ActiveRecord::Base
     "#{self.pretty_name} de #{self.year.pretty_name_with_career}"
   end
 
-  def weeks
-    return 16
-    self.end_date.cweek - self.begin_date.cweek
-  end
 end
