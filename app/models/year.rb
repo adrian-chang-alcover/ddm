@@ -23,4 +23,8 @@ class Year < ActiveRecord::Base
         name
     end
   end
+
+  def pretty_name_with_career
+    "#{self.pretty_name} de #{self.career.name}"
+  end
 end
