@@ -15,7 +15,7 @@
     <%= f.label :discipline_id, :class => 'control-label' %>
     <div class="controls">
       <%= if @subject.discipline
-            f.select :discipline_id, options_from_collection_for_select(@subject.career.disciplines, :id, :name), prompt: t(:select_discipline), :class => ''
+            f.select :discipline_id, options_from_collection_for_select(@subject.career.disciplines, :id, :name, @subject.discipline_id), prompt: t(:select_discipline), :class => ''
           else
             f.select :discipline_id, options_from_collection_for_select(Discipline.all, :id, :pretty_name_with_career), prompt: t(:select_discipline), :class => ''
           end %>
@@ -25,7 +25,7 @@
     <%= f.label :semester_id, :class => 'control-label' %>
     <div class="controls">
       <%= if @subject.discipline
-            f.select :semester_id, options_from_collection_for_select(@subject.career.semesters, :id, :pretty_name_with_year_and_career), prompt: t(:select_semester), :class => ''
+            f.select :semester_id, options_from_collection_for_select(@subject.career.semesters, :id, :pretty_name_with_year_and_career, @subject.semester_id), prompt: t(:select_semester), :class => ''
           else
             f.select :semester_id, options_from_collection_for_select(Semester.all, :id, :pretty_name_with_year_and_career), prompt: t(:select_semester), :class => ''
           end %>
@@ -46,13 +46,13 @@
   <div class="control-group">
     <%= f.label :evaluation_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :evaluation_type_id, options_from_collection_for_select(EvaluationType.all, :id, :name), prompt: t(:select_evaluation_type), :class => '' %>
+      <%= f.select :evaluation_type_id, options_from_collection_for_select(EvaluationType.all, :id, :name, @subject.evaluation_type_id), prompt: t(:select_evaluation_type), :class => '' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :curriculum_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :curriculum_type_id, options_from_collection_for_select(CurriculumType.all, :id, :name), prompt: t(:select_curriculum_type), :class => '' %>
+      <%= f.select :curriculum_type_id, options_from_collection_for_select(CurriculumType.all, :id, :name, @subject.curriculum_type_id), prompt: t(:select_curriculum_type), :class => '' %>
     </div>
   </div>
   <div class="control-group">
