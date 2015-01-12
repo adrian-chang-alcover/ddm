@@ -122,7 +122,7 @@ class ParserController < ApplicationController
           semester_name += 1
         else
           year = Year.find_or_create_by(name: year_name.to_s, career: career)
-          semester = Semester.find_or_create_by(name: semester_name, year: year)
+          semester = Semester.find_or_create_by(name: semester_name, year: year){|s| s.weeks=33}
 
           subject = career.subjects.find{|s|I18n.transliterate(s.name).downcase==I18n.transliterate(subject).downcase}
           if subject
