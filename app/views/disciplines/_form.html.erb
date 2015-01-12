@@ -8,7 +8,7 @@
   <div class="control-group">
     <%= f.label :career_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :career_id, Faculty.all.collect{|c|[c.name, c.id]}, prompt: t(:select_career) ,:class => '' %>
+      <%= f.select :career_id, options_from_collection_for_select(Career.all, :id, :name, @discipline.career_id), prompt: t(:select_career) ,:class => '' %>
     </div>
   </div>
 

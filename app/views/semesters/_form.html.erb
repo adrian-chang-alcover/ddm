@@ -8,7 +8,7 @@
   <div class="control-group">
     <%= f.label :year_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :year_id, options_from_collection_for_select(Year.all, :id, :pretty_name_with_career), prompt: t(:select_year), :class => 'text_field' %>
+      <%= f.select :year_id, options_from_collection_for_select(Year.all, :id, :pretty_name_with_career, @semester.year_id), prompt: t(:select_year), :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
