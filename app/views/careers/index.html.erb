@@ -19,8 +19,8 @@
         <td><%= link_to career.id, career_path(career) %></td>
         <td><%= career.short_name %></td>
         <td><%= career.full_name %></td>
-        <td><%= career.faculty_id %></td>
-        <td><%=l career.created_at %></td>
+        <td><%= career.faculty.name %></td>
+        <td><%= career.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_career_path(career), :class => 'btn btn-mini' %>

@@ -36,7 +36,7 @@
 
     <%= javascript_include_tag "application" %>
   </head>
-  <body>
+  <body data-no-turbolink="">
 
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
@@ -49,9 +49,7 @@
           <a class="brand" href="#">DDM</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to 'PPD', ppd_report_path  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -63,10 +61,12 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header"><%= t(:entities) %></li>
+              <li><%= link_to t(:faculties), faculties_path %></li>
+              <li><%= link_to t(:careers), careers_path  %></li>
+              <li><%= link_to t(:curriculum_types), curriculum_types_path  %></li>
+              <li><%= link_to t(:evaluation_types), evaluation_types_path  %></li>
+              <li><%= link_to t(:study_plans), study_plans_path  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

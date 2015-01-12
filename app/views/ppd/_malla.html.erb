@@ -5,7 +5,7 @@
       <div class="span<%= 12/year.semesters.count %>">
         <table class="table table-bordered table-condensed ppd">
           <thead>
-            <tr><td class="separator" colspan="4"><%= semester.pretty_name.upcase %></td></tr>
+            <tr><td class="separator" colspan="4"><%= link_to(semester.pretty_name.upcase, edit_semester_path(semester.id), target: '_blank') %></td></tr>
             <tr>
               <td>Asignatura</td>
               <td>Evaluación</td>
@@ -16,7 +16,7 @@
           <tbody>
             <% semester.subjects.each do |subject| %>
               <tr>
-                <td><%= subject.name %></td>
+                <td><%= link_to(subject.name, edit_subject_path(subject.id), target: '_blank') %></td>
                 <td><%= subject.evaluation_type.short_name if subject.evaluation_type %></td>
                 <td><%= subject.total_hours %></td>
                 <td><%= subject.total_hours.fdiv(semester.weeks).round(2) %></td>

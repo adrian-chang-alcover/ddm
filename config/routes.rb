@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'parser/ppd'
   post 'parser/ppd'
 
+  get 'parser/per_semester'
+  post 'parser/per_semester'
+
   resources :curriculum_types
 
   resources :subjects
@@ -29,7 +32,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'ppd#report'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
