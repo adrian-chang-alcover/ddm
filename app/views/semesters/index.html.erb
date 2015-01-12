@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:year_id) %></th>
+      <th><%= model_class.human_attribute_name(:weeks) %></th>
       <th><%= model_class.human_attribute_name(:begin_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -20,6 +21,7 @@
         <td><%= link_to semester.id, semester_path(semester) %></td>
         <td><%= semester.name %></td>
         <td><%= "#{semester.year.pretty_name} de #{semester.year.career.name}" %></td>
+        <td><%= semester.weeks %></td>
         <td><%= semester.begin_date %></td>
         <td><%= semester.end_date %></td>
         <td><%=l semester.created_at %></td>
