@@ -11,4 +11,8 @@ class Subject < ActiveRecord::Base
   def total_hours
     self.class_hours + self.practical_hours
   end
+
+  def career
+    self.discipline.career
+  end
 end

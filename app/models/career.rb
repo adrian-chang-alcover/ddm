@@ -13,6 +13,12 @@ class Career < ActiveRecord::Base
     _subjects
   end
 
+  def semesters
+    _semesters = []
+    self.years.each{|y| _semesters.concat(y.semesters)}
+    _semesters
+  end
+
   def subjects_by_curriculum_type(curriculum_type)
     self.subjects.select{|s| s.curriculum_type == curriculum_type}
   end

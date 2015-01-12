@@ -14,13 +14,21 @@
   <div class="control-group">
     <%= f.label :discipline_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :discipline_id, options_from_collection_for_select(Discipline.all, :id, :name), prompt: t(:select_discipline), :class => '' %>
+      <%= if @subject.discipline
+            f.select :discipline_id, options_from_collection_for_select(@subject.career.disciplines, :id, :name), prompt: t(:select_discipline), :class => ''
+          else
+            f.select :discipline_id, options_from_collection_for_select(Discipline.all, :id, :pretty_name_with_career), prompt: t(:select_discipline), :class => ''
+          end %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :semester_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :semester_id, options_from_collection_for_select(Semester.all, :id, :name), prompt: t(:select_semester), :class => '' %>
+      <%= if @subject.discipline
+            f.select :semester_id, options_from_collection_for_select(@subject.career.semesters, :id, :pretty_name_with_year_and_career), prompt: t(:select_semester), :class => ''
+          else
+            f.select :semester_id, options_from_collection_for_select(Semester.all, :id, :pretty_name_with_year_and_career), prompt: t(:select_semester), :class => ''
+          end %>
     </div>
   </div>
   <div class="control-group">

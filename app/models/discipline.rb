@@ -13,4 +13,8 @@ class Discipline < ActiveRecord::Base
   def subjects_by_curriculum_type_and_year(curriculum_type, year)
     self.subjects.select{|s| s.curriculum_type==curriculum_type and s.semester.year == year}
   end
+
+  def pretty_name_with_career
+    "#{self.name} de #{self.career.name}"
+  end
 end
