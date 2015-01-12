@@ -5,23 +5,23 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:short_name) %>:</strong></dt>
-  <dd><%= @subject.short_name %></dd>
+  <dd><%= @subject.short_name.blank? ? '-' : @subject.short_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></dt>
-  <dd><%= @subject.full_name %></dd>
+  <dd><%= @subject.full_name.blank? ? '-' : @subject.full_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:discipline_id) %>:</strong></dt>
-  <dd><%= @subject.discipline_id %></dd>
+  <dd><%= @subject.discipline.blank? ? '-' : @subject.discipline.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:semester_id) %>:</strong></dt>
-  <dd><%= @subject.semester_id %></dd>
+  <dd><%= @subject.semester.blank? ? '-' : @subject.semester.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:class_hours) %>:</strong></dt>
-  <dd><%= @subject.class_hours %></dd>
+  <dd><%= @subject.class_hours.blank? ? '-' : @subject.class_hours %></dd>
   <dt><strong><%= model_class.human_attribute_name(:evaluation_type_id) %>:</strong></dt>
-  <dd><%= @subject.evaluation_type_id %></dd>
+  <dd><%= @subject.evaluation_type.blank? ? '-' : @subject.evaluation_type.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:practical_hours) %>:</strong></dt>
-  <dd><%= @subject.practical_hours %></dd>
+  <dd><%= @subject.practical_hours.blank? ? '-' : @subject.practical_hours %></dd>
   <dt><strong><%= model_class.human_attribute_name(:curriculum_type_id) %>:</strong></dt>
-  <dd><%= @subject.curriculum_type_id %></dd>
+  <dd><%= @subject.curriculum_type.blank? ? '-' : @subject.curriculum_type.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dictum_or_resoluteness) %>:</strong></dt>
-  <dd><%= @subject.dictum_or_resoluteness %></dd>
+  <dd><%= @subject.dictum_or_resoluteness.blank? ? '-' : @subject.dictum_or_resoluteness %></dd>
 </dl>
 
 <div class="form-actions">
