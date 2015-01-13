@@ -27,4 +27,10 @@ class Year < ActiveRecord::Base
   def pretty_name_with_career
     "#{self.pretty_name} de #{self.career.name}"
   end
+
+  def subjects
+    _subjects = []
+    self.semesters.each{|s| _subjects.concat(s.subjects)}
+    _subjects
+  end
 end

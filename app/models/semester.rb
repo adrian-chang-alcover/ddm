@@ -19,4 +19,20 @@ class Semester < ActiveRecord::Base
     "#{self.pretty_name} de #{self.year.pretty_name_with_career}"
   end
 
+  def name_slug
+    I18n.transliterate(self.name).downcase.squish
+  end
+
+  def relevant_subjects
+    case self.name_slug
+      when 'practica'
+        self.year.subjects.collect{|s| s.practical_hours > 0 and not s.semester.name_slug == 'practica'}
+      when 'anual'
+        []
+      else
+        anual = self.year.semesters.find{|s| s.name_slug == 'anual'}
+        anual.blank? ? [] : anual.subjects
+    end
+  end
+
 end
