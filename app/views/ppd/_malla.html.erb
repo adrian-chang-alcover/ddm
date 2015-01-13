@@ -2,7 +2,8 @@
   <h3><%= year.pretty_name.titleize %></h3>
   <div class="row" style="margin-left: 0px">
     <% year.semesters.each do |semester| %>
-      <div class="span<%= 12/year.semesters.count %>">
+      <% unless semester.name_slug == 'anual' %>
+        <div class="span<%= 12/year.semesters.to_a.count{|s| not s.anual?} %>">
         <table class="table table-bordered table-condensed ppd">
           <thead>
             <tr><td class="separator" colspan="4"><%= link_to(semester.pretty_name.upcase, edit_semester_path(semester.id), target: '_blank') %></td></tr>
@@ -14,21 +15,31 @@
             </tr>
           </thead>
           <tbody>
-            <% semester.subjects.each do |subject| %>
+            <% total_hours = 0
+               semester.subjects.to_a.concat(semester.relevant_subjects).each do |subject| %>
               <tr>
                 <td><%= link_to(subject.name, edit_subject_path(subject.id), target: '_blank') %></td>
                 <td><%= subject.evaluation_type.short_name if subject.evaluation_type %></td>
-                <td><%= subject.total_hours %></td>
-                <td><%= subject.total_hours.fdiv(semester.weeks).round(2) %></td>
+                <td><%= hours = if semester.practica?
+                      subject.practical_hours
+                    elsif subject.semester.anual?
+                      subject.class_hours.fdiv(2)
+                    else
+                      subject.class_hours
+                    end
+                %></td>
+                <% total_hours += hours %>
+                <td><%= hours.fdiv(semester.weeks).round(2) %></td>
               </tr>
             <% end %>
             <tr class="total"><td colspan="3">TOTAL DE SEMANAS</td><td><%= semester.weeks %></td></tr>
-            <tr class="total"><td colspan="3">TOTAL DE HORAS</td><td><%= semester.subjects.to_a.sum{|s|s.total_hours} %></td></tr>
-            <tr class="total"><td colspan="3">PROMEDIO DE HORAS SEMANALES</td><td><%= semester.subjects.to_a.sum{|s|s.total_hours}.fdiv(semester.weeks).round(2) %></td></tr>
+            <tr class="total"><td colspan="3">TOTAL DE HORAS</td><td><%= total_hours %></td></tr>
+            <tr class="total"><td colspan="3">PROMEDIO DE HORAS SEMANALES</td><td><%= total_hours.fdiv(semester.weeks).round(2) %></td></tr>
             <tr class="total"><td colspan="3">TOTAL DE EXÁMENES</td><td><%= semester.subjects.to_a.count{|s|s.evaluation_type==ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL} %></td></tr>
           </tbody>
         </table>
       </div>
+      <% end %>
     <% end %>
   </div>
 <% end %>
