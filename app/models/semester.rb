@@ -24,15 +24,22 @@ class Semester < ActiveRecord::Base
   end
 
   def relevant_subjects
-    case self.name_slug
-      when 'practica'
-        self.year.subjects.collect{|s| s.practical_hours > 0 and not s.semester.name_slug == 'practica'}
-      when 'anual'
-        []
-      else
-        anual = self.year.semesters.find{|s| s.name_slug == 'anual'}
-        anual.blank? ? [] : anual.subjects
+    if self.practica?
+      self.year.subjects.select{|s| s.practical_hours > 0 and not s.semester.name_slug == 'practica'}
+    elsif self.anual?
+      []
+    else
+      anual = self.year.semesters.find{|s| s.name_slug == 'anual'}
+      anual.blank? ? [] : anual.subjects
     end
+  end
+
+  def practica?
+    self.name_slug == 'practica'
+  end
+
+  def anual?
+    self.name_slug == 'anual'
   end
 
 end
