@@ -2,7 +2,9 @@
 
 <dl class="dl-horizontal">
   <dt><%= label_tag :career, t(:career).titleize, :class => 'control-label' %></dt>
-  <dd><%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name), :class => 'text_field', :id => 'ppd_career' %></dd>
+<dd><%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name), :class => 'text_field', :id => 'ppd_career' %></dd>
+  <dt></dt>
+  <dd><%= link_to t(:export_to_excel), {controller: :ppd, action: :export, remote: false, career: @career.id}, class: 'btn'  %></dd>
 </dl>
 
 <input type="hidden" id="career_id" value="<%= @career.id %>">
