@@ -62,7 +62,9 @@ class ExcelGenerator
     start_row = 0
     row = start_row
 
-    sheet
+    sheet.column(start_column).width = 5
+    sheet.column(start_column+1).width = 50
+    (2..11).each{|i| sheet.column(i).width = 7}
 
     ['REPUBLICA DE CUBA','MINISTERIO DE EDUCACIÓN SUPERIOR','UNIVERSIDAD  DE  LA  HABANA','PLAN DEL PROCESO DOCENTE VIGENTE','CURSO 2014-2015'].each do |head|
       sheet.merge_cells(row,start_column,row,start_row+11)
@@ -83,6 +85,63 @@ class ExcelGenerator
     sheet.merge_cells(row,start_column+8,row,start_column+11)
     sheet.write(row,start_column+3,'DECANO',CENTER)
     sheet.write(row,start_column+8,'RECTOR',CENTER)
+
+    row += 2
+    sheet.merge_cells(row,start_column,row+3,start_column)
+    sheet.merge_cells(row,start_column+1,row+3,start_column+1)
+    sheet.merge_cells(row,start_column+2,row,start_column+4)
+    sheet.merge_cells(row,start_column+5,row,start_column+6)
+    sheet.merge_cells(row,start_column+7,row,start_column+career.years.count+6)
+    sheet.write(row,start_column,'No',TABLE_HEADER)
+    sheet.write(row,start_column+1,'Disciplina y Asigantura',TABLE_HEADER)
+    sheet.write(row,start_column+2,'Cantidad de horas',TABLE_HEADER)
+    sheet.write(row,start_column+5,'Dist. por años',TABLE_HEADER)
+    sheet.write(row,start_column+7,'Dist. de las horas por años',TABLE_HEADER)
+    row += 1
+    (2..11).each do |i|
+      sheet.merge_cells(row,start_column+i,row+2,start_column+i)
+    end
+    sheet.write(row,start_column+2,'TOTAL',TABLE_HEADER)
+    sheet.write(row,start_column+3,'CLASE',TABLE_HEADER)
+    sheet.write(row,start_column+4,'PL',TABLE_HEADER)
+    sheet.write(row,start_column+5,'EF',TABLE_HEADER)
+    sheet.write(row,start_column+6,'TC',TABLE_HEADER)
+    career.years.each_with_index do |year, i|
+      sheet.write(row,start_column+7+i,year.name,TABLE_HEADER)
+    end
+
+    row += 3
+    CurriculumType.all.each do |ct|
+      sheet.merge_cells(row,start_column,row,start_column+11)
+      sheet.write(row,start_column,ct.name.upcase,CENTER)
+      row += 1
+      career.disciplines.each_with_index do |d, i|
+        if d.subjects_by_curriculum_type(ct).any?
+          sheet.write(row,start_column,i+1,TABLE_HEADER)
+          sheet.write(row,start_column+1,d.name,TABLE_HEADER)
+          sheet.write(row,start_column+2,d.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
+          sheet.write(row,start_column+3,d.subjects_by_curriculum_type(ct).sum(&:class_hours),TABLE_HEADER)
+          sheet.write(row,start_column+4,d.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
+          sheet.write(row,start_column+5,d.subjects_by_curriculum_type_and_evaluation_type(ct, ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER)
+          sheet.write(row,start_column+6,d.subjects_by_curriculum_type_and_evaluation_type(ct, ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER)
+          career.years.each_with_index do |year, y|
+            sheet.write(row,start_column+7+y,d.subjects_by_year(year).sum(&:total_hours),TABLE_HEADER)
+          end
+          row += 1
+          d.subjects_by_curriculum_type(ct).each_with_index do |s, j|
+            sheet.write(row, start_column, (i+1) + (j+1).fdiv(100),CENTER)
+            sheet.write(row, start_column+1, s.name)
+            sheet.write(row, start_column+2, s.total_hours,CENTER)
+            sheet.write(row, start_column+3, s.class_hours,CENTER)
+            sheet.write(row, start_column+4, s.practical_hours,CENTER)
+            sheet.write(row, start_column+5, s.year.name,CENTER) if s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL
+            sheet.write(row, start_column+6, s.year.name,CENTER) if s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO
+            sheet.write(row, start_column+7+s.career.years.to_a.find_index(s.year), s.total_hours,CENTER)
+            row += 1
+          end
+        end
+      end
+    end
   end
 
 end

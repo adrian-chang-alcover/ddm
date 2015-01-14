@@ -15,4 +15,8 @@ class Subject < ActiveRecord::Base
   def career
     self.discipline.career
   end
+
+  def year
+    self.semester.year
+  end
 end
