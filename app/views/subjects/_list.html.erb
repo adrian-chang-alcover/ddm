@@ -14,6 +14,7 @@
     <th><%= model_class.human_attribute_name(:evaluation_type_id) %></th>
     <th><%= model_class.human_attribute_name(:curriculum_type_id) %></th>
     <th><%= model_class.human_attribute_name(:dictum_or_resoluteness) %></th>
+    <th><%= model_class.human_attribute_name(:number) %></th>
     <th><%= model_class.human_attribute_name(:created_at) %></th>
     <th><%=t '.actions', :default => t("helpers.actions") %></th>
   </tr>
@@ -33,6 +34,7 @@
         <td><%= subject.evaluation_type.name if subject.evaluation_type %></td>
         <td><%= subject.curriculum_type.name if subject.curriculum_type %></td>
         <td><%= subject.dictum_or_resoluteness %></td>
+        <td><%= subject.number %></td>
         <td><%= subject.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
