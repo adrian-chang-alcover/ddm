@@ -159,6 +159,24 @@ class ExcelGenerator
       (row..row+3).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
       row += 3
     end
+
+    row += 1
+    sheet.merge_cells(row,start_column,row+1,start_column+11)
+    sheet.write(row,start_column,'TOTALES',CENTER)
+    sheet.merge_cells(row,start_column,row+2,start_column)
+    sheet.write(row,start_column,'TOTAL',TABLE_HEADER)
+    sheet.write(row,start_column+1,"HORAS DEL CURRÍCULO POR FORMA Y POR AÑO",TABLE_HEADER)
+    sheet.write(row+1,start_column+1,"EXÁMENES FINALES DEL CURRÍCULO Y POR AÑO",TABLE_HEADER)
+    sheet.write(row+2,start_column+1,"TRABAJOS DE CURSO DEL CURRÍCULO Y POR AÑO",TABLE_HEADER)
+    sheet.write(row,start_column+2,career.subjects.sum(&:total_hours),TABLE_HEADER)
+    sheet.write(row,start_column+3,career.subjects.sum(&:class_hours),TABLE_HEADER)
+    sheet.write(row,start_column+4,career.subjects.sum(&:practical_hours),TABLE_HEADER)
+    sheet.write(row+1,start_column+5,career.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
+    sheet.write(row+2,start_column+6,career.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
+    career.years.each_with_index do |year, y|
+      sheet.write(row, start_column+7+y,career.subjects_by_year(year).sum(&:total_hours),TABLE_HEADER)
+    end
+    (row..row+3).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
   end
 
 end
