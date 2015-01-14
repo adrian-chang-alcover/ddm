@@ -4,6 +4,8 @@ class Subject < ActiveRecord::Base
   belongs_to :evaluation_type
   belongs_to :curriculum_type
 
+  default_scope {order :number}
+
   def name
     self.full_name || self.short_name
   end
