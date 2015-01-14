@@ -62,7 +62,7 @@ class ExcelGenerator
     start_row = 0
     row = start_row
 
-    sheet.column(start_column).width = 5
+    sheet.column(start_column).width = 7
     sheet.column(start_column+1).width = 50
     (2..11).each{|i| sheet.column(i).width = 7}
 
@@ -112,9 +112,9 @@ class ExcelGenerator
 
     row += 3
     CurriculumType.all.each do |ct|
-      sheet.merge_cells(row,start_column,row,start_column+11)
+      sheet.merge_cells(row,start_column,row+1,start_column+11)
       sheet.write(row,start_column,ct.name.upcase,CENTER)
-      row += 1
+      row += 2
       career.disciplines.each_with_index do |d, i|
         if d.subjects_by_curriculum_type(ct).any?
           sheet.write(row,start_column,i+1,TABLE_HEADER)
@@ -139,8 +139,25 @@ class ExcelGenerator
             sheet.write(row, start_column+7+s.career.years.to_a.find_index(s.year), s.total_hours,CENTER)
             row += 1
           end
+          row += 1
         end
       end
+
+      sheet.merge_cells(row,start_column,row+2,start_column)
+      sheet.write(row,start_column,'TOTAL',TABLE_HEADER)
+      sheet.write(row,start_column+1,"HORAS DEL CURRÍCULO #{ct.name.upcase} POR FORMA Y AÑO",TABLE_HEADER)
+      sheet.write(row+1,start_column+1,"EXÁMENES FINALES DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER)
+      sheet.write(row+2,start_column+1,"TRABAJOS DE CURSO DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER)
+      sheet.write(row,start_column+2,career.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
+      sheet.write(row,start_column+3,career.subjects_by_curriculum_type(ct).sum(&:class_hours),TABLE_HEADER)
+      sheet.write(row,start_column+4,career.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
+      sheet.write(row+1,start_column+5,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
+      sheet.write(row+2,start_column+6,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
+      career.years.each_with_index do |year, y|
+        sheet.write(row, start_column+7+y,career.subjects_by_curriculum_type_and_year(ct,year).sum(&:total_hours),TABLE_HEADER)
+      end
+      (row..row+3).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
+      row += 3
     end
   end
 
