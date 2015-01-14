@@ -22,6 +22,8 @@
   <dd><%= @subject.curriculum_type.blank? ? '-' : @subject.curriculum_type.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dictum_or_resoluteness) %>:</strong></dt>
   <dd><%= @subject.dictum_or_resoluteness.blank? ? '-' : @subject.dictum_or_resoluteness %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
+  <dd><%= @subject.number.blank? ? '-' : @subject.number %></dd>
 </dl>
 
 <div class="form-actions">
