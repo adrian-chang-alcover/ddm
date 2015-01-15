@@ -2,6 +2,8 @@ class Discipline < ActiveRecord::Base
   belongs_to :career
   has_many :subjects, dependent: :destroy
 
+  default_scope {order :number}
+
   def subjects_by_curriculum_type(curriculum_type)
     self.subjects.select{|s| s.curriculum_type==curriculum_type}
   end
