@@ -160,9 +160,9 @@ class ExcelGenerator
       row += 3
     end
 
-    row += 1
     sheet.merge_cells(row,start_column,row+1,start_column+11)
     sheet.write(row,start_column,'TOTALES',CENTER)
+    row += 2
     sheet.merge_cells(row,start_column,row+2,start_column)
     sheet.write(row,start_column,'TOTAL',TABLE_HEADER)
     sheet.write(row,start_column+1,"HORAS DEL CURRÍCULO POR FORMA Y POR AÑO",TABLE_HEADER)
