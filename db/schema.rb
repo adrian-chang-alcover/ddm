@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114154506) do
+ActiveRecord::Schema.define(version: 20150115132753) do
 
   create_table "careers", force: true do |t|
     t.string   "short_name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150114154506) do
     t.integer  "career_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "number",     default: 0
   end
 
   create_table "evaluation_types", force: true do |t|
