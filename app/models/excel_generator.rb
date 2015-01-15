@@ -5,11 +5,49 @@ Spreadsheet::Worksheet.class_eval do
   end
 end
 
+Spreadsheet::Format.class_eval do
+  def | (format)
+    defaults = {:@rotation         => 0,
+                :@pattern          => 0,
+                :@bottom_color     => :black,
+                :@top_color        => :black,
+                :@left_color       => :black,
+                :@right_color      => :black,
+                :@diagonal_color   => :black,
+                :@pattern_fg_color => :border,
+                :@pattern_bg_color => :pattern_bg}
+    result = Spreadsheet::Format.new
+    [self, format].each do |f|
+      f.instance_variables.each do |instance_variable|
+        unless instance_variable == :@font
+          if f.instance_variable_get(instance_variable) and (not defaults.key?(instance_variable) or f.instance_variable_get(instance_variable) != defaults[instance_variable])
+            result.instance_variable_set(instance_variable, f.instance_variable_get(instance_variable))
+          end
+        end
+      end
+      f.font.instance_variables.each do |instance_variable|
+        if f.font.instance_variable_get(instance_variable)
+          result.font.instance_variable_set(instance_variable, f.font.instance_variable_get(instance_variable))
+        end
+      end
+    end
+    result
+  end
+end
+
 class ExcelGenerator
 
   TABLE_HEADER = Spreadsheet::Format.new :pattern => 1, :pattern_fg_color => :silver, :size => 11, :color => :black, :align => :center, :vertical_align => :center
   PPD_HEADER = Spreadsheet::Format.new :size => 11, :color => :black, :align => :center, :vertical_align => :center
   CENTER = Spreadsheet::Format.new :align => :center, :vertical_align => :center
+  TINY = Spreadsheet::Format.new :size => 9
+
+  CURRICULUM_TYPE_BASICO = ApplicationController::CURRICULUM_TYPE_BASICO
+  CURRICULUM_TYPE_PROPIO = ApplicationController::CURRICULUM_TYPE_PROPIO
+  CURRICULUM_TYPE_OPTATIVO = ApplicationController::CURRICULUM_TYPE_OPTATIVO
+
+  EVALUATION_TYPE_EXAMEN_FINAL = ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL
+  EVALUATION_TYPE_TRABAJO_CURSO = ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO
 
   def self.export_ppd(career)
     Dir.mkdir("#{Rails.root}/tmp/excels") unless Dir.exist?("#{Rails.root}/tmp/excels")
@@ -50,7 +88,7 @@ class ExcelGenerator
     sheet.write(row,start_column+2,'COMENTARIOS',TABLE_HEADER)
     career.years.each do |year|
       sheet.write(row+=1, start_column, year.pretty_name, TABLE_HEADER)
-      sheet.write(row, start_column+1, year.study_plan.name, Spreadsheet::Format.new(:align => :center))
+      sheet.write(row, start_column+1, year.study_plan.name, CENTER)
       sheet.merge_cells(row, start_column+2,row,start_column+width)
     end
   end
@@ -122,8 +160,8 @@ class ExcelGenerator
           sheet.write(row,start_column+2,d.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
           sheet.write(row,start_column+3,d.subjects_by_curriculum_type(ct).sum(&:class_hours),TABLE_HEADER)
           sheet.write(row,start_column+4,d.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
-          sheet.write(row,start_column+5,d.subjects_by_curriculum_type_and_evaluation_type(ct, ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER)
-          sheet.write(row,start_column+6,d.subjects_by_curriculum_type_and_evaluation_type(ct, ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER)
+          sheet.write(row,start_column+5,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER)
+          sheet.write(row,start_column+6,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER)
           career.years.each_with_index do |year, y|
             sheet.write(row,start_column+7+y,d.subjects_by_year(year).sum(&:total_hours),TABLE_HEADER)
           end
@@ -134,8 +172,8 @@ class ExcelGenerator
             sheet.write(row, start_column+2, s.total_hours,CENTER)
             sheet.write(row, start_column+3, s.class_hours,CENTER)
             sheet.write(row, start_column+4, s.practical_hours,CENTER)
-            sheet.write(row, start_column+5, s.year.name,CENTER) if s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL
-            sheet.write(row, start_column+6, s.year.name,CENTER) if s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO
+            sheet.write(row, start_column+5, s.year.name,CENTER) if s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL
+            sheet.write(row, start_column+6, s.year.name,CENTER) if s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO
             sheet.write(row, start_column+7+s.career.years.to_a.find_index(s.year), s.total_hours,CENTER)
             row += 1
           end
@@ -151,8 +189,8 @@ class ExcelGenerator
       sheet.write(row,start_column+2,career.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
       sheet.write(row,start_column+3,career.subjects_by_curriculum_type(ct).sum(&:class_hours),TABLE_HEADER)
       sheet.write(row,start_column+4,career.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
-      sheet.write(row+1,start_column+5,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
-      sheet.write(row+2,start_column+6,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
+      sheet.write(row+1,start_column+5,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
+      sheet.write(row+2,start_column+6,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
       career.years.each_with_index do |year, y|
         sheet.write(row, start_column+7+y,career.subjects_by_curriculum_type_and_year(ct,year).sum(&:total_hours),TABLE_HEADER)
       end
@@ -171,12 +209,45 @@ class ExcelGenerator
     sheet.write(row,start_column+2,career.subjects.sum(&:total_hours),TABLE_HEADER)
     sheet.write(row,start_column+3,career.subjects.sum(&:class_hours),TABLE_HEADER)
     sheet.write(row,start_column+4,career.subjects.sum(&:practical_hours),TABLE_HEADER)
-    sheet.write(row+1,start_column+5,career.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
-    sheet.write(row+2,start_column+6,career.subjects.count{|s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
+    sheet.write(row+1,start_column+5,career.subjects.count{|s| s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
+    sheet.write(row+2,start_column+6,career.subjects.count{|s| s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
     career.years.each_with_index do |year, y|
       sheet.write(row, start_column+7+y,career.subjects_by_year(year).sum(&:total_hours),TABLE_HEADER)
     end
     (row..row+3).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
+
+    row += 4
+    sheet.merge_cells(row, start_column+1,row,start_column+2)
+    sheet.write(row, start_column+1,'ESTRUCTURA EN PORCIENTO',TABLE_HEADER)
+    sheet.write(row+1, start_column+1,'CURRÍCULO BÁSICO',TABLE_HEADER)
+    sheet.write(row+1, start_column+2,(career.subjects_by_curriculum_type(CURRICULUM_TYPE_BASICO).sum(&:total_hours).fdiv(career.subjects.sum(&:total_hours))*100).round(2),TABLE_HEADER)
+    sheet.write(row+2, start_column+1,'CURRÍCULO PROPIO',TABLE_HEADER)
+    sheet.write(row+2, start_column+2,(career.subjects_by_curriculum_type(CURRICULUM_TYPE_PROPIO).sum(&:total_hours).fdiv(career.subjects.sum(&:total_hours))*100).round(2),TABLE_HEADER)
+    sheet.write(row+3, start_column+1,'CURRÍCULO OPTATIVO',TABLE_HEADER)
+    sheet.write(row+3, start_column+2,(career.subjects_by_curriculum_type(CURRICULUM_TYPE_OPTATIVO).sum(&:total_hours).fdiv(career.subjects.sum(&:total_hours))*100).round(2),TABLE_HEADER)
+
+    sheet.merge_cells(row,start_column+6,row,start_column+6+career.years.count)
+    sheet.write(row,start_column+6,'EVALUACIONES POR AÑO',TABLE_HEADER)
+    row += 1
+    career.years.each_with_index do |year, y|
+      sheet.write(row,start_column+6+y,year.name,TABLE_HEADER)
+    end
+    sheet.write(row,start_column+6+career.years.count,'TOTAL',TABLE_HEADER)
+    sheet.write(row+=1, start_column+5,'EF',TABLE_HEADER)
+    career.years.each_with_index do |year, y|
+      sheet.write(row,start_column+6+y,career.subjects_by_year(year).count{|s|s.evaluation_type==EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
+    end
+    sheet.write(row,start_column+6+career.years.count,career.subjects_by_evaluation_type(EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER)
+    sheet.write(row+=1, start_column+5,'TC',TABLE_HEADER)
+    career.years.each_with_index do |year, y|
+      sheet.write(row,start_column+6+y,career.subjects_by_year(year).count{|s|s.evaluation_type==EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
+    end
+    sheet.write(row,start_column+6+career.years.count,career.subjects_by_evaluation_type(EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER)
+    sheet.write(row+=1, start_column+5,'TOTAL',TABLE_HEADER)
+    career.years.each_with_index do |year, y|
+      sheet.write(row,start_column+6+y,career.subjects_by_year(year).count{|s|s.evaluation_type},TABLE_HEADER)
+    end
+    sheet.write(row,start_column+6+career.years.count,career.subjects.count{|s|s.evaluation_type},TABLE_HEADER)
   end
 
 end
