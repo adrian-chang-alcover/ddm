@@ -37,10 +37,12 @@ end
 
 class ExcelGenerator
 
-  TABLE_HEADER = Spreadsheet::Format.new :pattern => 1, :pattern_fg_color => :silver, :size => 11, :color => :black, :align => :center, :vertical_align => :center
-  PPD_HEADER = Spreadsheet::Format.new :size => 11, :color => :black, :align => :center, :vertical_align => :center
   CENTER = Spreadsheet::Format.new :align => :center, :vertical_align => :center
-  TINY = Spreadsheet::Format.new :size => 9
+  TINY = Spreadsheet::Format.new :size => 7
+  NORMAL = Spreadsheet::Format.new :size => 9
+  HUGE = Spreadsheet::Format.new :size => 11
+  BG_COLOR = Spreadsheet::Format.new :pattern => 1, :pattern_fg_color => :silver
+  TABLE_HEADER = CENTER | NORMAL | BG_COLOR
 
   CURRICULUM_TYPE_BASICO = ApplicationController::CURRICULUM_TYPE_BASICO
   CURRICULUM_TYPE_PROPIO = ApplicationController::CURRICULUM_TYPE_PROPIO
@@ -69,21 +71,21 @@ class ExcelGenerator
     width = 4
     sheet.column(start_column).width = 20
     sheet.merge_cells(start_row,start_column,start_row+1,start_column+width)
-    sheet.write(start_row, start_column, 'UNIVERSIDAD DE LA HABANA', TABLE_HEADER)
+    sheet.write(start_row, start_column, 'UNIVERSIDAD DE LA HABANA', TABLE_HEADER | HUGE)
     row = start_row + 2
     {:facultad => career.faculty.name, :carrera => career.name, :curso => '2014-2015', :tipo_de_curso => 'CRD'}.each do |key, value|
       sheet.merge_cells(row, start_column, row+1,start_column)
-      sheet.write(row, 1, key.to_s.upcase, TABLE_HEADER)
+      sheet.write(row, 1, key.to_s.upcase, TABLE_HEADER | HUGE)
       sheet.merge_cells(row,start_column+1,row+1,start_column+width)
-      sheet.write(row, start_column+1, value, TABLE_HEADER)
+      sheet.write(row, start_column+1, value, TABLE_HEADER | HUGE)
       row += 2
     end
 
     row += 2
     sheet.merge_cells(row,start_column,row,start_column+width)
-    sheet.write(row,start_column,'PLAN DE ESTUDIOS', TABLE_HEADER)
-    sheet.write(row+=1,start_column,'AÑO',TABLE_HEADER)
-    sheet.write(row,start_column+1,'PLAN',TABLE_HEADER)
+    sheet.write(row,start_column,'PLAN DE ESTUDIOS', TABLE_HEADER | HUGE)
+    sheet.write(row+=1,start_column,'AÑO',TABLE_HEADER | HUGE)
+    sheet.write(row,start_column+1,'PLAN',TABLE_HEADER | HUGE)
     sheet.merge_cells(row, start_column+2,row,start_column+width)
     sheet.write(row,start_column+2,'COMENTARIOS',TABLE_HEADER)
     career.years.each do |year|
@@ -106,7 +108,7 @@ class ExcelGenerator
 
     ['REPUBLICA DE CUBA','MINISTERIO DE EDUCACIÓN SUPERIOR','UNIVERSIDAD  DE  LA  HABANA','PLAN DEL PROCESO DOCENTE VIGENTE','CURSO 2014-2015'].each do |head|
       sheet.merge_cells(row,start_column,row,start_row+11)
-      sheet.write(row,start_column,head,PPD_HEADER)
+      sheet.write(row,start_column,head,CENTER | HUGE)
       row+=1
     end
 
