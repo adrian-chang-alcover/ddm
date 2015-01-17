@@ -104,7 +104,7 @@ class ExcelGenerator
     sheet.merge_cells(start_row,start_column,start_row+1,start_column+width)
     sheet.write(start_row, start_column, 'UNIVERSIDAD DE LA HABANA', TABLE_HEADER | HUGE)
     row = start_row + 2
-    {:facultad => career.faculty.name, :carrera => career.name, :curso => '2014-2015', :tipo_de_curso => 'CRD'}.each do |key, value|
+    {:facultad => career.faculty.name, :carrera => career.name, :curso => '2014-2015', 'tipo de curso' => 'CRD'}.each do |key, value|
       sheet.merge_cells(row, start_column, row+1,start_column)
       sheet.write(row, 1, key.to_s.upcase, TABLE_HEADER | HUGE)
       sheet.merge_cells(row,start_column+1,row+1,start_column+width)
@@ -312,36 +312,38 @@ class ExcelGenerator
       sheet.write(row,start_column,year.pretty_name.titleize,TABLE_HEADER|HUGE)
       row += 1
       year.semesters.each_with_index do |semester, s|
-        sheet.merge_cells(row,start_column+5*s,row,start_column+5*s+3)
-        sheet.write(row,start_column+5*s,semester.pretty_name.titleize,TABLE_HEADER|HUGE)
-        sheet.column(start_column+5*s).width=30
-        sheet.write(row+1,start_column+5*s,'ASIGNATURA',TABLE_HEADER)
-        sheet.write(row+1,start_column+5*s+1,'EVAL',TABLE_HEADER)
-        sheet.write(row+1,start_column+5*s+2,'H',TABLE_HEADER)
-        sheet.write(row+1,start_column+5*s+3,'H / S',TABLE_HEADER)
+        unless semester.name_slug == 'anual'
+          sheet.merge_cells(row,start_column+5*s,row,start_column+5*s+3)
+          sheet.write(row,start_column+5*s,semester.pretty_name.titleize,TABLE_HEADER|HUGE)
+          sheet.column(start_column+5*s).width=30
+          sheet.write(row+1,start_column+5*s,'ASIGNATURA',TABLE_HEADER)
+          sheet.write(row+1,start_column+5*s+1,'EVAL',TABLE_HEADER)
+          sheet.write(row+1,start_column+5*s+2,'H',TABLE_HEADER)
+          sheet.write(row+1,start_column+5*s+3,'H / S',TABLE_HEADER)
 
-        total_hours = 0
-        semester.subjects.to_a.concat(semester.relevant_subjects).each_with_index do |subject, sub|
-          sheet.write(row+2+sub,start_column+5*s,subject.name,TINY)
-          sheet.write(row+2+sub,start_column+5*s+1,subject.evaluation_type.short_name,CENTER) if subject.evaluation_type
-          hours = if semester.practica?
-                    subject.practical_hours
-                  elsif subject.semester.anual?
-                    subject.class_hours.fdiv(2)
-                  else
-                    subject.class_hours
-                  end
-          sheet.write(row+2+sub,start_column+5*s+2,hours,CENTER)
-          total_hours += hours
-          sheet.write(row+2+sub,start_column+5*s+3,hours.fdiv(semester.weeks).round(2),CENTER)
-        end
-        total_subjects = semester.subjects.count + semester.relevant_subjects.count
-        i=2
-        {'TOTAL DE SEMANAS'=>semester.weeks,'TOTAL DE HORAS'=>total_hours,'PROMEDIO DE HORAS SEMANALES'=>total_hours.fdiv(semester.weeks).round(2),'TOTAL DE EXÁMENES'=>semester.subjects.to_a.count{|s|s.evaluation_type==ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL}}.each do |key,value|
-          sheet.merge_cells(row+i+total_subjects,start_column+5*s,row+i+total_subjects,start_column+5*s+1)
-          sheet.write(row+i+total_subjects,start_column+5*s,key,BG_COLOR|NORMAL)
-          sheet.write(row+i+total_subjects,start_column+5*s+2,value,BG_COLOR|CENTER|NORMAL)
-          i+=1
+          total_hours = 0
+          semester.subjects.to_a.concat(semester.relevant_subjects).each_with_index do |subject, sub|
+            sheet.write(row+2+sub,start_column+5*s,subject.name,TINY)
+            sheet.write(row+2+sub,start_column+5*s+1,subject.evaluation_type.short_name,CENTER) if subject.evaluation_type
+            hours = if semester.practica?
+                      subject.practical_hours
+                    elsif subject.semester.anual?
+                      subject.class_hours.fdiv(2)
+                    else
+                      subject.class_hours
+                    end
+            sheet.write(row+2+sub,start_column+5*s+2,hours,CENTER)
+            total_hours += hours
+            sheet.write(row+2+sub,start_column+5*s+3,hours.fdiv(semester.weeks).round(2),CENTER)
+          end
+          total_subjects = semester.subjects.count + semester.relevant_subjects.count
+          i=2
+          {'TOTAL DE SEMANAS'=>semester.weeks,'TOTAL DE HORAS'=>total_hours,'PROMEDIO DE HORAS SEMANALES'=>total_hours.fdiv(semester.weeks).round(2),'TOTAL DE EXÁMENES'=>semester.subjects.to_a.count{|s|s.evaluation_type==ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL}}.each do |key,value|
+            sheet.merge_cells(row+i+total_subjects,start_column+5*s,row+i+total_subjects,start_column+5*s+1)
+            sheet.write(row+i+total_subjects,start_column+5*s,key,BG_COLOR|NORMAL)
+            sheet.write(row+i+total_subjects,start_column+5*s+2,value,BG_COLOR|CENTER|NORMAL)
+            i+=1
+          end
         end
       end
       row += year.semesters.collect{|s| s.subjects.count + s.relevant_subjects.count}.max + 7
