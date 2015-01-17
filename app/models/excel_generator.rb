@@ -60,9 +60,35 @@ class ExcelGenerator
     self.generate_presentation(book, career)
     self.generate_ppd(book, career)
     self.generate_ppd_vivo(book, career)
+    self.generate_malla_curricular(book, career)
 
     book.write(file_name)
     {:file_name => file_name, :type => 'application/vnd.ms-excel'}
+  end
+
+  def self.generate_header(sheet, start_row, start_column, career)
+    row = start_row
+
+    ['REPUBLICA DE CUBA','MINISTERIO DE EDUCACIÓN SUPERIOR','UNIVERSIDAD  DE  LA  HABANA','PLAN DEL PROCESO DOCENTE VIGENTE','CURSO 2014-2015'].each do |head|
+      sheet.merge_cells(row,start_column,row,start_row+11)
+      sheet.write(row,start_column,head,CENTER | HUGE)
+      row+=1
+    end
+
+    sheet.write(row+=1,start_column,'MODALIDAD: PRESENCIAL')
+    sheet.merge_cells(row,start_column+3,row,start_column+6)
+    sheet.merge_cells(row,start_column+8,row,start_column+11)
+    sheet.write(row+=1,start_column,"CARRERA: #{career.name}")
+    sheet.merge_cells(row,start_column+3,row,start_column+6)
+    sheet.merge_cells(row,start_column+8,row,start_column+11)
+    sheet.write(row,start_column+3,"Decano de #{career.name}",CENTER|TINY)
+    sheet.write(row,start_column+8,"Dr. GUSTAVO COBREIRO",CENTER|TINY)
+    sheet.write(row+=1,start_column,"CALIFICACIÓN: Licenciado en #{career.name}")
+    sheet.merge_cells(row,start_column+3,row,start_column+6)
+    sheet.merge_cells(row,start_column+8,row,start_column+11)
+    sheet.write(row,start_column+3,'DECANO',CENTER)
+    sheet.write(row,start_column+8,'RECTOR',CENTER)
+    row
   end
 
   def self.generate_presentation(book, career)
@@ -102,31 +128,12 @@ class ExcelGenerator
 
     start_column = 0
     start_row = 0
-    row = start_row
 
     sheet.column(start_column).width = 5
     sheet.column(start_column+1).width = 40
     (2..11).each{|i| sheet.column(i).width = 5}
 
-    ['REPUBLICA DE CUBA','MINISTERIO DE EDUCACIÓN SUPERIOR','UNIVERSIDAD  DE  LA  HABANA','PLAN DEL PROCESO DOCENTE VIGENTE','CURSO 2014-2015'].each do |head|
-      sheet.merge_cells(row,start_column,row,start_row+11)
-      sheet.write(row,start_column,head,CENTER | HUGE)
-      row+=1
-    end
-
-    sheet.write(row+=1,start_column,'MODALIDAD: PRESENCIAL')
-    sheet.merge_cells(row,start_column+3,row,start_column+6)
-    sheet.merge_cells(row,start_column+8,row,start_column+11)
-    sheet.write(row+=1,start_column,"CARRERA: #{career.name}")
-    sheet.merge_cells(row,start_column+3,row,start_column+6)
-    sheet.merge_cells(row,start_column+8,row,start_column+11)
-    sheet.write(row,start_column+3,"Decano de #{career.name}",CENTER|TINY)
-    sheet.write(row,start_column+8,"Dr. GUSTAVO COBREIRO",CENTER|TINY)
-    sheet.write(row+=1,start_column,"CALIFICACIÓN: Licenciado en #{career.name}")
-    sheet.merge_cells(row,start_column+3,row,start_column+6)
-    sheet.merge_cells(row,start_column+8,row,start_column+11)
-    sheet.write(row,start_column+3,'DECANO',CENTER)
-    sheet.write(row,start_column+8,'RECTOR',CENTER)
+    row = self.generate_header(sheet,start_row,start_column,career)
 
     row += 2
     sheet.merge_cells(row,start_column,row+3,start_column)
@@ -287,4 +294,54 @@ class ExcelGenerator
 
   end
 
+  def self.generate_malla_curricular(book, career)
+    sheet = book.create_worksheet(name: 'MALLA CURRICULAR')
+
+    start_column = 0
+    start_row = 0
+    (0..13).each{|i| sheet.column(i).width = 5}
+
+    row = self.generate_header(sheet,start_row,start_column,career)
+
+    row += 2
+    career.years.each do |year|
+      sheet.merge_cells(row,start_column,row,start_column+13)
+      sheet.write(row,start_column,year.pretty_name.titleize,TABLE_HEADER|HUGE)
+      row += 1
+      year.semesters.each_with_index do |semester, s|
+        sheet.merge_cells(row,start_column+5*s,row,start_column+5*s+3)
+        sheet.write(row,start_column+5*s,semester.pretty_name.titleize,TABLE_HEADER|HUGE)
+        sheet.column(start_column+5*s).width=30
+        sheet.write(row+1,start_column+5*s,'ASIGNATURA',TABLE_HEADER)
+        sheet.write(row+1,start_column+5*s+1,'EVAL',TABLE_HEADER)
+        sheet.write(row+1,start_column+5*s+2,'H',TABLE_HEADER)
+        sheet.write(row+1,start_column+5*s+3,'H / S',TABLE_HEADER)
+
+        total_hours = 0
+        semester.subjects.to_a.concat(semester.relevant_subjects).each_with_index do |subject, sub|
+          sheet.write(row+2+sub,start_column+5*s,subject.name,TINY)
+          sheet.write(row+2+sub,start_column+5*s+1,subject.evaluation_type.short_name,CENTER) if subject.evaluation_type
+          hours = if semester.practica?
+                    subject.practical_hours
+                  elsif subject.semester.anual?
+                    subject.class_hours.fdiv(2)
+                  else
+                    subject.class_hours
+                  end
+          sheet.write(row+2+sub,start_column+5*s+2,hours,CENTER)
+          total_hours += hours
+          sheet.write(row+2+sub,start_column+5*s+3,hours.fdiv(semester.weeks).round(2),CENTER)
+        end
+        total_subjects = semester.subjects.count + semester.relevant_subjects.count
+        i=2
+        {'TOTAL DE SEMANAS'=>semester.weeks,'TOTAL DE HORAS'=>total_hours,'PROMEDIO DE HORAS SEMANALES'=>total_hours.fdiv(semester.weeks).round(2),'TOTAL DE EXÁMENES'=>semester.subjects.to_a.count{|s|s.evaluation_type==ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL}}.each do |key,value|
+          sheet.merge_cells(row+i+total_subjects,start_column+5*s,row+i+total_subjects,start_column+5*s+1)
+          sheet.write(row+i+total_subjects,start_column+5*s,key,BG_COLOR|NORMAL)
+          sheet.write(row+i+total_subjects,start_column+5*s+2,value,BG_COLOR|CENTER|NORMAL)
+          i+=1
+        end
+      end
+      row += year.semesters.collect{|s| s.subjects.count + s.relevant_subjects.count}.max + 7
+    end
+  end
 end
