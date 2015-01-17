@@ -59,6 +59,7 @@ class ExcelGenerator
 
     self.generate_presentation(book, career)
     self.generate_ppd(book, career)
+    self.generate_ppd_vivo(book, career)
 
     book.write(file_name)
     {:file_name => file_name, :type => 'application/vnd.ms-excel'}
@@ -251,6 +252,39 @@ class ExcelGenerator
       sheet.write(row,start_column+6+y,career.subjects_by_year(year).count{|s|s.evaluation_type},TABLE_HEADER)
     end
     sheet.write(row,start_column+6+career.years.count,career.subjects.count{|s|s.evaluation_type},TABLE_HEADER)
+  end
+
+  def self.generate_ppd_vivo(book, career)
+    sheet = book.create_worksheet(name: 'PPD VIVO')
+
+    start_column = 0
+    start_row = 0
+    row = start_row
+
+    sheet.column(start_column).width=30
+    sheet.column(start_column+1).width=30
+    sheet.column(start_column+9).width=30
+    ['DISCIPLINA', 'ASIGNATURA', 'TOTAL HORAS',	'HORAS CLASE', 'HORAS P.L.', 'AÑO', 'SEMESTRE',	'CURRICULO', 'EVAL.',	'DICTÁMEN O RESOLUCIÓN'].each_with_index do |header, i|
+      sheet.write(row, start_column+i,header,TABLE_HEADER)
+    end
+
+    row += 1
+    career.disciplines.each do |discipline|
+      sheet.write(row,start_column,discipline.name,TINY)
+      discipline.subjects.each do |subject|
+        sheet.write(row,start_column+1,subject.name,TINY)
+        sheet.write(row,start_column+2,subject.total_hours,CENTER)
+        sheet.write(row,start_column+3,subject.class_hours,CENTER)
+        sheet.write(row,start_column+4,subject.practical_hours,CENTER)
+        sheet.write(row,start_column+5,subject.year.name,CENTER)
+        sheet.write(row,start_column+6,subject.semester.name,CENTER)
+        sheet.write(row,start_column+7,subject.curriculum_type.name,CENTER)
+        sheet.write(row,start_column+8,subject.evaluation_type.short_name, CENTER) if subject.evaluation_type
+        sheet.write(row,start_column+9,subject.dictum_or_resoluteness,CENTER)
+        row += 1
+      end
+    end
+
   end
 
 end
