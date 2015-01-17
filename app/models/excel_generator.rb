@@ -66,28 +66,31 @@ class ExcelGenerator
     {:file_name => file_name, :type => 'application/vnd.ms-excel'}
   end
 
-  def self.generate_header(sheet, start_row, start_column, career)
+  def self.generate_header(sheet, start_row, start_column, width, career)
     row = start_row
 
     ['REPUBLICA DE CUBA','MINISTERIO DE EDUCACIÓN SUPERIOR','UNIVERSIDAD  DE  LA  HABANA','PLAN DEL PROCESO DOCENTE VIGENTE','CURSO 2014-2015'].each do |head|
-      sheet.merge_cells(row,start_column,row,start_row+11)
+      sheet.merge_cells(row,start_column,row,start_row+width)
       sheet.write(row,start_column,head,CENTER | HUGE)
       row+=1
     end
 
-    sheet.write(row+=1,start_column,'MODALIDAD: PRESENCIAL')
-    sheet.merge_cells(row,start_column+3,row,start_column+6)
-    sheet.merge_cells(row,start_column+8,row,start_column+11)
-    sheet.write(row+=1,start_column,"CARRERA: #{career.name}")
-    sheet.merge_cells(row,start_column+3,row,start_column+6)
-    sheet.merge_cells(row,start_column+8,row,start_column+11)
-    sheet.write(row,start_column+3,"Decano de #{career.name}",CENTER|TINY)
-    sheet.write(row,start_column+8,"Dr. GUSTAVO COBREIRO",CENTER|TINY)
-    sheet.write(row+=1,start_column,"CALIFICACIÓN: Licenciado en #{career.name}")
-    sheet.merge_cells(row,start_column+3,row,start_column+6)
-    sheet.merge_cells(row,start_column+8,row,start_column+11)
-    sheet.write(row,start_column+3,'DECANO',CENTER)
-    sheet.write(row,start_column+8,'RECTOR',CENTER)
+    sheet.merge_cells(row+=1,start_column,row,start_column+width-9)
+    sheet.write(row,start_column,'MODALIDAD: PRESENCIAL')
+    sheet.merge_cells(row,start_column+width-8,row,start_column+width-5)
+    sheet.merge_cells(row,start_column+width-3,row,start_column+width)
+    sheet.merge_cells(row+=1,start_column,row,start_column+width-9)
+    sheet.write(row,start_column,"CARRERA: #{career.name}")
+    sheet.merge_cells(row,start_column+width-8,row,start_column+width-5)
+    sheet.merge_cells(row,start_column+width-3,row,start_column+width)
+    sheet.write(row,start_column+width-8,"Decano de #{career.name}",CENTER|TINY)
+    sheet.write(row,start_column+width-3,"Dr. GUSTAVO COBREIRO",CENTER|TINY)
+    sheet.merge_cells(row+=1,start_column,row,start_column+width-9)
+    sheet.write(row,start_column,"CALIFICACIÓN: Licenciado en #{career.name}")
+    sheet.merge_cells(row,start_column+width-8,row,start_column+width-5)
+    sheet.merge_cells(row,start_column+width-3,row,start_column+width)
+    sheet.write(row,start_column+width-8,'DECANO',CENTER)
+    sheet.write(row,start_column+width-3,'RECTOR',CENTER)
     row
   end
 
@@ -133,7 +136,7 @@ class ExcelGenerator
     sheet.column(start_column+1).width = 40
     (2..11).each{|i| sheet.column(i).width = 5}
 
-    row = self.generate_header(sheet,start_row,start_column,career)
+    row = self.generate_header(sheet,start_row,start_column,6+career.years.count,career)
 
     row += 2
     sheet.merge_cells(row,start_column,row+3,start_column)
@@ -301,7 +304,7 @@ class ExcelGenerator
     start_row = 0
     (0..13).each{|i| sheet.column(i).width = 5}
 
-    row = self.generate_header(sheet,start_row,start_column,career)
+    row = self.generate_header(sheet,start_row,start_column,13,career)
 
     row += 2
     career.years.each do |year|
