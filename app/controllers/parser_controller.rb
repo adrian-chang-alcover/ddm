@@ -61,7 +61,7 @@ class ParserController < ApplicationController
       career_id = params['career']
       params['data'].lines.each do |line|
         row = line.chomp.split("\t")
-        number, discipline_or_subject, foo, class_hours, practical_hours, ef, tc, first, second, third, fourth, fifth = row
+        number, discipline_or_subject, foo, class_hours, practical_hours, ef, tc, first, second, third, fourth, fifth, preparatoria = row
 
         case number
           when 'CURRÍCULO BÁSICO'
@@ -76,9 +76,9 @@ class ParserController < ApplicationController
             discipline = Discipline.find_or_create_by(career_id: career_id, name: discipline_or_subject)
             @discipline = discipline
           else
-            year = [first, second, third, fourth, fifth].find_index{|i| not i.blank?}+1
+            year = [first, second, third, fourth, fifth, preparatoria].find_index{|i| not i.blank?}+1
             year = Year.find_or_create_by(career_id: career_id, name: year) {|y| y.study_plan = STUDY_PLAN_D}
-            semester = Semester.find_or_create_by(year: year, name: 'unknown')
+            semester = Semester.find_or_create_by(year: year, name: 'unknown'){|s|s.weeks=16}
             evaluation_type = if ef.to_i > 0
                                 EVALUATION_TYPE_EXAMEN_FINAL
                               elsif tc.to_i > 0
@@ -113,8 +113,13 @@ class ParserController < ApplicationController
       subjects = params['data'].split("\r\n")
       semester_name = 1
       year_name = 1
-      subjects.each_with_index do |subject, i|
-        subject = subject.strip.chomp
+      subjects.each_with_index do |line, i|
+        if line.chomp.split("\t").count > 1
+          subject = line.chomp.split("\t")[0]
+          anual = line.chomp.split("\t")[1].strip.chomp == 'ANUAL'
+        else
+          subject = line.strip.chomp
+        end
         if subject.blank? and subjects[i+1].blank?
           year_name += 1
           semester_name = 0
@@ -122,7 +127,7 @@ class ParserController < ApplicationController
           semester_name += 1
         else
           year = Year.find_or_create_by(name: year_name.to_s, career: career)
-          semester = Semester.find_or_create_by(name: semester_name, year: year){|s| s.weeks=33}
+          semester = Semester.find_or_create_by(name: anual ? 'ANUAL' : semester_name, year: year){|s| s.weeks=16}
 
           subject = career.subjects.find{|s|I18n.transliterate(s.name).downcase==I18n.transliterate(subject).downcase}
           if subject
