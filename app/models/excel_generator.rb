@@ -134,7 +134,7 @@ class ExcelGenerator
 
     sheet.column(start_column).width = 5
     sheet.column(start_column+1).width = 30
-    (2..11).each{|i| sheet.column(i).width = 5}
+    (2..6+career.years.count).each{|i| sheet.column(i).width = 5}
 
     row = self.generate_header(sheet,start_row,start_column,6+career.years.count,career)
 
@@ -150,7 +150,7 @@ class ExcelGenerator
     sheet.write(row,start_column+5,'Dist. por años',TABLE_HEADER|TINY)
     sheet.write(row,start_column+7,'Dist. de las horas por años',TABLE_HEADER|TINY)
     row += 1
-    (2..11).each do |i|
+    (2..6+career.years.count).each do |i|
       sheet.merge_cells(row,start_column+i,row+2,start_column+i)
     end
     sheet.write(row,start_column+2,'TOTAL',TABLE_HEADER|TINY)
@@ -164,7 +164,7 @@ class ExcelGenerator
 
     row += 3
     CurriculumType.all.each do |ct|
-      sheet.merge_cells(row,start_column,row+1,start_column+11)
+      sheet.merge_cells(row,start_column,row+1,start_column+6+career.years.count)
       sheet.write(row,start_column,ct.name.upcase,CENTER | HUGE)
       row += 2
       career.disciplines.each_with_index do |d, i|
@@ -195,7 +195,7 @@ class ExcelGenerator
         end
       end
 
-      (row..row+3).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
+      (row..row+2).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
       sheet.merge_cells(row,start_column,row+2,start_column)
       sheet.write(row,start_column,'TOTAL',TABLE_HEADER|TINY)
       sheet.write(row,start_column+1,"HORAS DEL CURRÍCULO #{ct.name.upcase} POR FORMA Y AÑO",TABLE_HEADER | TINY | LEFT)
