@@ -5,9 +5,11 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:short_name) %>:</strong></dt>
-  <dd><%= @faculty.short_name %></dd>
+  <dd><%= @faculty.short_name.blank? ? '-' : @faculty.short_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></dt>
   <dd><%= @faculty.full_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dean) %>:</strong></dt>
+  <dd><%= @faculty.dean %></dd>
 </dl>
 
 <div class="form-actions">
