@@ -134,7 +134,7 @@ class ExcelGenerator
 
     sheet.column(start_column).width = 5
     sheet.column(start_column+1).width = 30
-    (2..11).each{|i| sheet.column(i).width = 5}
+    (2..6+career.years.count).each{|i| sheet.column(i).width = 5}
 
     row = self.generate_header(sheet,start_row,start_column,6+career.years.count,career)
 
@@ -150,7 +150,7 @@ class ExcelGenerator
     sheet.write(row,start_column+5,'Dist. por años',TABLE_HEADER|TINY)
     sheet.write(row,start_column+7,'Dist. de las horas por años',TABLE_HEADER|TINY)
     row += 1
-    (2..11).each do |i|
+    (2..6+career.years.count).each do |i|
       sheet.merge_cells(row,start_column+i,row+2,start_column+i)
     end
     sheet.write(row,start_column+2,'TOTAL',TABLE_HEADER|TINY)
