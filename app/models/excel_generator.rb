@@ -164,7 +164,7 @@ class ExcelGenerator
 
     row += 3
     CurriculumType.all.each do |ct|
-      sheet.merge_cells(row,start_column,row+1,start_column+11)
+      sheet.merge_cells(row,start_column,row+1,start_column+6+career.years.count)
       sheet.write(row,start_column,ct.name.upcase,CENTER | HUGE)
       row += 2
       career.disciplines.each_with_index do |d, i|
@@ -195,7 +195,7 @@ class ExcelGenerator
         end
       end
 
-      (row..row+3).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
+      (row..row+2).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
       sheet.merge_cells(row,start_column,row+2,start_column)
       sheet.write(row,start_column,'TOTAL',TABLE_HEADER|TINY)
       sheet.write(row,start_column+1,"HORAS DEL CURRÍCULO #{ct.name.upcase} POR FORMA Y AÑO",TABLE_HEADER | TINY | LEFT)
