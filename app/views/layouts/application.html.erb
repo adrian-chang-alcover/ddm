@@ -53,7 +53,7 @@
             </ul>
             <ul class="nav pull-right">
               <% if user_signed_in? %>
-                <li><%= "#{t(:signed_as)}: #{current_user}" %></li>
+                <li><%= "#{t(:signed_as).camelize}: #{current_user.email}" %></li>
                 <li class="divider-vertical"></li>
                 <li><%= link_to t(:sign_out).camelize, destroy_user_session_path, method: :delete %></li>
               <% else %>
