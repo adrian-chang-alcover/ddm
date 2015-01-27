@@ -49,7 +49,16 @@
           <a class="brand" href="#">DDM</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to 'PPD', ppd_report_path  %></li>
+              <li><%= link_to 'PPD', ppd_report_path %></li>
+            </ul>
+            <ul class="nav pull-right">
+              <% if user_signed_in? %>
+                <li><%= "#{t(:signed_as)}: #{current_user}" %></li>
+                <li class="divider-vertical"></li>
+                <li><%= link_to t(:sign_out).camelize, destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to t(:sign_in).camelize, new_user_session_path %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -72,6 +81,7 @@
           <%= image_tag 'logo.png' %>
         </div><!--/span-->
         <div class="span9">
+          <% flash.instance_variable_get(:@flashes).symbolize_keys! %>
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
