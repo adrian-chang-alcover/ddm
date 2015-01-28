@@ -172,7 +172,7 @@ class ExcelGenerator
           sheet.write(row,start_column,i+1,TABLE_HEADER)
           sheet.write(row,start_column+1,d.name,TABLE_HEADER|LEFT|TINY)
           sheet.write(row,start_column+2,d.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
-          sheet.write(row,start_column+3,d.subjects_by_curriculum_type(ct).sum(&:class_hours),TABLE_HEADER)
+          sheet.write(row,start_column+3,d.subjects_by_curriculum_type(ct).sum(&:class_hours_1),TABLE_HEADER)
           sheet.write(row,start_column+4,d.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
           sheet.write(row,start_column+5,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER)
           sheet.write(row,start_column+6,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER)
@@ -184,7 +184,7 @@ class ExcelGenerator
             sheet.write(row, start_column, (i+1) + (j+1).fdiv(100),CENTER | TINY)
             sheet.write(row, start_column+1, s.name, TINY)
             sheet.write(row, start_column+2, s.total_hours,CENTER | TINY)
-            sheet.write(row, start_column+3, s.class_hours,CENTER | TINY)
+            sheet.write(row, start_column+3, s.class_hours_1,CENTER | TINY)
             sheet.write(row, start_column+4, s.practical_hours,CENTER | TINY)
             sheet.write(row, start_column+5, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL
             sheet.write(row, start_column+6, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO
@@ -202,7 +202,7 @@ class ExcelGenerator
       sheet.write(row+1,start_column+1,"EXÁMENES FINALES DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER | TINY | LEFT)
       sheet.write(row+2,start_column+1,"TRABAJOS DE CURSO DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER | TINY | LEFT)
       sheet.write(row,start_column+2,career.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
-      sheet.write(row,start_column+3,career.subjects_by_curriculum_type(ct).sum(&:class_hours),TABLE_HEADER)
+      sheet.write(row,start_column+3,career.subjects_by_curriculum_type(ct).sum(&:class_hours_1),TABLE_HEADER)
       sheet.write(row,start_column+4,career.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
       sheet.write(row+1,start_column+5,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
       sheet.write(row+2,start_column+6,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
@@ -222,7 +222,7 @@ class ExcelGenerator
     sheet.write(row+1,start_column+1,"EXÁMENES FINALES DEL CURRÍCULO Y POR AÑO",TABLE_HEADER | TINY | LEFT)
     sheet.write(row+2,start_column+1,"TRABAJOS DE CURSO DEL CURRÍCULO Y POR AÑO",TABLE_HEADER | TINY | LEFT)
     sheet.write(row,start_column+2,career.subjects.sum(&:total_hours),TABLE_HEADER)
-    sheet.write(row,start_column+3,career.subjects.sum(&:class_hours),TABLE_HEADER)
+    sheet.write(row,start_column+3,career.subjects.sum(&:class_hours_1),TABLE_HEADER)
     sheet.write(row,start_column+4,career.subjects.sum(&:practical_hours),TABLE_HEADER)
     sheet.write(row+1,start_column+5,career.subjects.count{|s| s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
     sheet.write(row+2,start_column+6,career.subjects.count{|s| s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
@@ -285,7 +285,7 @@ class ExcelGenerator
       discipline.subjects.each do |subject|
         sheet.write(row,start_column+1,subject.name,TINY)
         sheet.write(row,start_column+2,subject.total_hours,CENTER|TINY)
-        sheet.write(row,start_column+3,subject.class_hours,CENTER|TINY)
+        sheet.write(row,start_column+3,subject.class_hours_1,CENTER|TINY)
         sheet.write(row,start_column+4,subject.practical_hours,CENTER|TINY)
         sheet.write(row,start_column+5,subject.year.name,CENTER|TINY)
         sheet.write(row,start_column+6,subject.semester.name,CENTER|TINY)
@@ -328,9 +328,14 @@ class ExcelGenerator
           hours = if semester.practica?
                     subject.practical_hours
                   elsif subject.semester.anual?
-                    subject.class_hours.fdiv(2)
+                    case semester.name_slug
+                      when '1'
+                        subject.class_hours_1
+                      when '2'
+                        subject.class_hours_2
+                    end
                   else
-                    subject.class_hours
+                    subject.class_hours_1
                   end
           sheet.write(row+2+sub,start_column+5*s+2,hours,CENTER)
           total_hours += hours
