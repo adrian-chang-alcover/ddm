@@ -328,7 +328,12 @@ class ExcelGenerator
           hours = if semester.practica?
                     subject.practical_hours
                   elsif subject.semester.anual?
-                    subject.class_hours_1.fdiv(2)
+                    case semester.name_slug
+                      when '1'
+                        subject.class_hours_1
+                      when '2'
+                        subject.class_hours_2
+                    end
                   else
                     subject.class_hours_1
                   end
