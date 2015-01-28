@@ -20,7 +20,7 @@
             <td><%= link_to(discipline.name, edit_discipline_path(discipline.id), target: '_blank') if subject == discipline.subjects.first %></td>
             <td><%= link_to(subject.name, edit_subject_path(subject.id), target: '_blank') %></td>
             <td><%= subject.total_hours %></td>
-            <td><%= subject.class_hours %></td>
+            <td><%= subject.class_hours_1 %></td>
             <td><%= subject.practical_hours %></td>
             <td><%= subject.semester.year.name %></td>
             <td><%= subject.semester.name %></td>
