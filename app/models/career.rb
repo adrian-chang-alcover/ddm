@@ -1,4 +1,7 @@
 class Career < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+
   belongs_to :faculty
   has_many :disciplines, dependent: :destroy
   has_many :years, dependent: :destroy

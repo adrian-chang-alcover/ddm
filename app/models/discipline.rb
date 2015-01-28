@@ -1,4 +1,7 @@
 class Discipline < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+
   belongs_to :career
   has_many :subjects, dependent: :destroy
 

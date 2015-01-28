@@ -1,4 +1,7 @@
 class Year < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+
   belongs_to :career
   belongs_to :study_plan
   has_many :semesters, dependent: :destroy

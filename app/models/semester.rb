@@ -1,4 +1,7 @@
 class Semester < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+
   belongs_to :year
   has_many :subjects, dependent: :destroy
 

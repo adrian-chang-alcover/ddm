@@ -1,4 +1,7 @@
 class Subject < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+
   belongs_to :discipline
   belongs_to :semester
   belongs_to :evaluation_type
