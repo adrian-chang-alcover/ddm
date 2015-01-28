@@ -1,4 +1,6 @@
 class PpdController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:report, :export]
+
   def report
     if params[:career]
       @career = Career.find(params[:career])

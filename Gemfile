@@ -51,4 +51,6 @@ gem 'figaro'
 
 gem 'spreadsheet'
 
+gem 'devise'
+
 ruby '2.1.3'
