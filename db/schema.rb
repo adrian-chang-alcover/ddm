@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128165504) do
+ActiveRecord::Schema.define(version: 20150128190910) do
 
   create_table "careers", force: true do |t|
     t.string   "short_name"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20150128165504) do
     t.integer  "curriculum_type_id"
     t.string   "dictum_or_resoluteness"
     t.integer  "number",                 default: 0
-    t.integer  "class_hours_2"
+    t.integer  "class_hours_2",          default: 0
   end
 
   create_table "users", force: true do |t|
