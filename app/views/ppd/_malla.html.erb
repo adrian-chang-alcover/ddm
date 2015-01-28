@@ -23,9 +23,9 @@
                 <td><%= hours = if semester.practica?
                       subject.practical_hours
                     elsif subject.semester.anual?
-                      subject.class_hours.fdiv(2)
+                      subject.class_hours_1.fdiv(2)
                     else
-                      subject.class_hours
+                      subject.class_hours_1
                     end
                 %></td>
                 <% total_hours += hours %>

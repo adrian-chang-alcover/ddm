@@ -29,7 +29,7 @@
                 <td><%= i+1 %></td>
                 <td><%= link_to(d.name, edit_discipline_path(d.id), target: '_blank') %></td>
                 <td><%= d.subjects_by_curriculum_type(ct).sum{|s| s.total_hours} %></td>
-                <td><%= d.subjects_by_curriculum_type(ct).sum { |s| s.class_hours } %></td>
+                <td><%= d.subjects_by_curriculum_type(ct).sum { |s| s.class_hours_1 } %></td>
                 <td><%= d.subjects_by_curriculum_type(ct).sum { |s| s.practical_hours } %></td>
                 <td><%= d.subjects_by_curriculum_type(ct).count { |s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL } %></td>
                 <td><%= d.subjects_by_curriculum_type(ct).count { |s| s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO } %></td>
@@ -43,7 +43,7 @@
                         <td><%= i + 1 + (j+1).fdiv(100) %></td>
                         <td><%= link_to(s.name, edit_subject_path(s.id), target: '_blank') %></td>
                         <td><%= s.total_hours %></td>
-                        <td><%= s.class_hours %></td>
+                        <td><%= s.class_hours_1 %></td>
                         <td><%= s.practical_hours %></td>
                         <td><%= s.semester.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL %></td>
                         <td><%= s.semester.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO %></td>
@@ -59,7 +59,7 @@
         <td rowspan="3">TOTAL</td>
         <td><%= "HORAS  DEL CURRÍCULO #{I18n.transliterate(ct.name).upcase} POR  FORMA  Y POR AÑO" %></td>
         <td><%= @career.subjects.sum { |s| s.curriculum_type==ct ? s.total_hours : 0 } %></td>
-        <td><%= @career.subjects.sum { |s| s.curriculum_type==ct ? s.class_hours : 0 } %></td>
+        <td><%= @career.subjects.sum { |s| s.curriculum_type==ct ? s.class_hours_1 : 0 } %></td>
         <td><%= @career.subjects.sum { |s| s.curriculum_type==ct ? s.practical_hours : 0 } %></td>
         <td></td>
         <td></td>
@@ -92,7 +92,7 @@
     <td rowspan="3">TOTAL</td>
     <td>HORAS DEL CURRÍCULO POR FORMA Y POR AÑO</td>
     <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.total_hours} } %></td>
-    <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.class_hours} } %></td>
+    <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.class_hours_1} } %></td>
     <td><%= @career.disciplines.to_a.sum { |d| d.subjects.to_a.sum { |s| s.practical_hours} } %></td>
     <td></td>
     <td></td>
