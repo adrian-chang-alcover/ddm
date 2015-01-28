@@ -1,6 +1,6 @@
 class Discipline < ActiveRecord::Base
   include PublicActivity::Model
-  tracked
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   belongs_to :career
   has_many :subjects, dependent: :destroy

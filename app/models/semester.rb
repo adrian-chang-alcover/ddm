@@ -1,6 +1,6 @@
 class Semester < ActiveRecord::Base
   include PublicActivity::Model
-  tracked
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   belongs_to :year
   has_many :subjects, dependent: :destroy
