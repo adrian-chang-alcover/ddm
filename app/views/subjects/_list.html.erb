@@ -10,6 +10,7 @@
     <th><%= model_class.human_attribute_name(:discipline_id) %></th>
     <th><%= t(:career).titleize %></th>
     <th><%= model_class.human_attribute_name(:class_hours_1) %></th>
+    <th><%= model_class.human_attribute_name(:class_hours_2) %></th>
     <th><%= model_class.human_attribute_name(:practical_hours) %></th>
     <th><%= model_class.human_attribute_name(:evaluation_type_id) %></th>
     <th><%= model_class.human_attribute_name(:curriculum_type_id) %></th>
@@ -30,6 +31,7 @@
         <td><%= subject.discipline.name if subject.discipline %></td>
         <td><%= subject.discipline.career.name if subject.discipline and subject.discipline.career %></td>
         <td><%= subject.class_hours_1 %></td>
+        <td><%= subject.class_hours_2 %></td>
         <td><%= subject.practical_hours %></td>
         <td><%= subject.evaluation_type.name if subject.evaluation_type %></td>
         <td><%= subject.curriculum_type.name if subject.curriculum_type %></td>

@@ -14,6 +14,8 @@
   <dd><%= @subject.semester.blank? ? '-' : @subject.semester.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:class_hours_1) %>:</strong></dt>
   <dd><%= @subject.class_hours_1.blank? ? '-' : @subject.class_hours_1 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:class_hours_2) %>:</strong></dt>
+  <dd><%= @subject.class_hours_1.blank? ? '-' : @subject.class_hours_2 %></dd>
   <dt><strong><%= model_class.human_attribute_name(:evaluation_type_id) %>:</strong></dt>
   <dd><%= @subject.evaluation_type.blank? ? '-' : @subject.evaluation_type.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:practical_hours) %>:</strong></dt>
