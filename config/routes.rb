@@ -2,7 +2,15 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'careers/activities'
+  get 'curriculum_types/activities'
+  get 'disciplines/activities'
+  get 'evaluation_types/activities'
+  get 'faculties/activities'
+  get 'semesters/activities'
+  get 'study_plans/activities'
   get 'subjects/activities'
+  get 'years/activities'
 
   get 'ppd/report'
   get 'ppd/export'
