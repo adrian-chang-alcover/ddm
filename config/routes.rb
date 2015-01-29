@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :study_plans
+
+  devise_for :users
+
+  get 'activities/index'
 
   get 'ppd/report'
   get 'ppd/export'
@@ -12,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'parser/per_semester'
   post 'parser/per_semester'
+
+  resources :study_plans
 
   resources :curriculum_types
 

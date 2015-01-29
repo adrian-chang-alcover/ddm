@@ -1,4 +1,11 @@
 class Subject < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user },
+          params: {:id => :id, :short_name => :short_name, :full_name => :full_name, :discipline_id => :discipline_id,
+                   :semester_id => :semester_id, :class_hours_1 => :class_hours_1, :evaluation_type_id => :evaluation_type_id,
+                   :practical_hours => :practical_hours, :curriculum_type_id => :curriculum_type_id,
+                   :dictum_or_resoluteness => :dictum_or_resoluteness, :number => :number, :class_hours_2 => :class_hours_2}
+
   belongs_to :discipline
   belongs_to :semester
   belongs_to :evaluation_type
