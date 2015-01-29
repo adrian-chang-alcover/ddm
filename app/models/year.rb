@@ -1,4 +1,8 @@
 class Year < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user },
+          params: {:id => :id, :name => :name, :career_id => :career_id, :study_plan_id => :study_plan_id}
+
   belongs_to :career
   belongs_to :study_plan
   has_many :semesters, dependent: :destroy

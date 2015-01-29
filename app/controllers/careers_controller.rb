@@ -61,6 +61,10 @@ class CareersController < ApplicationController
     end
   end
 
+  def model_class
+    Career
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_career

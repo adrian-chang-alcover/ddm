@@ -52,5 +52,7 @@ gem 'figaro'
 gem 'spreadsheet'
 
 gem 'devise'
+gem 'devise-i18n'
+gem 'public_activity'
 
 ruby '2.1.3'

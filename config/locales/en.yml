@@ -44,3 +44,6 @@ en:
   sign_out: "sign out"
   sign_in: "sign in"
   signed_as: "signed as"
+  user: "user"
+  entity: "entity"
+  check: "check"

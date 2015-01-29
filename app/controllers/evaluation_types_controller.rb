@@ -61,6 +61,10 @@ class EvaluationTypesController < ApplicationController
     end
   end
 
+  def model_class
+    EvaluationType
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluation_type

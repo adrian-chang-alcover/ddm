@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'activities/index'
+
   get 'ppd/report'
   get 'ppd/export'
 
