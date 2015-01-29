@@ -20,9 +20,13 @@
   <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.id %></td>
-        <td><%= activity.trackable_id %></td>
+        <td><%= activity.trackable_id %>
+          <% if activity.trackable_type.constantize.find(activity.trackable_id).respond_to?(:name) %>
+            <small><%= " (#{activity.trackable_type.constantize.find(activity.trackable_id).name})" %></small>
+          <% end %>
+        </td>
         <td><%= activity.trackable_type %></td>
-        <td><%= activity.owner_id %></td>
+        <td><%= activity.owner_id %><small><%= " (#{User.find(activity.owner_id).email})" if activity.owner_type == 'User' %></small></td>
         <td><%= activity.owner_type %></td>
         <td><%= activity.key %></td>
         <td><%= activity.parameters %></td>
