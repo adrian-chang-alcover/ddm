@@ -1,0 +1,34 @@
+<%- model_class = PublicActivity::Activity -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= model_class.human_attribute_name(:id) %></th>
+    <th><%= model_class.human_attribute_name(:trackable_id) %></th>
+    <th><%= model_class.human_attribute_name(:trackable_type) %></th>
+    <th><%= model_class.human_attribute_name(:owner_id) %></th>
+    <th><%= model_class.human_attribute_name(:owner_type) %></th>
+    <th><%= model_class.human_attribute_name(:key) %></th>
+    <th><%= model_class.human_attribute_name(:parameters) %></th>
+    <th><%= model_class.human_attribute_name(:recipient_id) %></th>
+    <th><%= model_class.human_attribute_name(:recipient_type) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.id %></td>
+        <td><%= activity.trackable_id %></td>
+        <td><%= activity.trackable_type %></td>
+        <td><%= activity.owner_id %></td>
+        <td><%= activity.owner_type %></td>
+        <td><%= activity.key %></td>
+        <td><%= activity.parameters %></td>
+        <td><%= activity.recipient_id %></td>
+        <td><%= activity.recipient_type %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
