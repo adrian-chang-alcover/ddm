@@ -46,3 +46,5 @@ es:
   sign_out: "salir"
   sign_in: "registrarse"
   signed_as: "registrado como"
+  user: "usuario"
+  entity: "entidad"
