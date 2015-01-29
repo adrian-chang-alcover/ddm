@@ -14,8 +14,4 @@ class ApplicationController < ActionController::Base
 
   STUDY_PLAN_D = StudyPlan.find_or_create_by(name: 'D')
 
-  def activities
-    @activities = PublicActivity::Activity.where(trackable_type: model_class)
-    render 'public_activity/index'
-  end
 end
