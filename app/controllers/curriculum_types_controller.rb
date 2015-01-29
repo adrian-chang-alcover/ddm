@@ -61,6 +61,10 @@ class CurriculumTypesController < ApplicationController
     end
   end
 
+  def model_class
+    CurriculumType
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_curriculum_type

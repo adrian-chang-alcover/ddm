@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
   EVALUATION_TYPE_TRABAJO_CURSO = EvaluationType.find_or_create_by(short_name: 'TC'){|et| et.full_name = 'Trabajo de Curso'}
 
   STUDY_PLAN_D = StudyPlan.find_or_create_by(name: 'D')
+
+  def activities
+    @activities = PublicActivity::Activity.where(trackable_type: model_class)
+    render 'public_activity/index'
+  end
 end

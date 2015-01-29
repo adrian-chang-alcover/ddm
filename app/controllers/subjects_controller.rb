@@ -61,9 +61,8 @@ class SubjectsController < ApplicationController
     end
   end
 
-  def activities
-    @activities = PublicActivity::Activity.where(trackable_type: "Subject")
-    render 'public_activity/index'
+  def model_class
+    Subject
   end
 
   private
