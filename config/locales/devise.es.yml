@@ -1,0 +1,10 @@
+es:
+  devise:
+    confirmations:
+      resend_confirmation_instructions: "Reenviar instrucciones de confirmación"
+    shared:
+      sign_in: "Registrarse"
+      sign_up: "Crearse una cuenta"
+      forgot_your_password: "Olvidó su contraseña?"
+      did_not_receive_confirmation_instructions: "Aún no ha recibido las intrucciones de confirmación?"
+      did_not_receive_unlock_instructions: "Aún no ha recibido las intrucciones para desbloquear su cuenta?"
