@@ -1,9 +1,12 @@
 class ActivitiesController < ApplicationController
   def index
+    @activities = PublicActivity::Activity.all.to_a
     unless params['user'].blank?
-      @activities = PublicActivity::Activity.where(trackable_type: params['entity'], owner_type: 'User', owner_id: params['user'])
-    else
-      @activities = PublicActivity::Activity.where(trackable_type: params['entity'])
+      @activities = @activities.select{|a| a.owner_type == 'User' and a.owner_id == params['user'].to_i}
     end
+    unless params['entity'].blank?
+      @activities = @activities.select{|a| a.trackable_type == params['entity']}
+    end
+    @activities
   end
 end
