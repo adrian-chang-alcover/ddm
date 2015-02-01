@@ -1,0 +1,40 @@
+es:
+  activerecord:
+    models:
+      career: "carrera"
+      faculty: "facultad"
+      evaluation_type: "tipo de evaluación"
+      discipline: "disciplina"
+      study_plan: "plan de estudio"
+      semester: "semestre"
+      year: "año"
+      subject: "asignatura"
+    attributes:
+      career:
+        id: "Id"
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"
+        faculty_id: "Facultad"
+        created_at: "Creado"
+      faculty:
+        id: "Id"
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"
+        dean: "Decano"
+        created_at: "Creado"
+      curriculum_type:
+        name: "Nombre"
+        created_at: Creado
+      evaluation_type:
+        id: "Id"
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"
+        created_at: "Creado"
+  helpers:
+    links:
+      destroy: "Eliminar"
+      edit: "Editar"
+      new: "Nuevo"
+    title:
+      edit: "Editar"
+      new: "Nuevo"

@@ -49,3 +49,12 @@ es:
   user: "usuario"
   entity: "entidad"
   check: "verificar"
+  activities:
+    index:
+      title: "Actividades"
+  helpers:
+    actions: "Acciones"
+    label:
+      career:
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"
