@@ -16,3 +16,11 @@ es:
       reset_password_instructions:
         hello: "Hola %{email} !"
         someone_has_requested_a_link_to_change_your_password: "Alguien ha pedido un enlace para cambiar tu contraseña. Usted lo puede hacer a través del siguiente enlace."
+  helpers:
+    label:
+      user:
+        username: "Nombre de usuario"
+        password: "Contraseña"
+        password_confirmation: "Confirme su contraseña"
+        current_password: "Contraseña actual"
+        remember_me: "Recordarme"
