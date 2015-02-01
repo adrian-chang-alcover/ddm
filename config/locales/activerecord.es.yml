@@ -25,6 +25,9 @@ es:
       curriculum_type:
         name: "Nombre"
         created_at: Creado
+      study_plan:
+        name: "Nombre"
+        created_at: Creado
       evaluation_type:
         id: "Id"
         short_name: "Nombre corto"
@@ -53,6 +56,7 @@ es:
         practical_hours: "horas de práctica"
         curriculum_type_id: "tipo de currículo"
         dictum_or_resoluteness: "dictámen o resolución"
+        number: "número"
   helpers:
     links:
       destroy: "Eliminar"
