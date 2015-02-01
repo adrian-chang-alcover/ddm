@@ -20,10 +20,15 @@ en:
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
+        body: "You can confirm your account email through the link below:"
+        confirm_my_account: "Confirm my account"
       reset_password_instructions:
         subject: "Reset password instructions"
+        hello: "Hello %{email} !"
+        someone_has_requested_a_link_to_change_your_password: "Someone has requested a link to change your password. You can do this through the link below."
       unlock_instructions:
         subject: "Unlock Instructions"
+      welcome: "Welcome %{email} !"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
