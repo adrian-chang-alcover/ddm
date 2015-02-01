@@ -1,0 +1,26 @@
+es:
+  devise:
+    confirmations:
+      resend_confirmation_instructions: "Reenviar instrucciones de confirmación"
+    shared:
+      sign_in: "Registrarse"
+      sign_up: "Crearse una cuenta"
+      forgot_your_password: "Olvidó su contraseña?"
+      did_not_receive_confirmation_instructions: "Aún no ha recibido las intrucciones de confirmación?"
+      did_not_receive_unlock_instructions: "Aún no ha recibido las intrucciones para desbloquear su cuenta?"
+    mailer:
+      welcome: "Bienvenido %{email} !"
+      confirmation_instructions:
+        body: "Puede confirmar su cuenta de correo a través del siguiente enlace:"
+        confirm_my_account: "Confirmar mi cuenta"
+      reset_password_instructions:
+        hello: "Hola %{email} !"
+        someone_has_requested_a_link_to_change_your_password: "Alguien ha pedido un enlace para cambiar tu contraseña. Usted lo puede hacer a través del siguiente enlace."
+  helpers:
+    label:
+      user:
+        username: "Nombre de usuario"
+        password: "Contraseña"
+        password_confirmation: "Confirme su contraseña"
+        current_password: "Contraseña actual"
+        remember_me: "Recordarme"

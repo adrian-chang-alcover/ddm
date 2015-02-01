@@ -1,0 +1,67 @@
+es:
+  activerecord:
+    models:
+      career: "carrera"
+      faculty: "facultad"
+      evaluation_type: "tipo de evaluación"
+      discipline: "disciplina"
+      study_plan: "plan de estudio"
+      semester: "semestre"
+      year: "año"
+      subject: "asignatura"
+    attributes:
+      career:
+        id: "Id"
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"
+        faculty_id: "Facultad"
+        created_at: "Creado"
+      faculty:
+        id: "Id"
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"
+        dean: "Decano"
+        created_at: "Creado"
+      curriculum_type:
+        name: "Nombre"
+        created_at: Creado
+      study_plan:
+        name: "Nombre"
+        created_at: Creado
+      evaluation_type:
+        id: "Id"
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"
+        created_at: "Creado"
+      descipline:
+        name: "nombre"
+        career_id: "carrera"
+        created_at: "creado"
+        number: "número"
+      semester:
+        name: "nombre"
+        year_id: "año"
+        begin_date: "fecha de inicio"
+        end_date: "fecha de fin"
+        created_at: "creado"
+        weeks: "cantidad de semanas"
+      subject:
+        short_name: "nombre corto"
+        full_name: "nombre completo"
+        discipline_id: "disciplina"
+        semester_id: "semestre"
+        class_hours_1: "horas clases 1"
+        class_hours_2: "horas clases 2"
+        evaluation_type_id: "tipo de evaluación"
+        practical_hours: "horas de práctica"
+        curriculum_type_id: "tipo de currículo"
+        dictum_or_resoluteness: "dictámen o resolución"
+        number: "número"
+  helpers:
+    links:
+      destroy: "Eliminar"
+      edit: "Editar"
+      new: "Nuevo"
+    title:
+      edit: "Editar"
+      new: "Nuevo"
