@@ -19,7 +19,7 @@
         <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= user.faculty.name unless user.faculty.blank? %></td>
-        <td data-hook="roles"></td>
+        <td data-hook="roles" data-user-id="<%= user.id %>"></td>
       </tr>
   <% end %>
   </tbody>
