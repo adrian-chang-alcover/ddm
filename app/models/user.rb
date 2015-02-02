@@ -13,4 +13,15 @@ class User < ActiveRecord::Base
       self.roles.include?(role)
     end
   end
+
+  def faculty
+    case self.email
+      when /@matcom.uh.cu/
+        Faculty.find_by_full_name('Matemática y Computación')
+      when /@rect.uh.cu/
+        Faculty.find_by_full_name('Matemática y Computación')
+      when /@lex.uh.cu/
+        Faculty.find_by_full_name('Derecho')
+    end
+  end
 end
