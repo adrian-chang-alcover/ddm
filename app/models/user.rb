@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def priority
+    self.roles.min_by{|r|r.priority}.priority
+  end
+
 end
