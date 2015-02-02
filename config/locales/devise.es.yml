@@ -20,7 +20,7 @@ es:
     label:
       user:
         username: "Nombre de usuario"
-        faculty: "Facultad"
+        faculty_id: "Facultad"
         password: "Contraseña"
         password_confirmation: "Confirme su contraseña"
         current_password: "Contraseña actual"
