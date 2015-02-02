@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+
+  get 'users/edit'
+
   devise_for :users
 
   get 'activities/index'
