@@ -7,3 +7,9 @@ $ (
     -> $(this).load('/users/toggle_roles?user='+$(this).attr('data-user-id'))
   )
 )
+
+$ (
+  -> $('td[data-hook="roles"] button').click(
+    -> $(this).parent('td').load($(this).attr('data-url'));
+  )
+)

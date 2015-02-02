@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
     self.roles.min_by{|r|r.priority}.priority
   end
 
+  def has_role?(role)
+    self.roles.include?(role)
+  end
+
 end

@@ -1,5 +1,5 @@
 <% Role.where('priority > ?', current_user.priority).each do |role| %>
-    <button href="#" class="btn btn-success" style="margin-top: 3px;">
-      <i class="icon-plus" style="margin-right: 7px;"></i><%= role.name %>
+    <button href="#" class="btn btn-<%= @user.has_role?(role) ? 'danger' : 'success' %>" style="margin-top: 3px;" data-url="<%= users_toggle_roles_path({:user=>@user.id,:role=>role.id}) %>">
+      <i class="icon-<%= @user.has_role?(role) ? 'minus' : 'plus' %>" style="margin-right: 7px;"></i><%= role.name %>
     </button>
 <% end %>
