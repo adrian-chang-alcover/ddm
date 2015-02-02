@@ -6,4 +6,11 @@ class User < ActiveRecord::Base
          :confirmable, :lockable
 
   has_and_belongs_to_many :roles
+
+  # Defining admin? ddm? ppd? ... methods
+  Role.all.each do |role|
+    define_method("#{role.name}?") do
+      self.roles.include?(role)
+    end
+  end
 end
