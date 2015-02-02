@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :confirmable, :lockable
 
   has_and_belongs_to_many :roles
+  belongs_to :faculty
 
   # Defining admin? ddm? ppd? ... methods
   Role.all.each do |role|
@@ -14,14 +15,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  def faculty
-    case self.email
-      when /@matcom.uh.cu/
-        Faculty.find_by_full_name('Matemática y Computación')
-      when /@rect.uh.cu/
-        Faculty.find_by_full_name('Matemática y Computación')
-      when /@lex.uh.cu/
-        Faculty.find_by_full_name('Derecho')
-    end
-  end
 end

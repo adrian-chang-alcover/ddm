@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   get 'users/index'
-
-  get 'users/edit'
+  get 'users/roles'
 
   devise_for :users
 
