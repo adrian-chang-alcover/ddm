@@ -7,6 +7,10 @@ class PpdController < ApplicationController
     else
       @career = Career.first
     end
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   def export
