@@ -1,10 +1,27 @@
 class ModifyingRoles < ActiveRecord::Migration
   def change
-    Role.find_or_create_by(name: 'admin'){|r|r.priority=1}
-    Role.find_or_create_by(name: 'ddm'){|r|r.priority=2}
-    Role.find_or_create_by(name: 'decano'){|r|r.priority=3}
-    Role.find_or_create_by(name: 'vicedecano'){|r|r.priority=4}
-    Role.find_or_create_by(name: 'ppd'){|r|r.priority=5}
-    Role.find_or_create_by(name: 'pp'){|r|r.priority=5}
+    admin = Role.find_by_name('admin')
+    admin.priority = 1
+    admin.save
+
+    ddm = Role.find_by_name('ddm')
+    ddm.priority = 2
+    ddm.save
+
+    decano = Role.find_by_name('decano')
+    decano.priority = 3
+    decano.save
+
+    vicedecano = Role.find_by_name('vicedecano')
+    vicedecano.priority = 4
+    vicedecano.save
+
+    ppd = Role.find_by_name('ppd')
+    ppd.priority = 5
+    ppd.save
+
+    pp = Role.find_by_name('pp')
+    pp.priority = 5
+    pp.save
   end
 end
