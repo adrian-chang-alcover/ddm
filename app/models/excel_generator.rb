@@ -177,7 +177,7 @@ class ExcelGenerator
           sheet.write(row,start_column+5,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER)
           sheet.write(row,start_column+6,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER)
           career.years.each_with_index do |year, y|
-            sheet.write(row,start_column+7+y,d.subjects_by_year(year).sum(&:total_hours),TABLE_HEADER)
+            sheet.write(row,start_column+7+y,d.subjects_by_curriculum_type_and_year(ct,year).sum(&:total_hours),TABLE_HEADER)
           end
           row += 1
           d.subjects_by_curriculum_type(ct).each_with_index do |s, j|
