@@ -9,7 +9,7 @@ $ (
 )
 
 $ (
-  -> $('td[data-hook="roles"] button').click(
-    -> $(this).parent('td').load($(this).attr('data-url'));
+  button_click = () -> $('td[data-hook="roles"] button').click(
+    -> $(this).parent('td').load($(this).attr('data-url'), button_click);
   )
 )
