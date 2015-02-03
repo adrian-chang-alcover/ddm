@@ -84,7 +84,7 @@ class ExcelGenerator
     sheet.merge_cells(row,start_column+width-8,row,start_column+width-5)
     sheet.merge_cells(row,start_column+width-3,row,start_column+width)
     sheet.write(row,start_column+width-8,career.faculty.dean,CENTER|TINY)
-    sheet.write(row,start_column+width-3,"Dr. GUSTAVO COBREIRO",CENTER|TINY)
+    sheet.write(row,start_column+width-3,"Dr. Gustavo J Cobreiro Suárez",CENTER|TINY)
     sheet.merge_cells(row+=1,start_column,row,start_column+width-9)
     sheet.write(row,start_column,"CALIFICACIÓN: Licenciado en #{career.name}",TINY)
     sheet.merge_cells(row,start_column+width-8,row,start_column+width-5)
