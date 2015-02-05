@@ -145,7 +145,7 @@ class ExcelGenerator
     sheet.merge_cells(row,start_column+5,row,start_column+6)
     sheet.merge_cells(row,start_column+7,row,start_column+career.years.count+6)
     sheet.write(row,start_column,'No',TABLE_HEADER)
-    sheet.write(row,start_column+1,'Disciplina y Asigantura',TABLE_HEADER)
+    sheet.write(row,start_column+1,'Disciplina y Asignatura',TABLE_HEADER)
     sheet.write(row,start_column+2,'Cantidad de horas',TABLE_HEADER|TINY)
     sheet.write(row,start_column+5,'Dist. por años',TABLE_HEADER|TINY)
     sheet.write(row,start_column+7,'Dist. de las horas por años',TABLE_HEADER|TINY)
