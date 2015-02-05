@@ -180,16 +180,18 @@ class ExcelGenerator
             sheet.write(row,start_column+7+y,d.subjects_by_curriculum_type_and_year(ct,year).sum(&:total_hours),TABLE_HEADER)
           end
           row += 1
-          d.subjects_by_curriculum_type(ct).each_with_index do |s, j|
-            sheet.write(row, start_column, (i+1) + (j+1).fdiv(100),CENTER | TINY)
-            sheet.write(row, start_column+1, s.name, TINY)
-            sheet.write(row, start_column+2, s.total_hours,CENTER | TINY)
-            sheet.write(row, start_column+3, s.class_hours_1,CENTER | TINY)
-            sheet.write(row, start_column+4, s.practical_hours,CENTER | TINY)
-            sheet.write(row, start_column+5, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL
-            sheet.write(row, start_column+6, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO
-            sheet.write(row, start_column+7+s.career.years.to_a.find_index(s.year), s.total_hours,CENTER | TINY)
-            row += 1
+          d.subjects.each_with_index do |s, j|
+            if s.curriculum_type == ct
+              sheet.write(row, start_column, (i+1) + (j+1).fdiv(100),CENTER | TINY)
+              sheet.write(row, start_column+1, s.name, TINY)
+              sheet.write(row, start_column+2, s.total_hours,CENTER | TINY)
+              sheet.write(row, start_column+3, s.class_hours_1,CENTER | TINY)
+              sheet.write(row, start_column+4, s.practical_hours,CENTER | TINY)
+              sheet.write(row, start_column+5, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL
+              sheet.write(row, start_column+6, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO
+              sheet.write(row, start_column+7+s.career.years.to_a.find_index(s.year), s.total_hours,CENTER | TINY)
+              row += 1
+            end
           end
           row += 1
         end
