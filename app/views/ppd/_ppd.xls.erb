@@ -59,11 +59,11 @@
     </ss:Row>
     <ss:Row>
       <ss:Cell></ss:Cell><ss:Cell></ss:Cell>
-      <ss:Cell ss:MergeDown="2"><ss:Data ss:Type="String">TOTAL</ss:Data> </ss:Cell>
+      <ss:Cell ss:MergeDown="2" ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="String">TOTAL</ss:Data> </ss:Cell>
       <ss:Cell ss:MergeDown="2"><ss:Data ss:Type="String">CLASE</ss:Data> </ss:Cell>
       <ss:Cell ss:MergeDown="2"><ss:Data ss:Type="String">PL</ss:Data> </ss:Cell>
-      <ss:Cell ss:MergeDown="2"><ss:Data ss:Type="String">EF</ss:Data> </ss:Cell>
-      <ss:Cell ss:MergeDown="2"><ss:Data ss:Type="String">TC</ss:Data> </ss:Cell>
+      <ss:Cell ss:MergeDown="2" ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="String">EF</ss:Data> </ss:Cell>
+      <ss:Cell ss:MergeDown="2" ss:StyleID="right_strongly_bordered_and_center"><ss:Data ss:Type="String">TC</ss:Data> </ss:Cell>
       <% @career.years.each do |year| %>
           <ss:Cell ss:MergeDown="2"><ss:Data ss:Type="String"><%= year.name %></ss:Data> </ss:Cell>
       <% end %>
@@ -81,11 +81,11 @@
           <ss:Row>
             <ss:Cell><ss:Data ss:Type="Number"><%= d_i + 1 %></ss:Data> </ss:Cell>
             <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= d.name %></ss:Data> </ss:Cell>
-            <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type(ct).sum(&:total_hours) %></ss:Data> </ss:Cell>
+            <ss:Cell ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type(ct).sum(&:total_hours) %></ss:Data> </ss:Cell>
             <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type(ct).sum{|s|s.class_hours_1 + s.class_hours_2} %></ss:Data> </ss:Cell>
             <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type(ct).sum(&:practical_hours) %></ss:Data> </ss:Cell>
-            <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type_and_evaluation_type(ct,ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count %></ss:Data> </ss:Cell>
-            <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type_and_evaluation_type(ct,ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count %></ss:Data> </ss:Cell>
+            <ss:Cell ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type_and_evaluation_type(ct,ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count %></ss:Data> </ss:Cell>
+            <ss:Cell ss:StyleID="right_strongly_bordered_and_center"><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type_and_evaluation_type(ct,ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count %></ss:Data> </ss:Cell>
             <% @career.years.each do |year| %>
               <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type_and_year(ct, year).sum(&:total_hours) %></ss:Data> </ss:Cell>
             <% end %>
@@ -95,11 +95,11 @@
               <ss:Row>
                 <ss:Cell><ss:Data ss:Type="Number"><%= d_i + 1 + (s_i + 1).fdiv(100) %></ss:Data> </ss:Cell>
                 <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= s.name %></ss:Data> </ss:Cell>
-                <ss:Cell><ss:Data ss:Type="Number"><%= s.total_hours %></ss:Data> </ss:Cell>
+                <ss:Cell ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="Number"><%= s.total_hours %></ss:Data> </ss:Cell>
                 <ss:Cell><ss:Data ss:Type="Number"><%= s.class_hours_1 + s.class_hours_2 %></ss:Data> </ss:Cell>
                 <ss:Cell><ss:Data ss:Type="Number"><%= s.practical_hours %></ss:Data> </ss:Cell>
-                <ss:Cell><ss:Data ss:Type="String"><%= s.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL %></ss:Data> </ss:Cell>
-                <ss:Cell><ss:Data ss:Type="String"><%= s.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO %></ss:Data> </ss:Cell>
+                <ss:Cell ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="String"><%= s.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL %></ss:Data> </ss:Cell>
+                <ss:Cell ss:StyleID="right_strongly_bordered_and_center"><ss:Data ss:Type="String"><%= s.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO %></ss:Data> </ss:Cell>
                 <% @career.years.each do |year| %>
                   <ss:Cell><ss:Data ss:Type="String"><%= s.total_hours if s.year == year %></ss:Data> </ss:Cell>
                 <% end %>
