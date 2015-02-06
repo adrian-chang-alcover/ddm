@@ -4,6 +4,7 @@ class Faculty < ActiveRecord::Base
           params: {:id => :id, :short_name => :short_name, :full_name => :full_name, :dean => :dean}
 
   has_many :careers, dependent: :destroy
+  has_many :users, dependent: :destroy
 
   def name
     self.full_name || self.short_name

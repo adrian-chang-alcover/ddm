@@ -6,6 +6,9 @@
   <div><%= f.label t('helpers.label.user.username') %><br />
   <%= f.text_field :username %></div>
 
+  <div><%= f.label :faculty_id %><br />
+  <%= f.select :faculty_id, Faculty.all.collect { |f| [ f.name, f.id ] }, include_blank: true %></div>
+
   <div><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true %></div>
 
