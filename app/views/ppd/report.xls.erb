@@ -1,28 +1,10 @@
 <?xml version="1.0"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
-          xmlns:o="urn:schemas-microsoft-com:office:office"
-          xmlns:x="urn:schemas-microsoft-com:office:excel"
-          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
-          xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
-    <Table>
-      <Row>
-        <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Class Hours</Data></Cell>
-        <Cell><Data ss:Type="String">Practical Hours</Data></Cell>
-      </Row>
-      <% @career.subjects.each do |subject| %>
-          <Row>
-            <Cell><Data ss:Type="Number"><%= subject.id %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= subject.name %></Data></Cell>
-            <Cell><Data ss:Type="Number"><%= subject.class_hours_1 %></Data></Cell>
-            <Cell><Data ss:Type="Number"><%= subject.practical_hours %></Data></Cell>
-          </Row>
-      <% end %>
-    </Table>
-  </Worksheet>
-</Workbook>
-
-<!--http://msdn.microsoft.com/en-us/library/aa140066(v=office.10).aspx-->
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+  <ss:Styles>
+    <ss:Style ss:ID="center" ss:Name="center">
+      <ss:Alignment ss:Horizontal="Center"/>
+    </ss:Style>
+  </ss:Styles>
+  <%= render 'presentation' %>
+</ss:Workbook>
 

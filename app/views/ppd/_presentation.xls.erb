@@ -1,0 +1,58 @@
+<ss:Worksheet ss:Name="PRESENTACIÓN">
+  <ss:Table ss:StyleID="center">
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="4">
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>UNIVERSIDAD DE LA HABANA</B></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell>
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>FACULTAD</B></ss:Data>
+      </ss:Cell>
+      <ss:Cell ss:MergeAcross="3">
+        <ss:Data ss:Type="String"><%= @career.faculty.name %></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell>
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>CARRERA</B></ss:Data>
+      </ss:Cell>
+      <ss:Cell ss:MergeAcross="3">
+        <ss:Data ss:Type="String"><%= @career.name %></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell>
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>CURSO</B></ss:Data>
+      </ss:Cell>
+      <ss:Cell ss:MergeAcross="3">
+        <ss:Data ss:Type="String">2014-2015</ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell>
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>TIPO DE CURSO</B></ss:Data>
+      </ss:Cell>
+      <ss:Cell ss:MergeAcross="3">
+        <ss:Data ss:Type="String">CRD</ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row></ss:Row><ss:Row></ss:Row>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="4">
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>PLANES DE ESTUDIO</B></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>AÑO</B></ss:Data></ss:Cell>
+      <ss:Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>PLAN</B></ss:Data></ss:Cell>
+      <ss:Cell ss:MergeAcross="2"><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>COMENTARIO</B></ss:Data></ss:Cell>
+    </ss:Row>
+    <% @career.years.each do |year| %>
+        <ss:Row>
+          <ss:Cell><ss:Data ss:Type="String"><%= year.pretty_name.titleize %></ss:Data> </ss:Cell>
+          <ss:Cell><ss:Data ss:Type="String"><%= year.study_plan.name %></ss:Data> </ss:Cell>
+        </ss:Row>
+    <% end %>
+  </ss:Table>
+</ss:Worksheet>
