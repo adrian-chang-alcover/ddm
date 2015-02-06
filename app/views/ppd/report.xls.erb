@@ -2,9 +2,13 @@
 <ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
   <ss:Styles>
     <ss:Style ss:ID="center" ss:Name="center">
-      <ss:Alignment ss:Horizontal="Center"/>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="left" ss:Name="left">
+      <ss:Alignment ss:Horizontal="Left"/>
     </ss:Style>
   </ss:Styles>
   <%= render 'presentation' %>
+  <%= render 'ppd' %>
 </ss:Workbook>
 
