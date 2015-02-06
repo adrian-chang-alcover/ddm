@@ -1,5 +1,6 @@
 <ss:Worksheet ss:Name="PPD">
   <ss:Table ss:StyleID="center">
+    <ss:Column ss:Index="1" ss:Width="250"></ss:Column>
     <ss:Row>
       <ss:Cell ss:MergeAcross="<%= 6+@career.years.count %>">
         <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>REPUBLICA DE CUBA</B></ss:Data>
@@ -45,13 +46,16 @@
       <% (@career.years.count - 4).times do %><ss:Cell></ss:Cell><% end %>
       <ss:Cell ss:MergeAcross="3"><ss:Data ss:Type="String">RECTOR</ss:Data> </ss:Cell>
     </ss:Row>
+  </ss:Table>
+
+  <ss:Table ss:StyleID="bordered_and_center">
     <ss:Row></ss:Row>
     <ss:Row>
       <ss:Cell ss:MergeDown="3"><ss:Data ss:Type="String">No</ss:Data> </ss:Cell>
       <ss:Cell ss:MergeDown="3"><ss:Data ss:Type="String">Disciplina y Asignatura</ss:Data> </ss:Cell>
-      <ss:Cell ss:MergeAcross="2"><ss:Data ss:Type="String">Cantidad de horas</ss:Data> </ss:Cell>
-      <ss:Cell ss:MergeAcross="1"><ss:Data ss:Type="String">Dist. por años</ss:Data> </ss:Cell>
-      <ss:Cell ss:MergeAcross="<%= @career.years.count - 1 %>"><ss:Data ss:Type="String">Dist. de las horas por años</ss:Data> </ss:Cell>
+      <ss:Cell ss:MergeAcross="2" ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="String">Cantidad de horas</ss:Data> </ss:Cell>
+      <ss:Cell ss:MergeAcross="1" ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="String">Dist. por años</ss:Data> </ss:Cell>
+      <ss:Cell ss:MergeAcross="<%= @career.years.count - 1 %>" ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="String">Dist. de las horas por años</ss:Data> </ss:Cell>
     </ss:Row>
     <ss:Row>
       <ss:Cell></ss:Cell><ss:Cell></ss:Cell>
@@ -71,12 +75,12 @@
           <ss:Data ss:Type="String"><%= ct.name.upcase %></ss:Data>
         </ss:Cell>
       </ss:Row>
-      <ss:Row></ss:Row>
+      <ss:Row><ss:Cell ss:MergeAcross="<%= 6 + @career.years.count %>"><ss:Data ss:Type="String"></ss:Data> </ss:Cell></ss:Row>
       <% @career.disciplines.each_with_index do |d,d_i| %>
         <% if d.subjects_by_curriculum_type(ct).any? %>
           <ss:Row>
             <ss:Cell><ss:Data ss:Type="Number"><%= d_i + 1 %></ss:Data> </ss:Cell>
-            <ss:Cell ss:StyleID="left"><ss:Data ss:Type="String"><%= d.name %></ss:Data> </ss:Cell>
+            <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= d.name %></ss:Data> </ss:Cell>
             <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type(ct).sum(&:total_hours) %></ss:Data> </ss:Cell>
             <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type(ct).sum{|s|s.class_hours_1 + s.class_hours_2} %></ss:Data> </ss:Cell>
             <ss:Cell><ss:Data ss:Type="Number"><%= d.subjects_by_curriculum_type(ct).sum(&:practical_hours) %></ss:Data> </ss:Cell>
@@ -90,7 +94,7 @@
             <% if s.curriculum_type == ct %>
               <ss:Row>
                 <ss:Cell><ss:Data ss:Type="Number"><%= d_i + 1 + (s_i + 1).fdiv(100) %></ss:Data> </ss:Cell>
-                <ss:Cell ss:StyleID="left"><ss:Data ss:Type="String"><%= s.name %></ss:Data> </ss:Cell>
+                <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= s.name %></ss:Data> </ss:Cell>
                 <ss:Cell><ss:Data ss:Type="Number"><%= s.total_hours %></ss:Data> </ss:Cell>
                 <ss:Cell><ss:Data ss:Type="Number"><%= s.class_hours_1 + s.class_hours_2 %></ss:Data> </ss:Cell>
                 <ss:Cell><ss:Data ss:Type="Number"><%= s.practical_hours %></ss:Data> </ss:Cell>

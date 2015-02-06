@@ -7,6 +7,40 @@
     <ss:Style ss:ID="left" ss:Name="left">
       <ss:Alignment ss:Horizontal="Left"/>
     </ss:Style>
+    <ss:Style ss:ID="bordered" ss:Name="bordered">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+      </ss:Borders>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_center" ss:Name="bordered_and_center">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_left" ss:Name="bordered_and_left">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Left"/>
+    </ss:Style>
+    <ss:Style ss:ID="left_strongly_bordered_and_center" ss:Name="left_strongly_bordered_and_center" ss:Parent="bordered_and_center">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Double" ss:Weight="Thick"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="Medium"/>
+      </ss:Borders>
+    </ss:Style>
   </ss:Styles>
   <%= render 'presentation' %>
   <%= render 'ppd' %>
