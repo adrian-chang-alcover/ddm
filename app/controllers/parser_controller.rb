@@ -1,5 +1,6 @@
 class ParserController < ApplicationController
   def ppd_vivo
+    authorize! :ppd_vivo, :parser
     if request.get?
       render 'parser/ppd_vivo'
     elsif request.post?
@@ -54,6 +55,7 @@ class ParserController < ApplicationController
   end
 
   def ppd
+    authorize! :ppd, :parser
     if request.get?
       render 'parser/ppd'
     elsif request.post?
@@ -105,6 +107,7 @@ class ParserController < ApplicationController
   end
 
   def per_semester
+    authorize! :per_semester, :parser
     if request.get?
       render 'parser/per_semester'
     elsif request.post?

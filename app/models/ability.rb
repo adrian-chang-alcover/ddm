@@ -7,5 +7,10 @@ class Ability
     can :read, :all
     can :manage, :all if user.admin? or user.ddm?
 
+
+
+    cannot :manage, :activities unless user.admin?
+    cannot :manage, :parser unless user.admin?
+    cannot :manage, :users unless user.admin?
   end
 end
