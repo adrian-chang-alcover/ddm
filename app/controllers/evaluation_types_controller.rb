@@ -1,5 +1,6 @@
 class EvaluationTypesController < ApplicationController
   before_action :set_evaluation_type, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /evaluation_types
   # GET /evaluation_types.json

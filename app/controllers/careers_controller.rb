@@ -1,5 +1,6 @@
 class CareersController < ApplicationController
   before_action :set_career, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /careers
   # GET /careers.json

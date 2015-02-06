@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   def index
+    authorize! :read, :activities
     @activities = PublicActivity::Activity.all.to_a
     unless params['user'].blank?
       @activities = @activities.select{|a| a.owner_type == 'User' and a.owner_id == params['user'].to_i}

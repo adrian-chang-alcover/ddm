@@ -7,6 +7,7 @@ class PpdController < ApplicationController
     else
       @career = Career.first
     end
+    authorize! :read, @career
     respond_to do |format|
       format.html
       format.xls
@@ -15,6 +16,7 @@ class PpdController < ApplicationController
 
   def export
     career = Career.find(params[:career])
+    authorize! :read, @career
     info = ExcelGenerator.export_ppd(career)
     send_file info[:file_name], info
   end
