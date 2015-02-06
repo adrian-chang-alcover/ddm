@@ -1,5 +1,6 @@
 class StudyPlansController < ApplicationController
   before_action :set_study_plan, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /study_plans
   # GET /study_plans.json

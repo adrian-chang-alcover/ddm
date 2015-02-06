@@ -1,5 +1,6 @@
 class SemestersController < ApplicationController
   before_action :set_semester, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /semesters
   # GET /semesters.json

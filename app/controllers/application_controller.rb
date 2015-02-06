@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!, except: [:index, :show]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  check_authorization
 
   CURRICULUM_TYPE_BASICO = CurriculumType.find_or_create_by(name: 'Básico')
   CURRICULUM_TYPE_PROPIO = CurriculumType.find_or_create_by(name: 'Propio')

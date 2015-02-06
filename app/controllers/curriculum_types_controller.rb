@@ -1,5 +1,6 @@
 class CurriculumTypesController < ApplicationController
   before_action :set_curriculum_type, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /curriculum_types
   # GET /curriculum_types.json
