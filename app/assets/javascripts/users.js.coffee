@@ -2,14 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ (
-  -> $('td[data-hook="roles"]').each(
-    -> $(this).load('/users/toggle_roles?user='+$(this).attr('data-user-id'))
-  )
-)
-
-$ (
-  button_click = () -> $('td[data-hook="roles"] button').click(
-    -> $(this).parent('td').load($(this).attr('data-url'), button_click);
-  )
-)
+$ ->
+  $('td[data-hook="roles"] button').click ->
+    button = this
+    $.get($(this).attr('data-url'), ->
+      $(button).toggleClass('btn-danger').toggleClass('btn-success')
+      $(button).children('i').toggleClass('icon-minus').toggleClass('icon-plus')
+    )

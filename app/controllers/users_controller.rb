@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all if current_user.admin? or current_user.ddm?
-    @users = current_user.faculty.users if current_user.decano? or current_user.vicedecano?
+    if current_user.admin? or current_user.ddm?
+      @users = User.all
+    elsif current_user.decano? or current_user.vicedecano?
+      @users = current_user.faculty.users
+    end
   end
 
   def toggle_roles
@@ -19,6 +22,6 @@ class UsersController < ApplicationController
       end
     end
 
-    render :partial => 'toggle_roles'
+    render nothing: true
   end
 end
