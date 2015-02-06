@@ -30,7 +30,7 @@
       <tr>
         <td><%= activity.id %></td>
         <td><%= activity.trackable_id %>
-          <% if activity.trackable_type.constantize.find(activity.trackable_id).respond_to?(:name) %>
+          <% if activity.trackable_type.constantize.where(id: activity.trackable_id).first.respond_to?(:name) %>
               <small><%= " (#{activity.trackable_type.constantize.find(activity.trackable_id).name})" %></small>
           <% end %>
         </td>
