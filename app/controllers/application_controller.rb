@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!, except: [:index, :show]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  check_authorization
 
   CURRICULUM_TYPE_BASICO = CurriculumType.find_or_create_by(name: 'Básico')
   CURRICULUM_TYPE_PROPIO = CurriculumType.find_or_create_by(name: 'Propio')
@@ -18,8 +19,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :username
-    devise_parameter_sanitizer.for(:account_update) << :username
+    devise_parameter_sanitizer.for(:sign_up).concat([:username, :faculty_id])
+    devise_parameter_sanitizer.for(:account_update).concat([:username, :faculty_id])
   end
 
 end

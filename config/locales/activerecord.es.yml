@@ -57,6 +57,9 @@ es:
         curriculum_type_id: "tipo de currículo"
         dictum_or_resoluteness: "dictámen o resolución"
         number: "número"
+      user:
+        username: "Nombre"
+        faculty_id: "Facultad"
   helpers:
     links:
       destroy: "Eliminar"

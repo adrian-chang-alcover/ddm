@@ -1,0 +1,33 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1>Usuarios</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= model_class.human_attribute_name(:id) %></th>
+    <th><%= model_class.human_attribute_name(:username) %></th>
+    <th><%= model_class.human_attribute_name(:email) %></th>
+    <th><%= model_class.human_attribute_name(:faculty_id) %></th>
+    <th><%= model_class.human_attribute_name(:roles) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+      <% next if user == current_user %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.faculty.name unless user.faculty.blank? %></td>
+        <td data-hook="roles">
+          <% Role.where('priority > ?', current_user.priority).each do |role| %>
+              <button href="#" class="btn btn-<%= user.has_role?(role) ? 'danger' : 'success' %>" style="margin-top: 3px;" data-url="<%= users_toggle_roles_path({:user=>user.id,:role=>role.id}) %>">
+                <i class="icon-<%= user.has_role?(role) ? 'minus' : 'plus' %>" style="margin-right: 7px;"></i><%= role.name %>
+              </button>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
