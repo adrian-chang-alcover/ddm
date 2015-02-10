@@ -49,6 +49,55 @@
         <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
       </ss:Borders>
     </ss:Style>
+
+    <!--background color: gray-->
+    <ss:Style ss:ID="gray_background" ss:Name="gray_background">
+      <ss:Interior ss:Color="#DDDDDD" ss:Pattern="Solid"/>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_gray_background" ss:Name="bordered_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_center_and_gray_background" ss:Name="bordered_and_center_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_left_and_gray_background" ss:Name="bordered_and_left_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Left"/>
+    </ss:Style>
+    <ss:Style ss:ID="left_strongly_bordered_and_center_and_gray_background" ss:Name="left_strongly_bordered_and_center_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="right_strongly_bordered_and_center_and_gray_background" ss:Name="right_strongly_bordered_and_center_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
   </ss:Styles>
   <%= render 'presentation' %>
   <%= render 'ppd' %>
