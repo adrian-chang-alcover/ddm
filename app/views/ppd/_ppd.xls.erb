@@ -101,7 +101,7 @@
                 <ss:Cell ss:StyleID="left_strongly_bordered_and_center"><ss:Data ss:Type="String"><%= s.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL %></ss:Data> </ss:Cell>
                 <ss:Cell ss:StyleID="right_strongly_bordered_and_center"><ss:Data ss:Type="String"><%= s.year.name if s.evaluation_type == ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO %></ss:Data> </ss:Cell>
                 <% @career.years.each do |year| %>
-                  <ss:Cell><ss:Data ss:Type="String"><%= s.total_hours if s.year == year %></ss:Data> </ss:Cell>
+                  <ss:Cell><ss:Data ss:Type="Number"><%= s.total_hours if s.year == year %></ss:Data> </ss:Cell>
                 <% end %>
               </ss:Row>
             <% end %>
@@ -109,6 +109,42 @@
           <ss:Row></ss:Row>
         <% end %>
       <% end %>
+      <ss:Row>
+        <ss:Cell ss:MergeDown="2" ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">TOTAL</ss:Data> </ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">HORAS DEL CURRÍCULO <%= ct.name.upcase %> POR FORMA Y POR AÑO</ss:Data> </ss:Cell>
+        <ss:Cell ss:StyleID="left_strongly_bordered_and_center_and_gray_background"><ss:Data ss:Type="Number"><%= @career.subjects_by_curriculum_type(ct).sum(&:total_hours) %></ss:Data></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="Number"><%= @career.subjects_by_curriculum_type(ct).sum{|s|s.class_hours_1 + s.class_hours_2} %></ss:Data></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="Number"><%= @career.subjects_by_curriculum_type(ct).sum(&:practical_hours) %></ss:Data></ss:Cell>
+        <ss:Cell ss:StyleID="left_strongly_bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="right_strongly_bordered_and_center_and_gray_background"></ss:Cell>
+        <% @career.years.each do |year| %>
+            <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="Number"><%= @career.subjects_by_curriculum_type_and_year(ct, year).sum(&:total_hours) %></ss:Data> </ss:Cell>
+        <% end %>
+      </ss:Row>
+      <ss:Row>
+        <ss:Cell></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">EXÁMENES FINALES DEL CURRÍCULO <%= ct.name.upcase %></ss:Data> </ss:Cell>
+        <ss:Cell ss:StyleID="left_strongly_bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="right_strongly_bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="Number"><%= @career.subjects_by_curriculum_type_and_evaluation_type(ct, ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL).count %></ss:Data> </ss:Cell>
+        <ss:Cell ss:StyleID="right_strongly_bordered_and_center_and_gray_background"></ss:Cell>
+        <% @career.years.each do |year| %>
+            <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String"></ss:Data> </ss:Cell>
+        <% end %>
+      </ss:Row>
+      <ss:Row>
+        <ss:Cell></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">TRABAJOS DE CURSO DEL CURRÍCULO <%= ct.name.upcase %></ss:Data> </ss:Cell>
+        <ss:Cell ss:StyleID="left_strongly_bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="right_strongly_bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"></ss:Cell>
+        <ss:Cell ss:StyleID="right_strongly_bordered_and_center_and_gray_background"><ss:Data ss:Type="Number"><%= @career.subjects_by_curriculum_type_and_evaluation_type(ct, ApplicationController::EVALUATION_TYPE_TRABAJO_CURSO).count %></ss:Data> </ss:Cell>
+        <% @career.years.each do |year| %>
+            <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String"></ss:Data></ss:Cell>
+        <% end %>
+      </ss:Row>
     <% end %>
   </ss:Table>
 </ss:Worksheet>
