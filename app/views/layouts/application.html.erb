@@ -38,7 +38,7 @@
   </head>
   <body data-no-turbolink="">
 
-  <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -106,8 +106,8 @@
   </nav>
 
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
+      <div class="row">
+        <div class="col-md-3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><%= t(:entities) %></li>
@@ -120,7 +120,7 @@
           </div><!--/.well -->
           <%= image_tag 'logo.png' %>
         </div><!--/span-->
-        <div class="span9">
+        <div class="col-md-9">
           <%= yield %>
         </div>
       </div><!--/row-->
