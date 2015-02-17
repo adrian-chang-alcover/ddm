@@ -3,7 +3,7 @@
   <div class="row" style="margin-left: 0px">
     <% year.semesters.each do |semester| %>
       <% unless semester.name_slug == 'anual' %>
-        <div class="span<%= 12/year.semesters.to_a.count{|s| not s.anual?} %>">
+        <div class="col-md-<%= 12/year.semesters.to_a.count{|s| not s.anual?} %>">
         <table class="table table-bordered table-condensed ppd">
           <thead>
             <tr><td class="separator" colspan="4"><%= link_to(semester.pretty_name.upcase, edit_semester_path(semester.id), target: '_blank') %></td></tr>

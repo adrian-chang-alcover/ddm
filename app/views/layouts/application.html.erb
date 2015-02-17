@@ -83,6 +83,7 @@
               <li><a href="#">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
             </ul>
           </li>
+          <li><a href="#">Resoluciones y Dictámenes</a> </li>
           <li class="divider-vertical"></li>
           <% if current_user and (current_user.admin? or current_user.ddm? or current_user.decano? or current_user.vicedecano?) %>
             <li><%= link_to 'Usuarios', users_index_path %></li>
@@ -108,16 +109,21 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header"><%= t(:entities) %></li>
-              <li><%= link_to t(:faculties), faculties_path %></li>
-              <li><%= link_to t(:careers), careers_path  %></li>
-              <li><%= link_to t(:curriculum_types), curriculum_types_path  %></li>
-              <li><%= link_to t(:evaluation_types), evaluation_types_path  %></li>
-              <li><%= link_to t(:study_plans), study_plans_path  %></li>
-            </ul>
-          </div><!--/.well -->
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= t(:entities) %></h3>
+            </div>
+            <div class="panel-body">
+              <ul class="nav nav-list">
+                <li><%= link_to t(:faculties), faculties_path %></li>
+                <li><%= link_to t(:careers), careers_path  %></li>
+                <li><%= link_to t(:curriculum_types), curriculum_types_path  %></li>
+                <li><%= link_to t(:evaluation_types), evaluation_types_path  %></li>
+                <li><%= link_to t(:study_plans), study_plans_path  %></li>
+              </ul>
+            </div>
+          </div>
+
           <%= image_tag 'logo.png' %>
         </div><!--/span-->
         <div class="col-md-9">
