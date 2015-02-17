@@ -78,6 +78,7 @@
                   <li><a href="#">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
                 </ul>
               </li>
+              <li class="divider-vertical"></li>
               <% if current_user and (current_user.admin? or current_user.ddm? or current_user.decano? or current_user.vicedecano?) %>
                 <li><%= link_to 'Usuarios', users_index_path %></li>
               <% end %>
