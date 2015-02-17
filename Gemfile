@@ -45,7 +45,6 @@ gem 'better_errors'
 gem 'rails-i18n'
 
 gem 'less-rails'
-gem 'twitter-bootstrap-rails'
 
 gem 'figaro'
 
