@@ -134,6 +134,8 @@
           <%= image_tag 'logo.png' %>
         </div><!--/span-->
         <div class="col-md-9">
+          <% flash.instance_variable_get(:@flashes).symbolize_keys! %>
+          <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
