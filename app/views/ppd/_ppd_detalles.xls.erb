@@ -1,0 +1,32 @@
+<ss:Worksheet ss:Name="PPD Detalles">
+  <ss:Table ss:StyleID="bordered_and_center">
+    <ss:Row>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">DISCIPLINA</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">ASIGNATURA</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">TH</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">HC</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">HP</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">AÑO</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">SE</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">CU</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">EV</ss:Data></ss:Cell>
+      <ss:Cell ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String">DICTÁMEN O RESOLUCIÓN</ss:Data></ss:Cell>
+    </ss:Row>
+    <% @career.disciplines.each do |discipline| %>
+        <% discipline.subjects.each do |subject| %>
+            <ss:Row>
+              <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= discipline.name if discipline.subjects.first == subject %></ss:Data> </ss:Cell>
+              <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= subject.name %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="Number"><%= subject.total_hours %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="Number"><%= subject.class_hours_1 + subject.class_hours_2 %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="Number"><%= subject.practical_hours %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="Number"><%= subject.year.name %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="Number"><%= subject.semester.name %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="String"><%= subject.curriculum_type.name %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="String"><%= subject.evaluation_type.name if subject.evaluation_type %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="String"><%= subject.dictum_or_resoluteness %></ss:Data> </ss:Cell>
+            </ss:Row>
+        <% end %>
+    <% end %>
+  </ss:Table>
+</ss:Worksheet>
