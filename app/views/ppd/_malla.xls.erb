@@ -1,0 +1,75 @@
+<ss:Worksheet ss:Name="Malla Curricular">
+  <ss:Table ss:StyleID="center">
+    <ss:Column ss:Index="1" ss:Width="250"></ss:Column>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="<%= 6+@career.years.count %>">
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>REPUBLICA DE CUBA</B></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="<%= 6+@career.years.count %>">
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>MINISTERIO DE EDUCACIÓN SUPERIOR</B></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="<%= 6+@career.years.count %>">
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>PLAN DEL PROCESO DOCENTE VIGENTE</B></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="<%= 6+@career.years.count %>">
+        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>CURSO 2014-2015</B></ss:Data>
+      </ss:Cell>
+    </ss:Row>
+    <ss:Row></ss:Row>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="2" ss:StyleID="left">
+        <ss:Data ss:Type="String">MODALIDAD: Presencial</ss:Data>
+      </ss:Cell>
+      <ss:Cell ss:MergeAcross="3"><ss:Data ss:Type="String"></ss:Data> </ss:Cell>
+      <% (@career.years.count - 4).times do %><ss:Cell></ss:Cell><% end %>
+      <ss:Cell ss:MergeAcross="3"><ss:Data ss:Type="String"></ss:Data> </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="2" ss:StyleID="left">
+        <ss:Data ss:Type="String">CARRERA: <%= @career.name %></ss:Data>
+      </ss:Cell>
+      <ss:Cell ss:MergeAcross="3"><ss:Data ss:Type="String"><%= @career.faculty.dean %></ss:Data> </ss:Cell>
+      <% (@career.years.count - 4).times do %><ss:Cell></ss:Cell><% end %>
+      <ss:Cell ss:MergeAcross="3"><ss:Data ss:Type="String">Dr. Gustavo J Cobreiro Suárez</ss:Data> </ss:Cell>
+    </ss:Row>
+    <ss:Row>
+      <ss:Cell ss:MergeAcross="2" ss:StyleID="left">
+        <ss:Data ss:Type="String">CALIFICACIÓN: Licenciado en <%= @career.name %></ss:Data>
+      </ss:Cell>
+      <ss:Cell ss:MergeAcross="3"><ss:Data ss:Type="String">DECANO</ss:Data> </ss:Cell>
+      <% (@career.years.count - 4).times do %><ss:Cell></ss:Cell><% end %>
+      <ss:Cell ss:MergeAcross="3"><ss:Data ss:Type="String">RECTOR</ss:Data> </ss:Cell>
+    </ss:Row>
+  </ss:Table>
+
+  <ss:Table ss:StyleID="bordered_and_center">
+    <ss:Row></ss:Row>
+    <% @career.years.each do |year| %>
+      <ss:Row>
+        <ss:Cell ss:MergeAcross="13" ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String"><%= year.pretty_name.titleize %></ss:Data> </ss:Cell>
+      </ss:Row>
+      <ss:Row>
+        <% year.semesters.each do |semester| %>
+          <ss:Cell ss:StyleID="bordered_and_center_and_gray_background" ss:MergeAcross="3"><ss:Data ss:Type="String"><%= semester.pretty_name.titleize %></ss:Data> </ss:Cell>
+          <ss:Cell ss:StyleID="default"></ss:Cell>
+        <% end %>
+      </ss:Row>
+        <ss:Row>
+          <% year.semesters.count.times do %>
+              <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String">ASIGNATURA</ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="String">EVAL</ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="String">H</ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="String">H/S</ss:Data> </ss:Cell>
+              <ss:Cell ss:StyleID="default"></ss:Cell>
+          <% end %>
+        </ss:Row>
+
+    <% end %>
+  </ss:Table>
+</ss:Worksheet>
