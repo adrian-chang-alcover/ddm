@@ -69,7 +69,18 @@
               <ss:Cell ss:StyleID="default"></ss:Cell>
           <% end %>
         </ss:Row>
-
+       <% subjects_max = year.semesters.collect{|s|s.subjects.count}.max %>
+       <% subjects_max.times do |i| %>
+         <ss:Row>
+             <% year.semesters.each do |semester| %>
+                <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= semester.subjects[i].name if semester.subjects[i] %></ss:Data> </ss:Cell>
+                <ss:Cell><ss:Data ss:Type="String"><%= semester.subjects[i].evaluation_type.short_name if semester.subjects[i] and semester.subjects[i].evaluation_type %></ss:Data> </ss:Cell>
+                <ss:Cell><ss:Data ss:Type="String"><%= semester.subjects[i].total_hours if semester.subjects[i] %></ss:Data> </ss:Cell>
+               <ss:Cell><ss:Data ss:Type="String"><%= semester.subjects[i].total_hours.fdiv(semester.weeks).round(2) if semester.subjects[i] %></ss:Data> </ss:Cell>
+               <ss:Cell ss:StyleID="default"></ss:Cell>
+             <% end %>
+         </ss:Row>
+       <% end %>
     <% end %>
   </ss:Table>
 </ss:Worksheet>
