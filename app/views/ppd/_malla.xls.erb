@@ -50,6 +50,8 @@
   <ss:Table ss:StyleID="bordered_and_center">
     <ss:Row></ss:Row>
     <% @career.years.each do |year| %>
+      <% total_hours = {} %>
+      <% year.semesters.each {|semester| total_hours[semester] = 0} %>
       <ss:Row>
         <ss:Cell ss:MergeAcross="13" ss:StyleID="bordered_and_center_and_gray_background"><ss:Data ss:Type="String"><%= year.pretty_name.titleize %></ss:Data> </ss:Cell>
       </ss:Row>
@@ -94,6 +96,7 @@
                                                                              subject.class_hours_1
                                                                            end
                       %></ss:Data> </ss:Cell>
+                      <% total_hours[semester] += class_hours %>
                       <ss:Cell><ss:Data ss:Type="Number"><%= class_hours.fdiv(semester.weeks).round(2) %></ss:Data> </ss:Cell>
                       <ss:Cell ss:StyleID="default"></ss:Cell>
                   <% else %>
@@ -117,7 +120,7 @@
           <% year.semesters.each do |semester| %>
               <% unless semester.anual? %>
                   <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">TOTAL DE HORAS</ss:Data> </ss:Cell>
-                  <ss:Cell><ss:Data ss:Type="Number"><%= semester.subjects.to_a.sum(&:total_hours) %></ss:Data> </ss:Cell>
+                  <ss:Cell><ss:Data ss:Type="Number"><%= total_hours[semester] %></ss:Data> </ss:Cell>
                   <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
               <% end %>
           <% end %>
@@ -126,7 +129,7 @@
           <% year.semesters.each do |semester| %>
             <% unless semester.anual? %>
               <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">PROMEDIO DE HORAS SEMANALES</ss:Data> </ss:Cell>
-              <ss:Cell><ss:Data ss:Type="Number"><%= semester.subjects.to_a.sum(&:total_hours).fdiv(semester.weeks).round(2) %></ss:Data> </ss:Cell>
+              <ss:Cell><ss:Data ss:Type="Number"><%= total_hours[semester].fdiv(semester.weeks).round(2) %></ss:Data> </ss:Cell>
               <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
             <% end %>
           <% end %>
