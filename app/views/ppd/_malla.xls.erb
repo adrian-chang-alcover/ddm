@@ -55,57 +55,89 @@
       </ss:Row>
       <ss:Row>
         <% year.semesters.each do |semester| %>
-          <ss:Cell ss:StyleID="bordered_and_center_and_gray_background" ss:MergeAcross="3"><ss:Data ss:Type="String"><%= semester.pretty_name.titleize %></ss:Data> </ss:Cell>
-          <ss:Cell ss:StyleID="default"></ss:Cell>
+          <% unless semester.anual? %>
+              <ss:Cell ss:StyleID="bordered_and_center_and_gray_background" ss:MergeAcross="3"><ss:Data ss:Type="String"><%= semester.pretty_name.titleize %></ss:Data> </ss:Cell>
+              <ss:Cell ss:StyleID="default"></ss:Cell>
+          <% end %>
         <% end %>
       </ss:Row>
         <ss:Row>
-          <% year.semesters.count.times do %>
+          <% year.semesters.each do |semester| %>
+            <% unless semester.anual? %>
               <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String">ASIGNATURA</ss:Data> </ss:Cell>
               <ss:Cell><ss:Data ss:Type="String">EVAL</ss:Data> </ss:Cell>
               <ss:Cell><ss:Data ss:Type="String">H</ss:Data> </ss:Cell>
               <ss:Cell><ss:Data ss:Type="String">H/S</ss:Data> </ss:Cell>
               <ss:Cell ss:StyleID="default"></ss:Cell>
+            <% end %>
           <% end %>
         </ss:Row>
-        <% subjects_max = year.semesters.collect{|s|s.subjects.count}.max %>
+        <% subjects_max = year.semesters.collect{|s|s.subjects_plus_relevant_subjects.count}.max %>
         <% subjects_max.times do |i| %>
           <ss:Row>
             <% year.semesters.each do |semester| %>
-              <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= semester.subjects[i].name if semester.subjects[i] %></ss:Data> </ss:Cell>
-              <ss:Cell><ss:Data ss:Type="String"><%= semester.subjects[i].evaluation_type.short_name if semester.subjects[i] and semester.subjects[i].evaluation_type %></ss:Data> </ss:Cell>
-              <ss:Cell><ss:Data ss:Type="String"><%= semester.subjects[i].total_hours if semester.subjects[i] %></ss:Data> </ss:Cell>
-              <ss:Cell><ss:Data ss:Type="String"><%= semester.subjects[i].total_hours.fdiv(semester.weeks).round(2) if semester.subjects[i] %></ss:Data> </ss:Cell>
-              <ss:Cell ss:StyleID="default"></ss:Cell>
+              <% unless semester.anual? %>
+                  <% subject = semester.subjects_plus_relevant_subjects[i] %>
+                  <% if subject %>
+                      <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= subject.name %></ss:Data> </ss:Cell>
+                      <ss:Cell><ss:Data ss:Type="Number"><%= subject.evaluation_type.short_name if subject.evaluation_type %></ss:Data> </ss:Cell>
+                      <ss:Cell><ss:Data ss:Type="Number"><%= class_hours = if semester.practica?
+                                                                             subject.practical_hours
+                                                                           elsif subject.semester.anual?
+                                                                             case semester.name_slug
+                                                                               when '1'
+                                                                                 subject.class_hours_1
+                                                                               when '2'
+                                                                                 subject.class_hours_2
+                                                                             end
+                                                                           else
+                                                                             subject.class_hours_1
+                                                                           end
+                      %></ss:Data> </ss:Cell>
+                      <ss:Cell><ss:Data ss:Type="Number"><%= class_hours.fdiv(semester.weeks).round(2) %></ss:Data> </ss:Cell>
+                      <ss:Cell ss:StyleID="default"></ss:Cell>
+                  <% else %>
+                    <% 4.times do %><ss:Cell></ss:Cell><% end %>
+                    <ss:Cell ss:StyleID="default"></ss:Cell>
+                  <% end %>
+              <% end %>
             <% end %>
           </ss:Row>
         <% end %>
         <ss:Row>
             <% year.semesters.each do |semester| %>
-              <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">TOTAL DE SEMANAS</ss:Data> </ss:Cell>
-              <ss:Cell><ss:Data ss:Type="Number"><%= semester.weeks %></ss:Data> </ss:Cell>
-              <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
+              <% unless semester.anual? %>
+                  <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">TOTAL DE SEMANAS</ss:Data> </ss:Cell>
+                  <ss:Cell><ss:Data ss:Type="Number"><%= semester.weeks %></ss:Data> </ss:Cell>
+                  <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
+              <% end %>
             <% end %>
         </ss:Row>
         <ss:Row>
           <% year.semesters.each do |semester| %>
-              <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">TOTAL DE HORAS</ss:Data> </ss:Cell>
-              <ss:Cell><ss:Data ss:Type="Number"><%= semester.subjects.to_a.sum(&:total_hours) %></ss:Data> </ss:Cell>
-              <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
+              <% unless semester.anual? %>
+                  <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">TOTAL DE HORAS</ss:Data> </ss:Cell>
+                  <ss:Cell><ss:Data ss:Type="Number"><%= semester.subjects.to_a.sum(&:total_hours) %></ss:Data> </ss:Cell>
+                  <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
+              <% end %>
           <% end %>
         </ss:Row>
         <ss:Row>
           <% year.semesters.each do |semester| %>
+            <% unless semester.anual? %>
               <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">PROMEDIO DE HORAS SEMANALES</ss:Data> </ss:Cell>
               <ss:Cell><ss:Data ss:Type="Number"><%= semester.subjects.to_a.sum(&:total_hours).fdiv(semester.weeks).round(2) %></ss:Data> </ss:Cell>
               <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
+            <% end %>
           <% end %>
         </ss:Row>
         <ss:Row>
           <% year.semesters.each do |semester| %>
+            <% unless semester.anual? %>
               <ss:Cell ss:MergeAcross="1" ss:StyleID="bordered_and_left_and_gray_background"><ss:Data ss:Type="String">TOTAL DE EXÁMENES</ss:Data> </ss:Cell>
               <ss:Cell><ss:Data ss:Type="Number"><%= semester.subjects.to_a.count{|s|s.evaluation_type == ApplicationController::EVALUATION_TYPE_EXAMEN_FINAL} %></ss:Data> </ss:Cell>
               <ss:Cell ss:StyleID="default"></ss:Cell><ss:Cell ss:StyleID="default"></ss:Cell>
+            <% end %>
           <% end %>
         </ss:Row>
       <ss:Row></ss:Row>

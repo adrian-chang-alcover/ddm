@@ -38,6 +38,10 @@ class Semester < ActiveRecord::Base
     end
   end
 
+  def subjects_plus_relevant_subjects
+    self.subjects.to_a.concat(self.relevant_subjects)
+  end
+
   def practica?
     self.name_slug == 'practica'
   end
