@@ -82,7 +82,7 @@
                   <% subject = semester.subjects_plus_relevant_subjects[i] %>
                   <% if subject %>
                       <ss:Cell ss:StyleID="bordered_and_left"><ss:Data ss:Type="String"><%= subject.name %></ss:Data> </ss:Cell>
-                      <ss:Cell><ss:Data ss:Type="Number"><%= subject.evaluation_type.short_name if subject.evaluation_type %></ss:Data> </ss:Cell>
+                      <ss:Cell><ss:Data ss:Type="String"><%= subject.evaluation_type.short_name if subject.evaluation_type %></ss:Data> </ss:Cell>
                       <ss:Cell><ss:Data ss:Type="Number"><%= class_hours = if semester.practica?
                                                                              subject.practical_hours
                                                                            elsif subject.semester.anual?
