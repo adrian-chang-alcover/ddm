@@ -1,28 +1,107 @@
 <?xml version="1.0"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
-          xmlns:o="urn:schemas-microsoft-com:office:office"
-          xmlns:x="urn:schemas-microsoft-com:office:excel"
-          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
-          xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
-    <Table>
-      <Row>
-        <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Class Hours</Data></Cell>
-        <Cell><Data ss:Type="String">Practical Hours</Data></Cell>
-      </Row>
-      <% @career.subjects.each do |subject| %>
-          <Row>
-            <Cell><Data ss:Type="Number"><%= subject.id %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= subject.name %></Data></Cell>
-            <Cell><Data ss:Type="Number"><%= subject.class_hours_1 %></Data></Cell>
-            <Cell><Data ss:Type="Number"><%= subject.practical_hours %></Data></Cell>
-          </Row>
-      <% end %>
-    </Table>
-  </Worksheet>
-</Workbook>
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+  <ss:Styles>
+    <ss:Style ss:ID="center" ss:Name="center">
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="left" ss:Name="left">
+      <ss:Alignment ss:Horizontal="Left"/>
+    </ss:Style>
+    <ss:Style ss:ID="bordered" ss:Name="bordered">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_center" ss:Name="bordered_and_center">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_left" ss:Name="bordered_and_left">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Left"/>
+    </ss:Style>
+    <ss:Style ss:ID="left_strongly_bordered_and_center" ss:Name="left_strongly_bordered_and_center" ss:Parent="bordered_and_center">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+    </ss:Style>
+    <ss:Style ss:ID="right_strongly_bordered_and_center" ss:Name="right_strongly_bordered_and_center" ss:Parent="bordered_and_center">
+      <ss:Borders>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+    </ss:Style>
 
-<!--http://msdn.microsoft.com/en-us/library/aa140066(v=office.10).aspx-->
+    <!--background color: gray-->
+    <ss:Style ss:ID="gray_background" ss:Name="gray_background">
+      <ss:Interior ss:Color="#DDDDDD" ss:Pattern="Solid"/>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_gray_background" ss:Name="bordered_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_center_and_gray_background" ss:Name="bordered_and_center_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="bordered_and_left_and_gray_background" ss:Name="bordered_and_left_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Left"/>
+    </ss:Style>
+    <ss:Style ss:ID="left_strongly_bordered_and_center_and_gray_background" ss:Name="left_strongly_bordered_and_center_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+    <ss:Style ss:ID="right_strongly_bordered_and_center_and_gray_background" ss:Name="right_strongly_bordered_and_center_and_gray_background" ss:Parent="gray_background">
+      <ss:Borders>
+        <ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
+        <ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+        <ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </ss:Borders>
+      <ss:Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    </ss:Style>
+  </ss:Styles>
+  <%= render 'presentation' %>
+  <%= render 'ppd' %>
+  <%= render 'ppd_detalles' %>
+  <%= render 'malla' %>
+</ss:Workbook>
 
