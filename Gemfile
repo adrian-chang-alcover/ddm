@@ -55,4 +55,4 @@ gem 'devise-i18n'
 gem 'public_activity'
 gem 'cancancan'
 
-ruby '2.1.3'
+ruby '2.1.5'
