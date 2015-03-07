@@ -43,7 +43,10 @@ class ExcelGenerator
   NORMAL = Spreadsheet::Format.new :size => 9
   HUGE = Spreadsheet::Format.new :size => 11
   BG_COLOR = Spreadsheet::Format.new :pattern => 1, :pattern_fg_color => :silver
-  TABLE_HEADER = CENTER | NORMAL | BG_COLOR
+  BORDER = Spreadsheet::Format.new :left => :thin, :top => :thin, :bottom => :thin, :right => :thin
+  STRONG_LEFT_BORDER = Spreadsheet::Format.new :left => :medium, :top => :thin, :bottom => :thin, :right => :thin
+  STRONG_RIGHT_BORDER = Spreadsheet::Format.new :left => :thin, :top => :thin, :bottom => :thin, :right => :medium
+  TABLE_HEADER = CENTER | NORMAL | BG_COLOR | BORDER
 
   CURRICULUM_TYPE_BASICO = ApplicationController::CURRICULUM_TYPE_BASICO
   CURRICULUM_TYPE_PROPIO = ApplicationController::CURRICULUM_TYPE_PROPIO
@@ -146,18 +149,18 @@ class ExcelGenerator
     sheet.merge_cells(row,start_column+7,row,start_column+career.years.count+6)
     sheet.write(row,start_column,'No',TABLE_HEADER)
     sheet.write(row,start_column+1,'Disciplina y Asignatura',TABLE_HEADER)
-    sheet.write(row,start_column+2,'Cantidad de horas',TABLE_HEADER|TINY)
-    sheet.write(row,start_column+5,'Dist. por años',TABLE_HEADER|TINY)
-    sheet.write(row,start_column+7,'Dist. de las horas por años',TABLE_HEADER|TINY)
+    sheet.write(row,start_column+2,'Cantidad de horas',TABLE_HEADER|TINY|STRONG_LEFT_BORDER)
+    sheet.write(row,start_column+5,'Dist. por años',TABLE_HEADER|TINY|STRONG_LEFT_BORDER)
+    sheet.write(row,start_column+7,'Dist. de las horas por años',TABLE_HEADER|TINY|STRONG_LEFT_BORDER)
     row += 1
     (2..6+career.years.count).each do |i|
       sheet.merge_cells(row,start_column+i,row+2,start_column+i)
     end
-    sheet.write(row,start_column+2,'TOTAL',TABLE_HEADER|TINY)
+    sheet.write(row,start_column+2,'TOTAL',TABLE_HEADER|TINY|STRONG_LEFT_BORDER)
     sheet.write(row,start_column+3,'CLASE',TABLE_HEADER|TINY)
     sheet.write(row,start_column+4,'PL',TABLE_HEADER)
-    sheet.write(row,start_column+5,'EF',TABLE_HEADER)
-    sheet.write(row,start_column+6,'TC',TABLE_HEADER)
+    sheet.write(row,start_column+5,'EF',TABLE_HEADER|STRONG_LEFT_BORDER)
+    sheet.write(row,start_column+6,'TC',TABLE_HEADER|STRONG_RIGHT_BORDER)
     career.years.each_with_index do |year, i|
       sheet.write(row,start_column+7+i,year.name,TABLE_HEADER)
     end
@@ -171,25 +174,27 @@ class ExcelGenerator
         if d.subjects_by_curriculum_type(ct).any?
           sheet.write(row,start_column,i+1,TABLE_HEADER)
           sheet.write(row,start_column+1,d.name,TABLE_HEADER|LEFT|TINY)
-          sheet.write(row,start_column+2,d.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
+          sheet.write(row,start_column+2,d.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER|STRONG_LEFT_BORDER)
           sheet.write(row,start_column+3,d.subjects_by_curriculum_type(ct).sum(&:class_hours_1),TABLE_HEADER)
           sheet.write(row,start_column+4,d.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
-          sheet.write(row,start_column+5,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER)
-          sheet.write(row,start_column+6,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER)
+          sheet.write(row,start_column+5,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_EXAMEN_FINAL).count,TABLE_HEADER|STRONG_LEFT_BORDER)
+          sheet.write(row,start_column+6,d.subjects_by_curriculum_type_and_evaluation_type(ct, EVALUATION_TYPE_TRABAJO_CURSO).count,TABLE_HEADER|STRONG_RIGHT_BORDER)
           career.years.each_with_index do |year, y|
             sheet.write(row,start_column+7+y,d.subjects_by_curriculum_type_and_year(ct,year).sum(&:total_hours),TABLE_HEADER)
           end
           row += 1
           d.subjects.each_with_index do |s, j|
             if s.curriculum_type == ct
-              sheet.write(row, start_column, (i+1) + (j+1).fdiv(100),CENTER | TINY)
-              sheet.write(row, start_column+1, s.name, TINY)
-              sheet.write(row, start_column+2, s.total_hours,CENTER | TINY)
-              sheet.write(row, start_column+3, s.class_hours_1,CENTER | TINY)
-              sheet.write(row, start_column+4, s.practical_hours,CENTER | TINY)
-              sheet.write(row, start_column+5, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL
-              sheet.write(row, start_column+6, s.year.name,CENTER | TINY) if s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO
-              sheet.write(row, start_column+7+s.career.years.to_a.find_index(s.year), s.total_hours,CENTER | TINY)
+              sheet.write(row, start_column, (i+1) + (j+1).fdiv(100),CENTER | TINY | BORDER)
+              sheet.write(row, start_column+1, s.name, TINY | BORDER)
+              sheet.write(row, start_column+2, s.total_hours,CENTER | TINY | BORDER | STRONG_LEFT_BORDER)
+              sheet.write(row, start_column+3, s.class_hours_1,CENTER | TINY | BORDER)
+              sheet.write(row, start_column+4, s.practical_hours,CENTER | TINY | BORDER)
+              sheet.write(row, start_column+5, s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL ? s.year.name : '',CENTER | TINY | BORDER | STRONG_LEFT_BORDER)
+              sheet.write(row, start_column+6, s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO ? s.year.name : '',CENTER | TINY | BORDER | STRONG_RIGHT_BORDER)
+              career.years.each_with_index do |year, y|
+                sheet.write(row, start_column+7+y, year == s.year ? s.total_hours : '', CENTER | TINY | BORDER)
+              end
               row += 1
             end
           end
@@ -200,14 +205,18 @@ class ExcelGenerator
       (row..row+2).each{|i| (0..6+career.years.count).each{|j| sheet.write(i,j,'',TABLE_HEADER) }}
       sheet.merge_cells(row,start_column,row+2,start_column)
       sheet.write(row,start_column,'TOTAL',TABLE_HEADER|TINY)
-      sheet.write(row,start_column+1,"HORAS DEL CURRÍCULO #{ct.name.upcase} POR FORMA Y AÑO",TABLE_HEADER | TINY | LEFT)
-      sheet.write(row+1,start_column+1,"EXÁMENES FINALES DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER | TINY | LEFT)
-      sheet.write(row+2,start_column+1,"TRABAJOS DE CURSO DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER | TINY | LEFT)
+      sheet.write(row,start_column+1,"HORAS DEL CURRÍCULO #{ct.name.upcase} POR FORMA Y AÑO",TABLE_HEADER | TINY | LEFT | STRONG_RIGHT_BORDER)
+      sheet.write(row+1,start_column+1,"EXÁMENES FINALES DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER | TINY | LEFT | STRONG_RIGHT_BORDER)
+      sheet.write(row+2,start_column+1,"TRABAJOS DE CURSO DEL CURRÍCULO #{ct.name.upcase}",TABLE_HEADER | TINY | LEFT | STRONG_RIGHT_BORDER)
       sheet.write(row,start_column+2,career.subjects_by_curriculum_type(ct).sum(&:total_hours),TABLE_HEADER)
       sheet.write(row,start_column+3,career.subjects_by_curriculum_type(ct).sum(&:class_hours_1),TABLE_HEADER)
       sheet.write(row,start_column+4,career.subjects_by_curriculum_type(ct).sum(&:practical_hours),TABLE_HEADER)
-      sheet.write(row+1,start_column+5,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
-      sheet.write(row+2,start_column+6,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
+      sheet.write(row,start_column+5,'',TABLE_HEADER | STRONG_LEFT_BORDER)
+      sheet.write(row+1,start_column+5,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER | STRONG_LEFT_BORDER)
+      sheet.write(row+2,start_column+5,'',TABLE_HEADER | STRONG_LEFT_BORDER)
+      sheet.write(row,start_column+6,'',TABLE_HEADER | STRONG_RIGHT_BORDER)
+      sheet.write(row+1,start_column+6,'',TABLE_HEADER | STRONG_RIGHT_BORDER)
+      sheet.write(row+2,start_column+6,career.subjects_by_curriculum_type(ct).count{|s| s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER | STRONG_RIGHT_BORDER)
       career.years.each_with_index do |year, y|
         sheet.write(row, start_column+7+y,career.subjects_by_curriculum_type_and_year(ct,year).sum(&:total_hours),TABLE_HEADER)
       end
@@ -226,8 +235,14 @@ class ExcelGenerator
     sheet.write(row,start_column+2,career.subjects.sum(&:total_hours),TABLE_HEADER)
     sheet.write(row,start_column+3,career.subjects.sum(&:class_hours_1),TABLE_HEADER)
     sheet.write(row,start_column+4,career.subjects.sum(&:practical_hours),TABLE_HEADER)
+    sheet.write(row,start_column+5,'',TABLE_HEADER)
+    sheet.write(row,start_column+6,'',TABLE_HEADER)
+    (2..4).each{|i| sheet.write(row+1,i,'',TABLE_HEADER)}
     sheet.write(row+1,start_column+5,career.subjects.count{|s| s.evaluation_type == EVALUATION_TYPE_EXAMEN_FINAL},TABLE_HEADER)
+    (6..career.years.count+6).each{|i| sheet.write(row+1,i,'',TABLE_HEADER)}
+    (2..5).each{|i| sheet.write(row+2,i,'',TABLE_HEADER)}
     sheet.write(row+2,start_column+6,career.subjects.count{|s| s.evaluation_type == EVALUATION_TYPE_TRABAJO_CURSO},TABLE_HEADER)
+    (7..career.years.count+6).each{|i| sheet.write(row+2,i,'',TABLE_HEADER)}
     career.years.each_with_index do |year, y|
       sheet.write(row, start_column+7+y,career.subjects_by_year(year).sum(&:total_hours),TABLE_HEADER)
     end
