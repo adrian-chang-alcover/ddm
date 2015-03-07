@@ -59,7 +59,7 @@ class ExcelGenerator
 
     self.generate_presentation(book, career)
     self.generate_ppd(book, career)
-    self.generate_ppd_vivo(book, career)
+    self.generate_ppd_detalles(book, career)
     self.generate_malla_curricular(book, career)
 
     book.write(file_name)
@@ -266,8 +266,8 @@ class ExcelGenerator
     sheet.write(row,start_column+6+career.years.count,career.subjects.count{|s|s.evaluation_type},TABLE_HEADER)
   end
 
-  def self.generate_ppd_vivo(book, career)
-    sheet = book.create_worksheet(name: 'PPD VIVO')
+  def self.generate_ppd_detalles(book, career)
+    sheet = book.create_worksheet(name: 'PPD DETALLES')
 
     start_column = 0
     start_row = 0
