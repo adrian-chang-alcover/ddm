@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'repositorio/index'
+
   get 'users/index'
   get 'users/toggle_roles'
 
