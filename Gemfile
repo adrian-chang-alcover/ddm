@@ -40,6 +40,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'byebug'
+
 gem 'binding_of_caller'
 gem 'better_errors'
 gem 'rails-i18n'
@@ -55,4 +57,4 @@ gem 'devise-i18n'
 gem 'public_activity'
 gem 'cancancan'
 
-ruby '2.1.3'
+ruby '2.1.5'
