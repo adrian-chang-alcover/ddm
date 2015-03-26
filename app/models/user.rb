@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
   belongs_to :faculty
+  belongs_to :career
 
   # Defining admin? ddm? ppd? ... methods
   Role.all.each do |role|
