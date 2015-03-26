@@ -1,14 +1,15 @@
 class Career < ActiveRecord::Base
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user },
+  tracked owner: Proc.new{ |controller, model| controller.current_user unless controller.blank?},
           params: {:id => :id, :short_name => :short_name, :full_name => :full_name, :faculty_id => :faculty_id}
 
   belongs_to :faculty
+  belongs_to :study_modality
   has_many :disciplines, dependent: :destroy
   has_many :years, dependent: :destroy
 
   def name
-    self.full_name || self.short_name
+    "(#{self.study_modality.short_name}) #{self.full_name || self.short_name}"
   end
 
   def subjects

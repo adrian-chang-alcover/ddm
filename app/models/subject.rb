@@ -1,6 +1,6 @@
 class Subject < ActiveRecord::Base
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user },
+  tracked owner: Proc.new{ |controller, model| controller.current_user unless controller.blank?},
           params: {:id => :id, :short_name => :short_name, :full_name => :full_name, :discipline_id => :discipline_id,
                    :semester_id => :semester_id, :class_hours_1 => :class_hours_1, :evaluation_type_id => :evaluation_type_id,
                    :practical_hours => :practical_hours, :curriculum_type_id => :curriculum_type_id,

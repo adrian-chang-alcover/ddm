@@ -9,12 +9,14 @@ es:
       semester: "semestre"
       year: "año"
       subject: "asignatura"
+      study_modality: "modalidad de estudio"
     attributes:
       career:
         id: "Id"
         short_name: "Nombre corto"
         full_name: "Nombre completo"
         faculty_id: "Facultad"
+        study_modality_id: "Modalidad de Estudio"
         created_at: "Creado"
       faculty:
         id: "Id"
@@ -60,6 +62,10 @@ es:
       user:
         username: "Nombre"
         faculty_id: "Facultad"
+      study_modality:
+        short_name: "nombre corto"
+        full_name: "nombre completo"
+        created_at: "creado"
   helpers:
     links:
       destroy: "Eliminar"

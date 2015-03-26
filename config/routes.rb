@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :study_modalities
+
   get 'repositorio/index'
 
   get 'users/index'
