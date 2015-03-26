@@ -1,6 +1,6 @@
 # source 'https://rubygems.org'
-# source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
-source 'file:///media/adrian/Datos/Adrian/Ruby/repo'
+source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
+# source 'file:///media/adrian/Datos/Adrian/Ruby/repo'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -40,7 +40,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'byebug'
+gem 'byebug', group: :development
 
 gem 'binding_of_caller'
 gem 'better_errors'

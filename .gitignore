@@ -18,9 +18,7 @@
 # Ignore application configuration
 /config/application.yml
 
-/.idea
-/public/assets
+/.idea/
+/public/assets/
 .ruby-version
-.idea/
-public/assets/
-vendor/cache/
+/vendor/cache/

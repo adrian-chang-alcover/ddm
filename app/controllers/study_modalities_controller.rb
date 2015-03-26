@@ -1,5 +1,6 @@
 class StudyModalitiesController < ApplicationController
   before_action :set_study_modality, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 
