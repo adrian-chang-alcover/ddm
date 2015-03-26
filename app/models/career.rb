@@ -4,6 +4,7 @@ class Career < ActiveRecord::Base
           params: {:id => :id, :short_name => :short_name, :full_name => :full_name, :faculty_id => :faculty_id}
 
   belongs_to :faculty
+  belongs_to :study_modality
   has_many :disciplines, dependent: :destroy
   has_many :years, dependent: :destroy
 
