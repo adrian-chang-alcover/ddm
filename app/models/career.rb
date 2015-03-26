@@ -9,7 +9,7 @@ class Career < ActiveRecord::Base
   has_many :years, dependent: :destroy
 
   def name
-    self.full_name || self.short_name
+    "(#{self.study_modality.short_name}) #{self.full_name || self.short_name}"
   end
 
   def subjects
