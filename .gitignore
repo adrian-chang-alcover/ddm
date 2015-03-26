@@ -19,3 +19,6 @@
 /config/application.yml
 
 .ruby-version
+.idea/
+public/assets/
+vendor/cache/
