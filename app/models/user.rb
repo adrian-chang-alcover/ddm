@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Defining admin? ddm? ppd? ... methods
   Role.all.each do |role|
-    define_method("#{role.name}?") do
+    define_method("#{role.name.gsub(' ', '_')}?") do
       self.roles.include?(role)
     end
   end
