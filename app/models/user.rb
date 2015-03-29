@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   belongs_to :faculty
   belongs_to :career
 
+  validates :faculty_id, presence: true
+
   # Defining admin? ddm? ppd? ... methods
   Role.all.each do |role|
     define_method("#{role.name.gsub(' ', '_')}?") do
