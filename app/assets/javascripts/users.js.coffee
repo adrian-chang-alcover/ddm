@@ -7,7 +7,7 @@ $ ->
     button = this
     $.get($(this).attr('data-url'), ->
       $(button).toggleClass('btn-danger').toggleClass('btn-success')
-      $(button).children('i').toggleClass('icon-minus').toggleClass('icon-plus')
+      $(button).children('span').toggleClass('glyphicon-minus').toggleClass('glyphicon-plus')
     )
 
 $ ->
