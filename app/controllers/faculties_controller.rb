@@ -62,6 +62,11 @@ class FacultiesController < ApplicationController
     end
   end
 
+  def careers_for_select
+    @faculty = Faculty.find(params[:faculty_id]) unless params[:faculty_id].blank?
+    render partial: 'careers_for_select'
+  end
+
   def model_class
     Faculty
   end
