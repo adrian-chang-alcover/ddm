@@ -15,10 +15,10 @@ class Ability
     end
 
     if user.jefe_de_carrera?
-      can :update, Discipline, :career => user.career_id}
-      can :update, Semester, :year => {:career => user.career_id}}
-      can :update, Subject, :discipline => {:career => user.career_id}}
-      can :update, Year, :career => user.career_id}
+      can :update, Discipline, :career => user.career_id
+      can :update, Semester, :year => {:career => user.career_id}
+      can :update, Subject, :discipline => {:career => user.career_id}
+      can :update, Year, :career => user.career_id
     end
 
     cannot :manage, :activities unless user.admin?
