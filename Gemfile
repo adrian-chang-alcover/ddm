@@ -40,7 +40,7 @@ gem 'unicorn'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'byebug', group: :development
+gem 'byebug', group: [:development, :test]
 
 gem 'binding_of_caller'
 gem 'better_errors'
