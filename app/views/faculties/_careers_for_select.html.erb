@@ -1,0 +1,7 @@
+<option value=""></option>
+
+<% if @faculty %>
+	<%= options_from_collection_for_select(@faculty.careers, :id, :name) %>
+<% else %>	
+	<%= options_from_collection_for_select(Career.all, :id, :name) %>
+<% end %>
