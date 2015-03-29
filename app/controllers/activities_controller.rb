@@ -1,13 +1,13 @@
 class ActivitiesController < ApplicationController
   def index
     authorize! :read, :activities
-    @activities = PublicActivity::Activity.all.to_a
+    activity = PublicActivity::Activity
     unless params['user'].blank?
-      @activities = @activities.select{|a| a.owner_type == 'User' and a.owner_id == params['user'].to_i}
+      activity = activity.where(owner_type: 'User', owner_id: params['user'].to_i)
     end
     unless params['entity'].blank?
-      @activities = @activities.select{|a| a.trackable_type == params['entity']}
+      activity = activity.where(trackable_type: params['entity'])
     end
-    @activities
+    @activities = activity.page(params[:page]).per(10)
   end
 end
