@@ -40,4 +40,11 @@ class CreatingCareersForAllStudyModalities < ActiveRecord::Migration
       end
     end
   end
+
+  def down
+    crd = StudyModality.find_by_short_name('CRD')
+    StudyModality.where("id != ?", crd.id).each do |modality|
+      modality.delete
+    end  
+  end  
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'faculties/careers_for_select'
+
   resources :study_modalities
 
   get 'repositorio/index'

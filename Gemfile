@@ -32,7 +32,7 @@ gem 'spring',        group: :development
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,7 +40,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'byebug', group: :development
+gem 'byebug', group: [:development, :test]
 
 gem 'binding_of_caller'
 gem 'better_errors'
@@ -56,5 +56,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'public_activity'
 gem 'cancancan'
+
+gem 'kaminari'
 
 ruby '2.1.5'

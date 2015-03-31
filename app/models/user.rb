@@ -7,11 +7,17 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
   belongs_to :faculty
+  belongs_to :career
+
+  validates :faculty_id, presence: true
+  validate { |user| user.career.faculty == user.faculty unless user.career.blank? }
 
   # Defining admin? ddm? ppd? ... methods
-  Role.all.each do |role|
-    define_method("#{role.name}?") do
-      self.roles.include?(role)
+  if table_exists?
+    Role.all.each do |role|
+      define_method("#{role.name.gsub(' ', '_')}?") do
+        self.roles.include?(role)
+      end
     end
   end
 

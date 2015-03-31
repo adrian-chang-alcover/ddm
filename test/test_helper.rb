@@ -7,4 +7,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  include Devise::TestHelpers
+
+  def login_as_one
+		sign_in(users(:one))
+  end
 end
