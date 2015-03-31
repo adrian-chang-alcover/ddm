@@ -3,15 +3,17 @@
 one:
   short_name: MyString
   full_name: MyString
-  descipline_id: 1
+  discipline_id: 1
   semester_id: 1
-  hours: 1
+  class_hours_1: 1
+  class_hours_2: 2
   evaluation_type_id: 1
 
 two:
   short_name: MyString
   full_name: MyString
-  descipline_id: 1
+  discipline_id: 1
   semester_id: 1
-  hours: 1
+  class_hours_1: 1
+  class_hours_2: 2
   evaluation_type_id: 1
