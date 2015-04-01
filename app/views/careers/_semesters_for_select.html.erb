@@ -1,0 +1,7 @@
+<option value=""></option>
+
+<% if @career %>
+	<%= options_from_collection_for_select(@career.semesters, :id, :pretty_name_with_year_and_career) %>
+<% else %>	
+	<%= options_from_collection_for_select(Semester.all, :id, :pretty_name_with_year_and_career) %>
+<% end %>
