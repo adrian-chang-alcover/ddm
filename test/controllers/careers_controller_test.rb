@@ -3,7 +3,6 @@ require 'test_helper'
 class CareersControllerTest < ActionController::TestCase
   setup do
     @career = careers(:one)
-    login_as_one
   end
 
   test "should get index" do
