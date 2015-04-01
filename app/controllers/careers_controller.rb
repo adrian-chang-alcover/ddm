@@ -62,6 +62,16 @@ class CareersController < ApplicationController
     end
   end
 
+  def disciplines_for_select
+    @career = Career.find(params[:career_id]) unless params[:career_id].blank?
+    render partial: 'disciplines_for_select'
+  end
+
+  def semesters_for_select
+    @career = Career.find(params[:career_id]) unless params[:career_id].blank?
+    render partial: 'semesters_for_select'
+  end
+
   def model_class
     Career
   end

@@ -11,6 +11,14 @@
       <%= f.text_field :full_name, :class => 'text_field' %>
     </div>
   </div>
+  <% if @subject.discipline.blank? %>
+    <div class="control-group">
+      <%= label_tag :career, nil, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name) %>
+      </div>
+    </div>
+  <% end %>
   <div class="control-group">
     <%= f.label :discipline_id, :class => 'control-label' %>
     <div class="controls">
