@@ -59,4 +59,4 @@ gem 'cancancan'
 
 gem 'kaminari'
 
-ruby '2.1.3'
+ruby '2.1.5'
