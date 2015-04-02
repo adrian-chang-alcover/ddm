@@ -11,6 +11,8 @@ class Subject < ActiveRecord::Base
   belongs_to :evaluation_type
   belongs_to :curriculum_type
 
+  validates :full_name, :discipline, :semester, :curriculum_type, presence: true
+
   default_scope {order :number}
 
   def name
