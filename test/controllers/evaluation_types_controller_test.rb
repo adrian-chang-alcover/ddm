@@ -3,6 +3,7 @@ require 'test_helper'
 class EvaluationTypesControllerTest < ActionController::TestCase
   setup do
     @evaluation_type = evaluation_types(:one)
+    login_as_admin
   end
 
   test "should get index" do

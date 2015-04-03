@@ -3,6 +3,7 @@ require 'test_helper'
 class CurriculumTypesControllerTest < ActionController::TestCase
   setup do
     @curriculum_type = curriculum_types(:one)
+    login_as_admin
   end
 
   test "should get index" do

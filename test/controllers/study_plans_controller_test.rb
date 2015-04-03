@@ -3,6 +3,7 @@ require 'test_helper'
 class StudyPlansControllerTest < ActionController::TestCase
   setup do
     @study_plan = study_plans(:one)
+    login_as_admin
   end
 
   test "should get index" do
