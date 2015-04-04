@@ -25,6 +25,7 @@ es:
         short_name: "Nombre corto"
         full_name: "Nombre completo"
         dean: "Decano"
+        university: "Universidad"
         created_at: "Creado"
       curriculum_type:
         name: "Nombre"
