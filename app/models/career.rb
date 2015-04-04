@@ -7,6 +7,8 @@ class Career < ActiveRecord::Base
   belongs_to :study_modality
   has_many :disciplines, dependent: :destroy
   has_many :years, dependent: :destroy
+  has_many :counterpart_careers, dependent: :destroy
+  has_and_belongs_to_many :universities
 
   def name
     _name = self.full_name || self.short_name

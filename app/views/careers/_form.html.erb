@@ -23,6 +23,25 @@
         <%= f.select :study_modality_id, options_from_collection_for_select(StudyModality.all, :id, :full_name, @career.study_modality_id), prompt: t(:select_study_modality) ,:class => '' %>
       </div>
     </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.check_box :headquarters %>
+      <%= f.label :headquarters, :class => 'control-label' %>
+    </div>
+  </div>  
+  <div class="control-group">
+    <%= f.label 'Centros Homólogos', :class => 'control-label' %>
+    <div class="controls panel panel-default">
+      <div class="row panel-content">
+        <% University.all.each do |univerisity| %>
+          <div class="col-sm-6">
+            <%= check_box_tag('career[university_ids][]', univerisity.id, @career.universities.include?(univerisity)) %>
+            <%= label_tag('career[university_ids]', univerisity.full_name) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>  
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
