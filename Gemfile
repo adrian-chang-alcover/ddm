@@ -59,4 +59,6 @@ gem 'cancancan'
 
 gem 'kaminari'
 
+gem 'twitter-bootstrap-rails'
+
 ruby '2.1.5'
