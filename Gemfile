@@ -1,6 +1,6 @@
 # source 'https://rubygems.org'
-source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
-# source 'file:///media/adrian/Datos/Adrian/Ruby/repo'
+# source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
+source 'file:///media/adrian/Datos/Adrian/Ruby/repo'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
