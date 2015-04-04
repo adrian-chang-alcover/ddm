@@ -10,6 +10,8 @@
   <dd><%= @faculty.full_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dean) %>:</strong></dt>
   <dd><%= @faculty.dean %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:university) %>:</strong></dt>
+  <dd><%= @faculty.university.full_name %></dd>
 </dl>
 
 <div class="form-actions">
