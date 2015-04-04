@@ -26,7 +26,12 @@
   <div class="control-group">
     <%= f.label :universities, :class => 'control-label' %>
     <div class="controls">
-      <%= select_tag 'career[university_ids]', options_from_collection_for_select(University.all, :id, :full_name, @career.universities), multiple: true ,:class => '' %>
+      <div class="row">
+        <% University.all.each do |univerisity| %>
+          <%= check_box_tag('career[university_ids][]', univerisity.id, @career.universities.include?(univerisity)) %>
+          <%= label_tag('career[university_ids]', univerisity.full_name) %>
+        <% end %>
+      </div>
     </div>
   </div>  
 
