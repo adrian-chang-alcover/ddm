@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326195346) do
+ActiveRecord::Schema.define(version: 20150404032655) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -119,6 +119,11 @@ ActiveRecord::Schema.define(version: 20150326195346) do
     t.string   "dictum_or_resoluteness"
     t.integer  "number",                 default: 0
     t.integer  "class_hours_2",          default: 0
+  end
+
+  create_table "universities", force: true do |t|
+    t.string "short_name"
+    t.string "full_name"
   end
 
   create_table "users", force: true do |t|
