@@ -10,6 +10,7 @@ es:
       year: "año"
       subject: "asignatura"
       study_modality: "modalidad de estudio"
+      university: universidad
     attributes:
       career:
         id: "Id"
@@ -20,6 +21,9 @@ es:
         universities: "Centros Homólogos"
         headquarters: "Centro Rector"
         created_at: "Creado"
+      university:
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"  
       faculty:
         id: "Id"
         short_name: "Nombre corto"
