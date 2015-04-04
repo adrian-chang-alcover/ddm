@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404034429) do
+ActiveRecord::Schema.define(version: 20150404041020) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(version: 20150404034429) do
     t.datetime "updated_at"
     t.integer  "faculty_id"
     t.integer  "study_modality_id"
+  end
+
+  create_table "counterpart_careers", force: true do |t|
+    t.integer "career_id_id"
+    t.integer "university_id_id"
   end
 
   create_table "curriculum_types", force: true do |t|
