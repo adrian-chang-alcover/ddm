@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404041020) do
+ActiveRecord::Schema.define(version: 20150404042937) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20150404041020) do
     t.integer  "study_modality_id"
   end
 
-  create_table "counterpart_careers", force: true do |t|
-    t.integer "career_id_id"
-    t.integer "university_id_id"
+  create_table "careers_universities", force: true do |t|
+    t.integer "career_id"
+    t.integer "university_id"
   end
 
   create_table "curriculum_types", force: true do |t|
