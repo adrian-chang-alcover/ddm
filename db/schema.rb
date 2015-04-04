@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326195346) do
+ActiveRecord::Schema.define(version: 20150404205513) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20150326195346) do
     t.datetime "updated_at"
     t.integer  "faculty_id"
     t.integer  "study_modality_id"
+    t.boolean  "headquarters"
+  end
+
+  create_table "careers_universities", force: true do |t|
+    t.integer "career_id"
+    t.integer "university_id"
   end
 
   create_table "curriculum_types", force: true do |t|
@@ -66,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150326195346) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "dean"
+    t.integer  "university_id"
   end
 
   create_table "roles", force: true do |t|
@@ -119,6 +126,11 @@ ActiveRecord::Schema.define(version: 20150326195346) do
     t.string   "dictum_or_resoluteness"
     t.integer  "number",                 default: 0
     t.integer  "class_hours_2",          default: 0
+  end
+
+  create_table "universities", force: true do |t|
+    t.string "short_name"
+    t.string "full_name"
   end
 
   create_table "users", force: true do |t|
