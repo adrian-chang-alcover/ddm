@@ -10,6 +10,7 @@
       <th><%= model_class.human_attribute_name(:full_name) %></th>
       <th><%= model_class.human_attribute_name(:faculty_id) %></th>
       <th><%= model_class.human_attribute_name(:study_modality) %></th>
+      <th><%= model_class.human_attribute_name(:headquarters) %></th>
       <th><%= model_class.human_attribute_name(:universities) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -22,6 +23,7 @@
         <td><%= career.full_name %></td>
         <td><%= career.faculty.name %></td>
         <td><%= career.study_modality.full_name %></td>
+        <td><%= career.headquarters ? 'si' : 'no' %></td>
         <td><%= career.universities.count %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

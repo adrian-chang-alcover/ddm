@@ -12,6 +12,8 @@
   <dd><%= @career.faculty_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:study_modality) %>:</strong></dt>
   <dd><%= @career.study_modality.full_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:headquarters) %>:</strong></dt>
+  <dd><%= @career.headquarters ? 'si' : 'no' %></dd>
 </dl>
 
 <div class="panel panel-default">

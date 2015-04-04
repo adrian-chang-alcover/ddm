@@ -18,6 +18,7 @@ es:
         faculty_id: "Facultad"
         study_modality: "Modalidad de Estudio"
         universities: "Centros Homólogos"
+        headquarters: "Centro Rector"
         created_at: "Creado"
       faculty:
         id: "Id"
