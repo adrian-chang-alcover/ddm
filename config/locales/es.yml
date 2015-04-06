@@ -43,7 +43,6 @@ es:
   evaluation_types: "Tipo de Evaluaciones"
   study_plans: "Planes de Estudio"
   faculties: "Facultades"
-  universities: "Universidades"
   export_to_excel: "Exportar a Excel"
   sign_out: "salir"
   sign_in: "registrarse"
@@ -63,3 +62,4 @@ es:
       career:
         short_name: "Nombre corto"
         full_name: "Nombre completo"
+  universities: "Universidades"      
