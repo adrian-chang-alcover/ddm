@@ -11,8 +11,20 @@
   <dt><strong><%= model_class.human_attribute_name(:faculty_id) %>:</strong></dt>
   <dd><%= @career.faculty_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:study_modality) %>:</strong></dt>
-  <dd><%= @career.study_modality_id %></dd>
+  <dd><%= @career.study_modality.full_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:headquarters) %>:</strong></dt>
+  <dd><%= @career.headquarters ? 'si' : 'no' %></dd>
 </dl>
+
+<div class="panel panel-default">
+   <div class="panel-heading">Centros homólogos</div>
+   <div class="row panel-body">
+     <% @career.universities.each do |univ| %>
+       <div class="col-sm-4"><%= univ.full_name %></div>
+     <% end %>
+   </div>
+</div>
+
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

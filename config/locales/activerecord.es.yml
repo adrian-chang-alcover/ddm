@@ -10,19 +10,26 @@ es:
       year: "año"
       subject: "asignatura"
       study_modality: "modalidad de estudio"
+      university: universidad
     attributes:
       career:
         id: "Id"
         short_name: "Nombre corto"
         full_name: "Nombre completo"
         faculty_id: "Facultad"
-        study_modality_id: "Modalidad de Estudio"
+        study_modality: "Modalidad de Estudio"
+        universities: "Centros Homólogos"
+        headquarters: "Centro Rector"
         created_at: "Creado"
+      university:
+        short_name: "Nombre corto"
+        full_name: "Nombre completo"  
       faculty:
         id: "Id"
         short_name: "Nombre corto"
         full_name: "Nombre completo"
         dean: "Decano"
+        university: "Universidad"
         created_at: "Creado"
       curriculum_type:
         name: "Nombre"

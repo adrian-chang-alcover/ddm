@@ -82,7 +82,7 @@
                   <li data-type="collapsible" data-toggle="promocion"><a href="#">Eficiencia Académica</a></li>
               <li data-type="collapser" data-toggle="encuesta"><a href="#">Encuestas<span class="caret"></span></a></li>
                   <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Satisfacción') %>">Encuestas de Satisfacción</a></li>
-                  <li data-type="collapsible" data-toggle="encuesta"><a href="#">Encuestas de Computación</a></li>
+                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Computación') %>">Encuestas de Computación</a></li>
                   <li data-type="collapsible" data-toggle="encuesta"><a href="#">Encuestas de Dedicación al Estudio</a></li>
             </ul>
           </li>
@@ -129,6 +129,7 @@
             </div>
             <div class="panel-body">
               <ul class="nav nav-list">
+                <li><%= link_to t(:universities), universities_path %></li>
                 <li><%= link_to t(:faculties), faculties_path %></li>
                 <li><%= link_to t(:careers), careers_path  %></li>
                 <li><%= link_to t(:curriculum_types), curriculum_types_path  %></li>
