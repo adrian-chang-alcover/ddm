@@ -20,7 +20,7 @@
   <div class="control-group">
     <%= f.label :university_id, nil, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :university_id, options_from_collection_for_select(University.all, :id, :full_name, @faculty.university.id) %>
+      <%= f.select :university_id, options_from_collection_for_select(University.all, :id, :full_name, @faculty.university ? @faculty.university.id : nil) %>
     </div>
   </div>  
 
