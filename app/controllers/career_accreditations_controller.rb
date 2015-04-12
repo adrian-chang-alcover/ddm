@@ -5,7 +5,7 @@ class CareerAccreditationsController < ApplicationController
   respond_to :html
 
   def index
-    @career_accreditations = CareerAccreditation.all
+    @career_accreditations = CareerAccreditation.page(params[:page])
     respond_with(@career_accreditations)
   end
 

@@ -63,4 +63,5 @@ es:
         short_name: "Nombre corto"
         full_name: "Nombre completo"
   universities: "Universidades"   
-  accreditation_categories: "Categorias de Acreditación"   
+  accreditation_categories: "Categorias de Acreditación"
+  career_accreditation: "Acreditación de Carreras"   

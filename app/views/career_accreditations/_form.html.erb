@@ -18,14 +18,14 @@
   <div class="control-group">
     <%= f.label :career_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :career_id, :class => 'form-control' %>
+      <%= f.select :career_id, options_from_collection_for_select(Career.all, :id, :name, @career_accreditation.career_id), :class => 'form-control' %>
     </div>
     <%= error_span(@career_accreditation[:career_id]) %>
   </div>
   <div class="control-group">
     <%= f.label :university_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :university_id, :class => 'form-control' %>
+      <%= f.select :university_id, options_from_collection_for_select(University.all, :id, :full_name, @career_accreditation.university_id), :class => 'form-control' %>
     </div>
     <%= error_span(@career_accreditation[:university_id]) %>
   </div>
@@ -39,14 +39,14 @@
   <div class="control-group">
     <%= f.label :accreditation_category_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :accreditation_category_id, :class => 'form-control' %>
+      <%= f.select :accreditation_category_id, options_from_collection_for_select(AccreditationCategory.all, :id, :name, @career_accreditation.accreditation_category_id), :class => 'form-control' %>
     </div>
     <%= error_span(@career_accreditation[:accreditation_category_id]) %>
   </div>
   <div class="control-group">
     <%= f.label :comments, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :comments, :class => 'form-control' %>
+      <%= f.text_area :comments, :class => 'form-control' %>
     </div>
     <%= error_span(@career_accreditation[:comments]) %>
   </div>
