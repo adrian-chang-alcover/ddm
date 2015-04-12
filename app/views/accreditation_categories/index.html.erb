@@ -1,25 +1,36 @@
-<h1>Listing accreditation_categories</h1>
-
-<table>
+<%- model_class = AccreditationCategory -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @accreditation_categories.each do |accreditation_category| %>
       <tr>
+        <td><%= link_to accreditation_category.id, accreditation_category_path(accreditation_category) %></td>
         <td><%= accreditation_category.name %></td>
-        <td><%= link_to 'Show', accreditation_category %></td>
-        <td><%= link_to 'Edit', edit_accreditation_category_path(accreditation_category) %></td>
-        <td><%= link_to 'Destroy', accreditation_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l accreditation_category.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_accreditation_category_path(accreditation_category), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      accreditation_category_path(accreditation_category),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Accreditation category', new_accreditation_category_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_accreditation_category_path,
+            :class => 'btn btn-primary' %>
