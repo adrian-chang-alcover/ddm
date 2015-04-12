@@ -1,0 +1,33 @@
+<h1>Listing career_accreditations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Career</th>
+      <th>University</th>
+      <th>Year</th>
+      <th>Accreditation category</th>
+      <th>Comments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @career_accreditations.each do |career_accreditation| %>
+      <tr>
+        <td><%= career_accreditation.career_id %></td>
+        <td><%= career_accreditation.university_id %></td>
+        <td><%= career_accreditation.year %></td>
+        <td><%= career_accreditation.accreditation_category_id %></td>
+        <td><%= career_accreditation.comments %></td>
+        <td><%= link_to 'Show', career_accreditation %></td>
+        <td><%= link_to 'Edit', edit_career_accreditation_path(career_accreditation) %></td>
+        <td><%= link_to 'Destroy', career_accreditation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Career accreditation', new_career_accreditation_path %>

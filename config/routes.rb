@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :career_accreditations
+
   resources :accreditation_categories
 
   resources :universities

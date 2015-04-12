@@ -1,0 +1,37 @@
+<%= form_for(@career_accreditation) do |f| %>
+  <% if @career_accreditation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@career_accreditation.errors.count, "error") %> prohibited this career_accreditation from being saved:</h2>
+
+      <ul>
+      <% @career_accreditation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :career_id %><br>
+    <%= f.number_field :career_id %>
+  </div>
+  <div class="field">
+    <%= f.label :university_id %><br>
+    <%= f.number_field :university_id %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :accreditation_category_id %><br>
+    <%= f.number_field :accreditation_category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_area :comments %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Career:</strong>
+  <%= @career_accreditation.career_id %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @career_accreditation.university_id %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @career_accreditation.year %>
+</p>
+
+<p>
+  <strong>Accreditation category:</strong>
+  <%= @career_accreditation.accreditation_category_id %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @career_accreditation.comments %>
+</p>
+
+<%= link_to 'Edit', edit_career_accreditation_path(@career_accreditation) %> |
+<%= link_to 'Back', career_accreditations_path %>
