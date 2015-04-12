@@ -1,6 +1,5 @@
-<h1>Editing career_accreditation</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @career_accreditation %> |
-<%= link_to 'Back', career_accreditations_path %>
+<%- model_class = CareerAccreditation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>

@@ -1,33 +1,44 @@
-<h1>Listing career_accreditations</h1>
-
-<table>
+<%- model_class = CareerAccreditation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Career</th>
-      <th>University</th>
-      <th>Year</th>
-      <th>Accreditation category</th>
-      <th>Comments</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:career_id) %></th>
+      <th><%= model_class.human_attribute_name(:university_id) %></th>
+      <th><%= model_class.human_attribute_name(:year) %></th>
+      <th><%= model_class.human_attribute_name(:accreditation_category_id) %></th>
+      <th><%= model_class.human_attribute_name(:comments) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @career_accreditations.each do |career_accreditation| %>
       <tr>
+        <td><%= link_to career_accreditation.id, career_accreditation_path(career_accreditation) %></td>
         <td><%= career_accreditation.career_id %></td>
         <td><%= career_accreditation.university_id %></td>
         <td><%= career_accreditation.year %></td>
         <td><%= career_accreditation.accreditation_category_id %></td>
         <td><%= career_accreditation.comments %></td>
-        <td><%= link_to 'Show', career_accreditation %></td>
-        <td><%= link_to 'Edit', edit_career_accreditation_path(career_accreditation) %></td>
-        <td><%= link_to 'Destroy', career_accreditation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l career_accreditation.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_career_accreditation_path(career_accreditation), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      career_accreditation_path(career_accreditation),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Career accreditation', new_career_accreditation_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_career_accreditation_path,
+            :class => 'btn btn-primary' %>
