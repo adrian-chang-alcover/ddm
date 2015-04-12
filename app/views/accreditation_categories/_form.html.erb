@@ -1,0 +1,21 @@
+<%= form_for(@accreditation_category) do |f| %>
+  <% if @accreditation_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@accreditation_category.errors.count, "error") %> prohibited this accreditation_category from being saved:</h2>
+
+      <ul>
+      <% @accreditation_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

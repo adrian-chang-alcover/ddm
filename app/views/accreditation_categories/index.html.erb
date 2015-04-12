@@ -1,0 +1,25 @@
+<h1>Listing accreditation_categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accreditation_categories.each do |accreditation_category| %>
+      <tr>
+        <td><%= accreditation_category.name %></td>
+        <td><%= link_to 'Show', accreditation_category %></td>
+        <td><%= link_to 'Edit', edit_accreditation_category_path(accreditation_category) %></td>
+        <td><%= link_to 'Destroy', accreditation_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Accreditation category', new_accreditation_category_path %>
