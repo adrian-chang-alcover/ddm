@@ -11,7 +11,6 @@
       <th><%= model_class.human_attribute_name(:year) %></th>
       <th><%= model_class.human_attribute_name(:accreditation_category_id) %></th>
       <th><%= model_class.human_attribute_name(:comments) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,12 +18,11 @@
     <% @career_accreditations.each do |career_accreditation| %>
       <tr>
         <td><%= link_to career_accreditation.id, career_accreditation_path(career_accreditation) %></td>
-        <td><%= career_accreditation.career_id %></td>
-        <td><%= career_accreditation.university_id %></td>
+        <td><%= career_accreditation.career.full_name %></td>
+        <td><%= career_accreditation.university.short_name %></td>
         <td><%= career_accreditation.year %></td>
-        <td><%= career_accreditation.accreditation_category_id %></td>
+        <td><%= career_accreditation.accreditation_category.name %></td>
         <td><%= career_accreditation.comments %></td>
-        <td><%=l career_accreditation.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_career_accreditation_path(career_accreditation), :class => 'btn btn-default btn-xs' %>

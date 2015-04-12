@@ -77,6 +77,12 @@ es:
       accreditation_category:
         name: "nombre"  
         created_at: "creado"
+      career_accreditation:
+        career_id: "carrera"
+        university_id: "universidad"
+        year: "año"
+        accreditation_category_id: "categoria de acreditación"
+        comments: "comentarios" 
   helpers:
     links:
       destroy: "Eliminar"
