@@ -5,7 +5,11 @@ class CareerAccreditationsController < ApplicationController
   respond_to :html
 
   def index
-    @career_accreditations = CareerAccreditation.page(params[:page])
+    unless params[:sort_by].blank?
+      @career_accreditations = CareerAccreditation.order("#{params[:sort_by]} #{params[:asc] == 'true' ? 'ASC' : 'DESC'}").page(params[:page])
+    else
+      @career_accreditations = CareerAccreditation.page(params[:page])
+    end
     respond_with(@career_accreditations)
   end
 
