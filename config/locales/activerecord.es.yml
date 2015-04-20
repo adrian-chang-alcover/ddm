@@ -10,7 +10,8 @@ es:
       year: "año"
       subject: "asignatura"
       study_modality: "modalidad de estudio"
-      university: universidad
+      university: "universidad"
+      accreditation_category: "categoria de acreditación"
     attributes:
       career:
         id: "Id"
@@ -73,6 +74,15 @@ es:
         short_name: "nombre corto"
         full_name: "nombre completo"
         created_at: "creado"
+      accreditation_category:
+        name: "nombre"  
+        created_at: "creado"
+      career_accreditation:
+        career_id: "carrera"
+        university_id: "universidad"
+        year: "año"
+        accreditation_category_id: "categoria de acreditación"
+        comments: "comentarios" 
   helpers:
     links:
       destroy: "Eliminar"

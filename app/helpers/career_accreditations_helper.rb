@@ -1,0 +1,2 @@
+module CareerAccreditationsHelper
+end
