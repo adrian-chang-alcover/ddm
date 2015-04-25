@@ -2,16 +2,6 @@
 <div class="page-header">
   <h1>Acreditación de Carreras</h1>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">Filtros</div>
-  <div class="panel-body" id="filters">
-    <% crd = StudyModality.find_by(short_name: 'CRD') %>
-    <%= select_tag 'career_filter', options_from_collection_for_select(crd.careers, :id, :full_name, params[:career_filter].to_i), prompt: 'carreras' %>
-    <%= select_tag 'university_filter', options_from_collection_for_select(University.all, :id, :name, params[:university_filter].to_i), prompt: 'universidades' %>
-    <%= select_tag 'year_filter', options_for_select((2000..Date.today.year), params[:year_filter].to_i), prompt: 'años' %>
-    <%= select_tag 'accreditation_category_filter', options_from_collection_for_select(AccreditationCategory.all, :id, :name, params[:accreditation_category_filter].to_i), prompt: 'categorias' %>
-  </div>
-</div>
 
 <table class="table table-striped">
   <thead>
