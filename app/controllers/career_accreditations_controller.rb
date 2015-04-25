@@ -6,7 +6,10 @@ class CareerAccreditationsController < ApplicationController
 
   def index
     uh = University.find_by(short_name: 'UH')
-    @career_accreditations = CareerAccreditation.where(university: uh)
+    @career_accreditations = []
+    CareerAccreditation.where(university: uh).order(year: :desc).each do |career_accreditation|
+      @career_accreditations << career_accreditation unless @career_accreditations.find{|ca| ca.career_id == career_accreditation.career_id}
+    end
 
     respond_with(@career_accreditations)
   end
