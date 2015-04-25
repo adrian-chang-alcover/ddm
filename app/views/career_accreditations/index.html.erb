@@ -25,7 +25,7 @@
     <% @career_accreditations.each do |career_accreditation| %>
       <tr>
         <td><%= link_to career_accreditation.id, career_accreditation_path(career_accreditation) %></td>
-        <td><%= career_accreditation.career.full_name %></td>
+        <td><%= link_to career_accreditation.career.full_name, career_accreditation_path(career_accreditation) %></td>
         <td><%= career_accreditation.university.short_name %></td>
         <td><%= career_accreditation.year %></td>
         <td><%= career_accreditation.accreditation_category.name %></td>
