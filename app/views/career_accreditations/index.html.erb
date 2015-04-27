@@ -2,16 +2,6 @@
 <div class="page-header">
   <h1>Acreditación de Carreras</h1>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">Filtros</div>
-  <div class="panel-body" id="filters">
-    <% crd = StudyModality.find_by(short_name: 'CRD') %>
-    <%= select_tag 'career_filter', options_from_collection_for_select(crd.careers, :id, :full_name, params[:career_filter].to_i), prompt: 'carreras' %>
-    <%= select_tag 'university_filter', options_from_collection_for_select(University.all, :id, :name, params[:university_filter].to_i), prompt: 'universidades' %>
-    <%= select_tag 'year_filter', options_for_select((2000..Date.today.year), params[:year_filter].to_i), prompt: 'años' %>
-    <%= select_tag 'accreditation_category_filter', options_from_collection_for_select(AccreditationCategory.all, :id, :name, params[:accreditation_category_filter].to_i), prompt: 'categorias' %>
-  </div>
-</div>
 
 <table class="table table-striped">
   <thead>
@@ -19,13 +9,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:career_id) %></th>
       <th><%= model_class.human_attribute_name(:university_id) %></th>
-      <th><%= link_to career_accreditations_path(params.merge({:sort_by=>:year, :asc => not(params[:sort_by]=='year' and params[:asc] == 'true')})) do %>
-        <%= model_class.human_attribute_name(:year) %>
-        <% unless params[:sort_by].blank? %>
-          <span aria-hidden="true" class="glyphicon glyphicon-chevron-<%= params[:asc] == 'true' ? 'up' : 'down' %>"></span>
-        <% end %>
-       <% end %>
-      </th>
+      <th><%= model_class.human_attribute_name(:year) %></th>
       <th><%= model_class.human_attribute_name(:accreditation_category_id) %></th>
       <th><%= model_class.human_attribute_name(:comments) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -35,7 +19,7 @@
     <% @career_accreditations.each do |career_accreditation| %>
       <tr>
         <td><%= link_to career_accreditation.id, career_accreditation_path(career_accreditation) %></td>
-        <td><%= career_accreditation.career.full_name %></td>
+        <td><%= link_to career_accreditation.career.full_name, career_accreditation_path(career_accreditation) %></td>
         <td><%= career_accreditation.university.short_name %></td>
         <td><%= career_accreditation.year %></td>
         <td><%= career_accreditation.accreditation_category.name %></td>
@@ -53,8 +37,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= paginate @career_accreditations %>
 
 <br/>
 
