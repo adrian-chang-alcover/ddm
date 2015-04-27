@@ -61,4 +61,6 @@ gem 'kaminari'
 
 gem 'twitter-bootstrap-rails'
 
+gem 'passenger'
+
 ruby '2.1.5'
