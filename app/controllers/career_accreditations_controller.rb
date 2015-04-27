@@ -5,16 +5,10 @@ class CareerAccreditationsController < ApplicationController
   respond_to :html
 
   def index
-    @career_accreditations = CareerAccreditation
-    @career_accreditations = CareerAccreditation.where(career_id: params[:career_filter]) unless params[:career_filter].blank?
-    @career_accreditations = CareerAccreditation.where(university_id: params[:university_filter]) unless params[:university_filter].blank?
-    @career_accreditations = CareerAccreditation.where(year: params[:year_filter]) unless params[:year_filter].blank?
-    @career_accreditations = CareerAccreditation.where(accreditation_category_id: params[:accreditation_category_filter]) unless params[:accreditation_category_filter].blank?
-
-    unless params[:sort_by].blank?
-      @career_accreditations = @career_accreditations.order("#{params[:sort_by]} #{params[:asc] == 'true' ? 'ASC' : 'DESC'}").page(params[:page]).per(25)
-    else
-      @career_accreditations = @career_accreditations.page(params[:page]).per(25)
+    uh = University.find_by(short_name: 'UH')
+    @career_accreditations = []
+    CareerAccreditation.where(university: uh).order(year: :desc).each do |career_accreditation|
+      @career_accreditations << career_accreditation unless @career_accreditations.find{|ca| ca.career_id == career_accreditation.career_id}
     end
 
     respond_with(@career_accreditations)
