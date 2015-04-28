@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :career_accreditations
+
+  resources :accreditation_categories
+
+  resources :universities
+
   get 'faculties/careers_for_select'
 
   get 'careers/disciplines_for_select'

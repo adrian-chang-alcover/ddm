@@ -1,0 +1,59 @@
+<%= form_for @career_accreditation, :html => { :class => "form-horizontal career_accreditation" } do |f| %>
+
+    <% if @career_accreditation.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@career_accreditation.errors.count, "error") %> prohibited this career_accreditation from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @career_accreditation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :career_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :career_id, options_from_collection_for_select(Career.all, :id, :name, @career_accreditation.career_id), :class => 'form-control' %>
+    </div>
+    <%= error_span(@career_accreditation[:career_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :university_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :university_id, options_from_collection_for_select(University.all, :id, :full_name, @career_accreditation.university_id), :class => 'form-control' %>
+    </div>
+    <%= error_span(@career_accreditation[:university_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :year, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :year, :class => 'form-control' %>
+    </div>
+    <%= error_span(@career_accreditation[:year]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :accreditation_category_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :accreditation_category_id, options_from_collection_for_select(AccreditationCategory.all, :id, :name, @career_accreditation.accreditation_category_id), :class => 'form-control' %>
+    </div>
+    <%= error_span(@career_accreditation[:accreditation_category_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :comments, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :comments, :class => 'form-control' %>
+    </div>
+    <%= error_span(@career_accreditation[:comments]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            career_accreditations_path, :class => 'btn btn-default' %>
+
+<% end %>
