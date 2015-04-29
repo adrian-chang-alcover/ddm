@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :turns
+
   resources :turn_types
 
   resources :career_accreditations
