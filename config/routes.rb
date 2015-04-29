@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :locals
+
   resources :turns
 
   resources :turn_types
