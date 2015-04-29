@@ -3,6 +3,7 @@ require 'test_helper'
 class FacultiesControllerTest < ActionController::TestCase
   setup do
     @faculty = faculties(:one)
+    login_as_admin
   end
 
   test "should get index" do
