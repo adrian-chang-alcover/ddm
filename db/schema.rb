@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412150814) do
+ActiveRecord::Schema.define(version: 20150429023955) do
 
   create_table "accreditation_categories", force: true do |t|
     t.string   "name"
@@ -91,6 +91,21 @@ ActiveRecord::Schema.define(version: 20150412150814) do
     t.integer  "university_id"
   end
 
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.integer  "year_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locals", force: true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -142,6 +157,21 @@ ActiveRecord::Schema.define(version: 20150412150814) do
     t.string   "dictum_or_resoluteness"
     t.integer  "number",                 default: 0
     t.integer  "class_hours_2",          default: 0
+  end
+
+  create_table "turn_types", force: true do |t|
+    t.string   "full_name"
+    t.string   "short_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "turns", force: true do |t|
+    t.string   "name"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "universities", force: true do |t|

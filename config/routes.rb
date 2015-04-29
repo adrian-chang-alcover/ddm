@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :groups
+
+  resources :locals
+
+  resources :turns
+
+  resources :turn_types
+
   resources :career_accreditations
 
   resources :accreditation_categories
