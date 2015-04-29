@@ -25,7 +25,6 @@ class DisciplinesController < ApplicationController
   # POST /disciplines
   # POST /disciplines.json
   def create
-    byebug
     @discipline = Discipline.new(discipline_params)
 
     respond_to do |format|

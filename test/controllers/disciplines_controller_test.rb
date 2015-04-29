@@ -7,7 +7,6 @@ class DisciplinesControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    byebug
     get :index
     assert_response :success
     assert_not_nil assigns(:disciplines)
@@ -37,7 +36,6 @@ class DisciplinesControllerTest < ActionController::TestCase
   end
 
   test "should update discipline" do
-    byebug
     patch :update, id: @discipline, discipline: { career_id: @discipline.career_id, name: @discipline.name }
     assert_redirected_to discipline_path(assigns(:discipline))
   end
