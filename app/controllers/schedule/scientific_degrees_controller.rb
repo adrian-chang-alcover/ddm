@@ -1,5 +1,6 @@
 class Schedule::ScientificDegreesController < ApplicationController
   before_action :set_schedule_scientific_degree, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 

@@ -1,5 +1,6 @@
 class Schedule::DocentDaysController < ApplicationController
   before_action :set_schedule_docent_day, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 

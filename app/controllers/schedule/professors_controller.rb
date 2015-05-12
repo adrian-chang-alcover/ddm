@@ -1,5 +1,6 @@
 class Schedule::ProfessorsController < ApplicationController
   before_action :set_schedule_professor, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 

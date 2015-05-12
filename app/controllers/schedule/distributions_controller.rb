@@ -1,5 +1,6 @@
 class Schedule::DistributionsController < ApplicationController
   before_action :set_schedule_distribution, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 

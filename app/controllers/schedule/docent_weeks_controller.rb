@@ -1,5 +1,6 @@
 class Schedule::DocentWeeksController < ApplicationController
   before_action :set_schedule_docent_week, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 

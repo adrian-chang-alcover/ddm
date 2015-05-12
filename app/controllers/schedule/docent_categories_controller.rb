@@ -1,5 +1,6 @@
 class Schedule::DocentCategoriesController < ApplicationController
   before_action :set_schedule_docent_category, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 
