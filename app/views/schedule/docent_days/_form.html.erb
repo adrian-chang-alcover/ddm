@@ -1,0 +1,25 @@
+<%= form_for(@schedule_docent_day) do |f| %>
+  <% if @schedule_docent_day.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule_docent_day.errors.count, "error") %> prohibited this schedule_docent_day from being saved:</h2>
+
+      <ul>
+      <% @schedule_docent_day.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :day %><br>
+    <%= f.date_select :day %>
+  </div>
+  <div class="field">
+    <%= f.label :docent_week_id %><br>
+    <%= f.number_field :docent_week_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

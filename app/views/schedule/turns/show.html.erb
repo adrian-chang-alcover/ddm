@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @schedule_turn.name %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @schedule_turn.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @schedule_turn.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_turn_path(@schedule_turn) %> |
+<%= link_to 'Back', schedule_turns_path %>

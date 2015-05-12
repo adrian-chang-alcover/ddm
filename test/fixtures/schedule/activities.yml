@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professor_id: 1
+  subject_id: 1
+  group_id: 1
+  local_id: 1
+  docent_day_id: 1
+  turn_id: 1
+  turn_type_id: 1
+
+two:
+  professor_id: 1
+  subject_id: 1
+  group_id: 1
+  local_id: 1
+  docent_day_id: 1
+  turn_id: 1
+  turn_type_id: 1

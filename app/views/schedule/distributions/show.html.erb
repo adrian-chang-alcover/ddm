@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Professor:</strong>
+  <%= @schedule_distribution.professor_id %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @schedule_distribution.group_id %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @schedule_distribution.subject_id %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_distribution_path(@schedule_distribution) %> |
+<%= link_to 'Back', schedule_distributions_path %>

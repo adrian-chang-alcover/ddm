@@ -1,0 +1,27 @@
+<h1>Listing schedule_scientific_degrees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Short name</th>
+      <th>Full name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedule_scientific_degrees.each do |schedule_scientific_degree| %>
+      <tr>
+        <td><%= schedule_scientific_degree.short_name %></td>
+        <td><%= schedule_scientific_degree.full_name %></td>
+        <td><%= link_to 'Show', schedule_scientific_degree %></td>
+        <td><%= link_to 'Edit', edit_schedule_scientific_degree_path(schedule_scientific_degree) %></td>
+        <td><%= link_to 'Destroy', schedule_scientific_degree, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scientific degree', new_schedule_scientific_degree_path %>

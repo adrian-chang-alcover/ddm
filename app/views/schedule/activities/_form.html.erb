@@ -1,0 +1,45 @@
+<%= form_for(@schedule_activity) do |f| %>
+  <% if @schedule_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule_activity.errors.count, "error") %> prohibited this schedule_activity from being saved:</h2>
+
+      <ul>
+      <% @schedule_activity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :professor_id %><br>
+    <%= f.number_field :professor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :subject_id %><br>
+    <%= f.number_field :subject_id %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br>
+    <%= f.number_field :group_id %>
+  </div>
+  <div class="field">
+    <%= f.label :local_id %><br>
+    <%= f.number_field :local_id %>
+  </div>
+  <div class="field">
+    <%= f.label :docent_day_id %><br>
+    <%= f.number_field :docent_day_id %>
+  </div>
+  <div class="field">
+    <%= f.label :turn_id %><br>
+    <%= f.number_field :turn_id %>
+  </div>
+  <div class="field">
+    <%= f.label :turn_type_id %><br>
+    <%= f.number_field :turn_type_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

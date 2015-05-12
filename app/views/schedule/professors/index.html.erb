@@ -1,0 +1,33 @@
+<h1>Listing schedule_professors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Scientific degree</th>
+      <th>Docent category</th>
+      <th>Faculty</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedule_professors.each do |schedule_professor| %>
+      <tr>
+        <td><%= schedule_professor.name %></td>
+        <td><%= schedule_professor.email %></td>
+        <td><%= schedule_professor.scientific_degree_id %></td>
+        <td><%= schedule_professor.docent_category_id %></td>
+        <td><%= schedule_professor.faculty_id %></td>
+        <td><%= link_to 'Show', schedule_professor %></td>
+        <td><%= link_to 'Edit', edit_schedule_professor_path(schedule_professor) %></td>
+        <td><%= link_to 'Destroy', schedule_professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Professor', new_schedule_professor_path %>

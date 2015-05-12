@@ -1,0 +1,27 @@
+<h1>Listing schedule_docent_categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Short name</th>
+      <th>Full name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedule_docent_categories.each do |schedule_docent_category| %>
+      <tr>
+        <td><%= schedule_docent_category.short_name %></td>
+        <td><%= schedule_docent_category.full_name %></td>
+        <td><%= link_to 'Show', schedule_docent_category %></td>
+        <td><%= link_to 'Edit', edit_schedule_docent_category_path(schedule_docent_category) %></td>
+        <td><%= link_to 'Destroy', schedule_docent_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Docent category', new_schedule_docent_category_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @schedule_docent_category.short_name %>
+</p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @schedule_docent_category.full_name %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_docent_category_path(@schedule_docent_category) %> |
+<%= link_to 'Back', schedule_docent_categories_path %>

@@ -1,0 +1,29 @@
+<%= form_for(@schedule_distribution) do |f| %>
+  <% if @schedule_distribution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule_distribution.errors.count, "error") %> prohibited this schedule_distribution from being saved:</h2>
+
+      <ul>
+      <% @schedule_distribution.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :professor_id %><br>
+    <%= f.number_field :professor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br>
+    <%= f.number_field :group_id %>
+  </div>
+  <div class="field">
+    <%= f.label :subject_id %><br>
+    <%= f.number_field :subject_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

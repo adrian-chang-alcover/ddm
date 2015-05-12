@@ -1,0 +1,29 @@
+<h1>Listing schedule_distributions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Professor</th>
+      <th>Group</th>
+      <th>Subject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedule_distributions.each do |schedule_distribution| %>
+      <tr>
+        <td><%= schedule_distribution.professor_id %></td>
+        <td><%= schedule_distribution.group_id %></td>
+        <td><%= schedule_distribution.subject_id %></td>
+        <td><%= link_to 'Show', schedule_distribution %></td>
+        <td><%= link_to 'Edit', edit_schedule_distribution_path(schedule_distribution) %></td>
+        <td><%= link_to 'Destroy', schedule_distribution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Distribution', new_schedule_distribution_path %>

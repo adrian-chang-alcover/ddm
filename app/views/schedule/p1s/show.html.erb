@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @schedule_p1.subject_id %>
+</p>
+
+<p>
+  <strong>Docent week:</strong>
+  <%= @schedule_p1.docent_week_id %>
+</p>
+
+<p>
+  <strong>Turn type:</strong>
+  <%= @schedule_p1.turn_type_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @schedule_p1.name %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @schedule_p1.number %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_p1_path(@schedule_p1) %> |
+<%= link_to 'Back', schedule_p1s_path %>

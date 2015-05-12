@@ -1,0 +1,27 @@
+<h1>Listing schedule_docent_weeks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>First day</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedule_docent_weeks.each do |schedule_docent_week| %>
+      <tr>
+        <td><%= schedule_docent_week.number %></td>
+        <td><%= schedule_docent_week.first_day %></td>
+        <td><%= link_to 'Show', schedule_docent_week %></td>
+        <td><%= link_to 'Edit', edit_schedule_docent_week_path(schedule_docent_week) %></td>
+        <td><%= link_to 'Destroy', schedule_docent_week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Docent week', new_schedule_docent_week_path %>

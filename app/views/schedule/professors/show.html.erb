@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @schedule_professor.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @schedule_professor.email %>
+</p>
+
+<p>
+  <strong>Scientific degree:</strong>
+  <%= @schedule_professor.scientific_degree_id %>
+</p>
+
+<p>
+  <strong>Docent category:</strong>
+  <%= @schedule_professor.docent_category_id %>
+</p>
+
+<p>
+  <strong>Faculty:</strong>
+  <%= @schedule_professor.faculty_id %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_professor_path(@schedule_professor) %> |
+<%= link_to 'Back', schedule_professors_path %>

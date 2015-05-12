@@ -1,0 +1,29 @@
+<h1>Listing schedule_turns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedule_turns.each do |schedule_turn| %>
+      <tr>
+        <td><%= schedule_turn.name %></td>
+        <td><%= schedule_turn.start_time %></td>
+        <td><%= schedule_turn.end_time %></td>
+        <td><%= link_to 'Show', schedule_turn %></td>
+        <td><%= link_to 'Edit', edit_schedule_turn_path(schedule_turn) %></td>
+        <td><%= link_to 'Destroy', schedule_turn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Turn', new_schedule_turn_path %>

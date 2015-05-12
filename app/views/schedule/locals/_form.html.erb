@@ -1,0 +1,29 @@
+<%= form_for(@schedule_local) do |f| %>
+  <% if @schedule_local.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule_local.errors.count, "error") %> prohibited this schedule_local from being saved:</h2>
+
+      <ul>
+      <% @schedule_local.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :capacity %><br>
+    <%= f.number_field :capacity %>
+  </div>
+  <div class="field">
+    <%= f.label :faculty_id %><br>
+    <%= f.number_field :faculty_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
