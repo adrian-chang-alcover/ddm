@@ -18,7 +18,7 @@ class Schedule::DocentWeeksControllerTest < ActionController::TestCase
 
   test "should create schedule_docent_week" do
     assert_difference('Schedule::DocentWeek.count') do
-      post :create, schedule_docent_week: { first_day: @schedule_docent_week.first_day, number: @schedule_docent_week.number }
+      post :create, schedule_docent_week: { first_day: @schedule_docent_week.first_day, number: @schedule_docent_week.number, semester_id: @schedule_docent_week.semester_id, year_id: @schedule_docent_week.year_id }
     end
 
     assert_redirected_to schedule_docent_week_path(assigns(:schedule_docent_week))
@@ -35,7 +35,7 @@ class Schedule::DocentWeeksControllerTest < ActionController::TestCase
   end
 
   test "should update schedule_docent_week" do
-    patch :update, id: @schedule_docent_week, schedule_docent_week: { first_day: @schedule_docent_week.first_day, number: @schedule_docent_week.number }
+    patch :update, id: @schedule_docent_week, schedule_docent_week: { first_day: @schedule_docent_week.first_day, number: @schedule_docent_week.number, semester_id: @schedule_docent_week.semester_id, year_id: @schedule_docent_week.year_id }
     assert_redirected_to schedule_docent_week_path(assigns(:schedule_docent_week))
   end
 

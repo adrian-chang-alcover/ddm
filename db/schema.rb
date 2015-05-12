@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512021429) do
+ActiveRecord::Schema.define(version: 20150512030039) do
 
   create_table "accreditation_categories", force: true do |t|
     t.string   "name"
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(version: 20150512021429) do
   create_table "schedule_docent_weeks", force: true do |t|
     t.integer  "number"
     t.date     "first_day"
+    t.integer  "year_id"
+    t.integer  "semester_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

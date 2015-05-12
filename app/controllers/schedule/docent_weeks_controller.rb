@@ -1,6 +1,5 @@
 class Schedule::DocentWeeksController < ApplicationController
   before_action :set_schedule_docent_week, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
   respond_to :html
 
@@ -43,6 +42,6 @@ class Schedule::DocentWeeksController < ApplicationController
     end
 
     def schedule_docent_week_params
-      params.require(:schedule_docent_week).permit(:number, :first_day)
+      params.require(:schedule_docent_week).permit(:number, :first_day, :year_id, :semester_id)
     end
 end
