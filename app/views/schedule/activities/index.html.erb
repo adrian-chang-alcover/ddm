@@ -1,37 +1,48 @@
-<h1>Listing schedule_activities</h1>
-
-<table>
+<%- model_class = Activity -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Professor</th>
-      <th>Subject</th>
-      <th>Group</th>
-      <th>Local</th>
-      <th>Docent day</th>
-      <th>Turn</th>
-      <th>Turn type</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:professor_id) %></th>
+      <th><%= model_class.human_attribute_name(:subject_id) %></th>
+      <th><%= model_class.human_attribute_name(:group_id) %></th>
+      <th><%= model_class.human_attribute_name(:local_id) %></th>
+      <th><%= model_class.human_attribute_name(:docent_day_id) %></th>
+      <th><%= model_class.human_attribute_name(:turn_id) %></th>
+      <th><%= model_class.human_attribute_name(:turn_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @schedule_activities.each do |schedule_activity| %>
+    <% @activities.each do |activity| %>
       <tr>
-        <td><%= schedule_activity.professor_id %></td>
-        <td><%= schedule_activity.subject_id %></td>
-        <td><%= schedule_activity.group_id %></td>
-        <td><%= schedule_activity.local_id %></td>
-        <td><%= schedule_activity.docent_day_id %></td>
-        <td><%= schedule_activity.turn_id %></td>
-        <td><%= schedule_activity.turn_type_id %></td>
-        <td><%= link_to 'Show', schedule_activity %></td>
-        <td><%= link_to 'Edit', edit_schedule_activity_path(schedule_activity) %></td>
-        <td><%= link_to 'Destroy', schedule_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to activity.id, schedule_activity_path(activity) %></td>
+        <td><%= activity.professor_id %></td>
+        <td><%= activity.subject_id %></td>
+        <td><%= activity.group_id %></td>
+        <td><%= activity.local_id %></td>
+        <td><%= activity.docent_day_id %></td>
+        <td><%= activity.turn_id %></td>
+        <td><%= activity.turn_type_id %></td>
+        <td><%=l activity.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_schedule_activity_path(activity), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      schedule_activity_path(activity),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Activity', new_schedule_activity_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_schedule_activity_path,
+            :class => 'btn btn-primary' %>

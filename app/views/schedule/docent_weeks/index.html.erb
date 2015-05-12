@@ -1,27 +1,38 @@
-<h1>Listing schedule_docent_weeks</h1>
-
-<table>
+<%- model_class = DocentWeek -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Number</th>
-      <th>First day</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:number) %></th>
+      <th><%= model_class.human_attribute_name(:first_day) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @schedule_docent_weeks.each do |schedule_docent_week| %>
+    <% @docent_weeks.each do |docent_week| %>
       <tr>
-        <td><%= schedule_docent_week.number %></td>
-        <td><%= schedule_docent_week.first_day %></td>
-        <td><%= link_to 'Show', schedule_docent_week %></td>
-        <td><%= link_to 'Edit', edit_schedule_docent_week_path(schedule_docent_week) %></td>
-        <td><%= link_to 'Destroy', schedule_docent_week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to docent_week.id, schedule_docent_week_path(docent_week) %></td>
+        <td><%= docent_week.number %></td>
+        <td><%= docent_week.first_day %></td>
+        <td><%=l docent_week.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_schedule_docent_week_path(docent_week), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      schedule_docent_week_path(docent_week),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Docent week', new_schedule_docent_week_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_schedule_docent_week_path,
+            :class => 'btn btn-primary' %>

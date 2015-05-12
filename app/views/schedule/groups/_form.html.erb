@@ -1,29 +1,45 @@
-<%= form_for(@schedule_group) do |f| %>
-  <% if @schedule_group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule_group.errors.count, "error") %> prohibited this schedule_group from being saved:</h2>
+<%= form_for @group, :html => { :class => "form-horizontal group" } do |f| %>
 
-      <ul>
-      <% @schedule_group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @group.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@group[:name]) %>
   </div>
-  <div class="field">
-    <%= f.label :capacity %><br>
-    <%= f.number_field :capacity %>
+  <div class="control-group">
+    <%= f.label :capacity, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :capacity, :class => 'form-control' %>
+    </div>
+    <%= error_span(@group[:capacity]) %>
   </div>
-  <div class="field">
-    <%= f.label :year_id %><br>
-    <%= f.number_field :year_id %>
+  <div class="control-group">
+    <%= f.label :year_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :year_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@group[:year_id]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_groups_path, :class => 'btn btn-default' %>
+
 <% end %>

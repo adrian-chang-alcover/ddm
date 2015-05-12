@@ -1,29 +1,45 @@
-<%= form_for(@schedule_turn) do |f| %>
-  <% if @schedule_turn.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule_turn.errors.count, "error") %> prohibited this schedule_turn from being saved:</h2>
+<%= form_for @turn, :html => { :class => "form-horizontal turn" } do |f| %>
 
-      <ul>
-      <% @schedule_turn.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @turn.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@turn.errors.count, "error") %> prohibited this turn from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @turn.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@turn[:name]) %>
   </div>
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.time_select :start_time %>
+  <div class="control-group">
+    <%= f.label :start_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :start_time, :class => 'form-control' %>
+    </div>
+    <%= error_span(@turn[:start_time]) %>
   </div>
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.time_select :end_time %>
+  <div class="control-group">
+    <%= f.label :end_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :end_time, :class => 'form-control' %>
+    </div>
+    <%= error_span(@turn[:end_time]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_turns_path, :class => 'btn btn-default' %>
+
 <% end %>

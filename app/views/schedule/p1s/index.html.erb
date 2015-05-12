@@ -1,33 +1,44 @@
-<h1>Listing schedule_p1s</h1>
-
-<table>
+<%- model_class = P1 -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Subject</th>
-      <th>Docent week</th>
-      <th>Turn type</th>
-      <th>Name</th>
-      <th>Number</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:subject_id) %></th>
+      <th><%= model_class.human_attribute_name(:docent_week_id) %></th>
+      <th><%= model_class.human_attribute_name(:turn_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:number) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @schedule_p1s.each do |schedule_p1| %>
+    <% @p1s.each do |p1| %>
       <tr>
-        <td><%= schedule_p1.subject_id %></td>
-        <td><%= schedule_p1.docent_week_id %></td>
-        <td><%= schedule_p1.turn_type_id %></td>
-        <td><%= schedule_p1.name %></td>
-        <td><%= schedule_p1.number %></td>
-        <td><%= link_to 'Show', schedule_p1 %></td>
-        <td><%= link_to 'Edit', edit_schedule_p1_path(schedule_p1) %></td>
-        <td><%= link_to 'Destroy', schedule_p1, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to p1.id, schedule_p1_path(p1) %></td>
+        <td><%= p1.subject_id %></td>
+        <td><%= p1.docent_week_id %></td>
+        <td><%= p1.turn_type_id %></td>
+        <td><%= p1.name %></td>
+        <td><%= p1.number %></td>
+        <td><%=l p1.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_schedule_p1_path(p1), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      schedule_p1_path(p1),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New P1', new_schedule_p1_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_schedule_p1_path,
+            :class => 'btn btn-primary' %>

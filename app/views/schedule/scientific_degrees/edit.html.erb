@@ -1,6 +1,5 @@
-<h1>Editing schedule_scientific_degree</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @schedule_scientific_degree %> |
-<%= link_to 'Back', schedule_scientific_degrees_path %>
+<%- model_class = ScientificDegree -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>

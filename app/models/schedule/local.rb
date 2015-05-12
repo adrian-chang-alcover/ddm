@@ -1,4 +1,2 @@
-
-	class Local < ActiveRecord::Base
-		has_many :turn_types
-	end
+class Schedule::Local < ActiveRecord::Base
+end

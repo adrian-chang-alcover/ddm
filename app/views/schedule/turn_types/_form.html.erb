@@ -1,25 +1,38 @@
-<%= form_for(@schedule_turn_type) do |f| %>
-  <% if @schedule_turn_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule_turn_type.errors.count, "error") %> prohibited this schedule_turn_type from being saved:</h2>
+<%= form_for @turn_type, :html => { :class => "form-horizontal turn_type" } do |f| %>
 
-      <ul>
-      <% @schedule_turn_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @turn_type.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@turn_type.errors.count, "error") %> prohibited this turn_type from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @turn_type.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :short_name %><br>
-    <%= f.text_field :short_name %>
+  <div class="control-group">
+    <%= f.label :short_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :short_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@turn_type[:short_name]) %>
   </div>
-  <div class="field">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name %>
+  <div class="control-group">
+    <%= f.label :full_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :full_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@turn_type[:full_name]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_turn_types_path, :class => 'btn btn-default' %>
+
 <% end %>

@@ -1,25 +1,38 @@
-<%= form_for(@schedule_docent_week) do |f| %>
-  <% if @schedule_docent_week.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule_docent_week.errors.count, "error") %> prohibited this schedule_docent_week from being saved:</h2>
+<%= form_for @docent_week, :html => { :class => "form-horizontal docent_week" } do |f| %>
 
-      <ul>
-      <% @schedule_docent_week.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @docent_week.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@docent_week.errors.count, "error") %> prohibited this docent_week from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @docent_week.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :number %><br>
-    <%= f.number_field :number %>
+  <div class="control-group">
+    <%= f.label :number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :number, :class => 'form-control' %>
+    </div>
+    <%= error_span(@docent_week[:number]) %>
   </div>
-  <div class="field">
-    <%= f.label :first_day %><br>
-    <%= f.date_select :first_day %>
+  <div class="control-group">
+    <%= f.label :first_day, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first_day, :class => 'form-control' %>
+    </div>
+    <%= error_span(@docent_week[:first_day]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_docent_weeks_path, :class => 'btn btn-default' %>
+
 <% end %>

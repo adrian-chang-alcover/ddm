@@ -1,29 +1,45 @@
-<%= form_for(@schedule_distribution) do |f| %>
-  <% if @schedule_distribution.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule_distribution.errors.count, "error") %> prohibited this schedule_distribution from being saved:</h2>
+<%= form_for @distribution, :html => { :class => "form-horizontal distribution" } do |f| %>
 
-      <ul>
-      <% @schedule_distribution.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @distribution.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@distribution.errors.count, "error") %> prohibited this distribution from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @distribution.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :professor_id %><br>
-    <%= f.number_field :professor_id %>
+  <div class="control-group">
+    <%= f.label :professor_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :professor_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@distribution[:professor_id]) %>
   </div>
-  <div class="field">
-    <%= f.label :group_id %><br>
-    <%= f.number_field :group_id %>
+  <div class="control-group">
+    <%= f.label :group_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :group_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@distribution[:group_id]) %>
   </div>
-  <div class="field">
-    <%= f.label :subject_id %><br>
-    <%= f.number_field :subject_id %>
+  <div class="control-group">
+    <%= f.label :subject_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :subject_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@distribution[:subject_id]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_distributions_path, :class => 'btn btn-default' %>
+
 <% end %>
