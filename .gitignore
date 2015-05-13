@@ -20,5 +20,6 @@
 
 /.idea/
 /public/assets/
+/public/repo
 .ruby-version
 /vendor/cache/
