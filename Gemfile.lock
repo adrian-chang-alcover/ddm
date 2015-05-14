@@ -1,5 +1,5 @@
 GEM
-  remote: file:/media/adrian/Datos/Adrian/Ruby/repo/
+  remote: file:/media/adrian/DATA/Estudios/Web/Ruby/repo/
   specs:
     actionmailer (4.1.8)
       actionpack (= 4.1.8)
