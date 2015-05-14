@@ -101,7 +101,6 @@
               <li><a href="#">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
             </ul>
           </li>
-          <li><a href="<%= repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %>">Resoluciones y Dictámenes</a> </li>
           <li class="divider-vertical"></li>
           <% if current_user and (current_user.admin? or current_user.ddm? or current_user.decano? or current_user.vicedecano?) %>
             <li><%= link_to 'Usuarios', users_index_path %></li>
@@ -113,7 +112,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to "#{t(:signed_as).camelize}: #{current_user.email}", edit_user_registration_path %></li>
+            <li><%= link_to current_user.email, edit_user_registration_path %></li>
             <li class="divider-vertical"></li>
             <li><%= link_to t(:sign_out).camelize, destroy_user_session_path, method: :delete %></li>
           <% else %>
@@ -133,13 +132,10 @@
             </div>
             <div class="panel-body">
               <ul class="nav nav-list">
-                <li><%= link_to t(:universities), universities_path %></li>
                 <li><%= link_to t(:faculties), faculties_path %></li>
                 <li><%= link_to t(:careers), careers_path  %></li>
-                <li><%= link_to t(:curriculum_types), curriculum_types_path  %></li>
-                <li><%= link_to t(:evaluation_types), evaluation_types_path  %></li>
-                <li><%= link_to t(:study_plans), study_plans_path  %></li>
-                <li><%= link_to t(:accreditation_categories), accreditation_categories_path  %></li>
+                <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %></li>
+                <li><a href="#">Procesos y Procedimientos</a></li>
               </ul>
             </div>
           </div>
