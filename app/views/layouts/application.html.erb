@@ -60,18 +60,19 @@
               <li><%= link_to 'Plan del Proceso Docente', ppd_report_path %></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Curricular/Modelo del Profesional') %>">Modelo del Profesional</a></li>
               <li><a href="<%= career_accreditations_path %>">Acreditación Carrera</a></li>
-              <li><a href="#">Componente Laboral Investigativo</a></li>
+              <li data-type="collapser" data-toggle="componente_laboral"><a href="#">Componente Laboral Investigativo<span class="caret"></span></a></li>
+                <li data-type="collapsible" data-toggle="componente_laboral"><a href="<%= repositorio_index_path(path: 'repo/Gestión Curricular/Componente Laboral Investigativo/Unidades Docentes') %>">Unidades Docentes</a></li>
               <li><a href="#">Ubicación del Graduado</a></li>
-              <li><a href="#">Orientación Vocacional y Profesional</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Curricular/Orientación Vocacional y Profesional') %>">Orientación Vocacional y Profesional</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión Docente<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">Gráfico Docente</a></li>
-              <li><a href="#">Horarios Docente</a></li>
-              <li><a href="#">Escenarios Docente</a></li>
-              <li><a href="#">Informe Integral</a></li>
+              <li><a href="#">Horarios Docentes</a></li>
+              <li><a href="#">Escenarios Docentes</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Informe Integral') %>">Informe Integral</a></li>
               <li><a href="#">Fotografía</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Análisis Docente</li>
@@ -100,7 +101,6 @@
               <li><a href="#">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
             </ul>
           </li>
-          <li><a href="#">Resoluciones y Dictámenes</a> </li>
           <li class="divider-vertical"></li>
           <% if current_user and (current_user.admin? or current_user.ddm? or current_user.decano? or current_user.vicedecano?) %>
             <li><%= link_to 'Usuarios', users_index_path %></li>
@@ -112,7 +112,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to "#{t(:signed_as).camelize}: #{current_user.email}", edit_user_registration_path %></li>
+            <li><%= link_to current_user.email, edit_user_registration_path %></li>
             <li class="divider-vertical"></li>
             <li><%= link_to t(:sign_out).camelize, destroy_user_session_path, method: :delete %></li>
           <% else %>
@@ -132,13 +132,10 @@
             </div>
             <div class="panel-body">
               <ul class="nav nav-list">
-                <li><%= link_to t(:universities), universities_path %></li>
                 <li><%= link_to t(:faculties), faculties_path %></li>
                 <li><%= link_to t(:careers), careers_path  %></li>
-                <li><%= link_to t(:curriculum_types), curriculum_types_path  %></li>
-                <li><%= link_to t(:evaluation_types), evaluation_types_path  %></li>
-                <li><%= link_to t(:study_plans), study_plans_path  %></li>
-                <li><%= link_to t(:accreditation_categories), accreditation_categories_path  %></li>
+                <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %></li>
+                <li><a href="#">Procesos y Procedimientos</a></li>
               </ul>
             </div>
           </div>

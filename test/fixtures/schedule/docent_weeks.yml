@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  first_day: 2015-05-11
+  year_id: 1
+  semester_id: 1
+
+two:
+  number: 1
+  first_day: 2015-05-11
+  year_id: 1
+  semester_id: 1

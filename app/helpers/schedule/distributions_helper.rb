@@ -1,0 +1,2 @@
+module Schedule::DistributionsHelper
+end

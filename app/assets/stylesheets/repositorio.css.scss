@@ -1,3 +1,19 @@
 // Place all the styles related to the repositorio controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div#repo h3, div#repo ul[data-level='1']{
+	margin-left: 25px;
+}
+
+div#repo h4, div#repo ul[data-level='2']{
+	margin-left: 50px;
+}
+
+div#repo h5, div#repo ul[data-level='3']{
+	margin-left: 75px;
+}
+
+div#repo h6, div#repo ul[data-level='4']{
+	margin-left: 100px;
+}
