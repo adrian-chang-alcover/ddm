@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412150814) do
+ActiveRecord::Schema.define(version: 20150512030039) do
 
   create_table "accreditation_categories", force: true do |t|
     t.string   "name"
@@ -101,6 +101,107 @@ ActiveRecord::Schema.define(version: 20150412150814) do
   create_table "roles_users", force: true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_activities", force: true do |t|
+    t.integer  "professor_id"
+    t.integer  "subject_id"
+    t.integer  "group_id"
+    t.integer  "local_id"
+    t.integer  "docent_day_id"
+    t.integer  "turn_id"
+    t.integer  "turn_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_distributions", force: true do |t|
+    t.integer  "professor_id"
+    t.integer  "group_id"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_docent_categories", force: true do |t|
+    t.string   "short_name"
+    t.string   "full_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_docent_days", force: true do |t|
+    t.date     "day"
+    t.integer  "docent_week_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_docent_weeks", force: true do |t|
+    t.integer  "number"
+    t.date     "first_day"
+    t.integer  "year_id"
+    t.integer  "semester_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.integer  "year_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_locals", force: true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.integer  "faculty_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_p1s", force: true do |t|
+    t.integer  "subject_id"
+    t.integer  "docent_week_id"
+    t.integer  "turn_type_id"
+    t.string   "name"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_professors", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "scientific_degree_id"
+    t.integer  "docent_category_id"
+    t.integer  "faculty_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_scientific_degrees", force: true do |t|
+    t.string   "short_name"
+    t.string   "full_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_turn_types", force: true do |t|
+    t.string   "short_name"
+    t.string   "full_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedule_turns", force: true do |t|
+    t.string   "name"
+    t.time     "start_time"
+    t.time     "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
