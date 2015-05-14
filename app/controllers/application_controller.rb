@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   STUDY_PLAN_D = StudyPlan.find_or_create_by(name: 'D')
 
+  ACCREDITATION_CATEGORY_EXCELENCIA = AccreditationCategory.find_or_create_by(name: 'Carrera de Excelencia')
+  ACCREDITATION_CATEGORY_CERTIFICADA = AccreditationCategory.find_or_create_by(name: 'Carrera Certificada')
+  ACCREDITATION_CATEGORY_AUTORIZADA = AccreditationCategory.find_or_create_by(name: 'Carrera Autorizada')
+
   protected
 
   def configure_permitted_parameters

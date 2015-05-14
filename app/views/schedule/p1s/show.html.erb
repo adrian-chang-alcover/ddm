@@ -1,0 +1,27 @@
+<%- model_class = Schedule::P1 -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:subject_id) %>:</strong></dt>
+  <dd><%= @p1.subject_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:docent_week_id) %>:</strong></dt>
+  <dd><%= @p1.docent_week_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:turn_type_id) %>:</strong></dt>
+  <dd><%= @p1.turn_type_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @p1.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
+  <dd><%= @p1.number %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              schedule_p1s_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_schedule_p1_path(@p1), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              schedule_p1_path(@p1),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

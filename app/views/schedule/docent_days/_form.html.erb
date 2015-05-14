@@ -1,0 +1,38 @@
+<%= form_for @docent_day, :html => { :class => "form-horizontal docent_day" } do |f| %>
+
+    <% if @docent_day.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@docent_day.errors.count, "error") %> prohibited this docent_day from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @docent_day.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :day, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :day, :class => 'form-control' %>
+    </div>
+    <%= error_span(@docent_day[:day]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :docent_week_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :docent_week_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@docent_day[:docent_week_id]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_docent_days_path, :class => 'btn btn-default' %>
+
+<% end %>

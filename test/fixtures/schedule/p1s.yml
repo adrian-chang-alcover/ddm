@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject_id: 1
+  docent_week_id: 1
+  turn_type_id: 1
+  name: MyString
+  number: 1
+
+two:
+  subject_id: 1
+  docent_week_id: 1
+  turn_type_id: 1
+  name: MyString
+  number: 1

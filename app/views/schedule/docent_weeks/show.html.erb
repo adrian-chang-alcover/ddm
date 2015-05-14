@@ -1,0 +1,25 @@
+<%- model_class = Schedule::DocentWeek -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
+  <dd><%= @docent_week.number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:first_day) %>:</strong></dt>
+  <dd><%= @docent_week.first_day %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:year_id) %>:</strong></dt>
+  <dd><%= @docent_week.year_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:semester_id) %>:</strong></dt>
+  <dd><%= @docent_week.semester_id %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              schedule_docent_weeks_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_schedule_docent_week_path(@docent_week), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              schedule_docent_week_path(@docent_week),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

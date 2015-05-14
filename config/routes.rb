@@ -1,5 +1,53 @@
 Rails.application.routes.draw do
 
+  namespace :schedule do
+    resources :turns
+  end
+
+  namespace :schedule do
+    resources :turn_types
+  end
+
+  namespace :schedule do
+    resources :docent_categories
+  end
+
+  namespace :schedule do
+    resources :scientific_degrees
+  end
+
+  namespace :schedule do
+    resources :professors
+  end
+
+  namespace :schedule do
+    resources :p1s
+  end
+
+  namespace :schedule do
+    resources :locals
+  end
+
+  namespace :schedule do
+    resources :groups
+  end
+
+  namespace :schedule do
+    resources :docent_weeks
+  end
+
+  namespace :schedule do
+    resources :docent_days
+  end
+
+  namespace :schedule do
+    resources :distributions
+  end
+
+  namespace :schedule do
+    resources :activities
+  end
+
   resources :career_accreditations
 
   resources :accreditation_categories

@@ -1,0 +1,38 @@
+<%= form_for @scientific_degree, :html => { :class => "form-horizontal scientific_degree" } do |f| %>
+
+    <% if @scientific_degree.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@scientific_degree.errors.count, "error") %> prohibited this scientific_degree from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @scientific_degree.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :short_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :short_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@scientific_degree[:short_name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :full_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :full_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@scientific_degree[:full_name]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            schedule_scientific_degrees_path, :class => 'btn btn-default' %>
+
+<% end %>
