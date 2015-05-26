@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   check_authorization
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   CURRICULUM_TYPE_BASICO = CurriculumType.find_or_create_by(name: 'Básico')
   CURRICULUM_TYPE_PROPIO = CurriculumType.find_or_create_by(name: 'Propio')
   CURRICULUM_TYPE_OPTATIVO = CurriculumType.find_or_create_by(name: 'Optativo Electivo')
