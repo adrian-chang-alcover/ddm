@@ -70,36 +70,32 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión Docente<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Gráfico Docente') %>">Gráfico Docente</a></li>
-              <li><a href="#">Horarios Docentes</a></li>
-              <li><a href="#">Escenarios Docentes</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Horarios Docentes') %>">Horarios Docentes</a></li>
+              <li class="disabled"><a href="#">Escenarios Docentes</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Informe Integral') %>">Informe Integral</a></li>
-              <li><a href="#">Fotografía</a></li>
+              <li class="disabled"><a href="#">Fotografía</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Análisis Docente</li>
-              <li data-type="collapser" data-toggle="promocion"><a href="#">Promoción<span class="caret"></span></a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Promoción Total</a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Promoción Limpia</a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Eficiencia Vertical</a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Eficiencia Académica</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Promoción y Eficiencia') %>">Promoción y Eficiencia</a></li>
               <li data-type="collapser" data-toggle="encuesta"><a href="#">Encuestas<span class="caret"></span></a></li>
                 <% if current_user and (current_user.ddm? or current_user.admin?) %>
                   <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Satisfacción UH') %>">Encuestas de Satisfacción UH</a></li>
                 <% end %>  
                   <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Satisfacción') %>">Encuestas de Satisfacción</a></li>
                   <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Computación') %>">Encuestas de Computación</a></li>
-                  <li data-type="collapsible" data-toggle="encuesta"><a href="#">Encuestas de Dedicación al Estudio</a></li>
+                  <li class="disabled" data-type="collapsible" data-toggle="encuesta"><a href="#">Encuestas de Dedicación al Estudio</a></li>
                   <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Evaluación de Lengua Materna') %>">Evaluación de Lengua Materna</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión Metodológica<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Plan de Trabajo Metodológico</a></li>
-              <li><a href="#">Comisión Nacional de Carrera</a></li>
-              <li><a href="#">Colectivo de Carrera</a></li>
-              <li><a href="#">Literatura Docente</a></li>
-              <li><a href="#">Sistema Integrado de Medios</a></li>
-              <li><a href="#">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
+              <li class="disabled"><a href="#">Plan de Trabajo Metodológico</a></li>
+              <li class="disabled"><a href="#">Comisión Nacional de Carrera</a></li>
+              <li class="disabled"><a href="#">Colectivo de Carrera</a></li>
+              <li class="disabled"><a href="#">Literatura Docente</a></li>
+              <li class="disabled"><a href="#">Sistema Integrado de Medios</a></li>
+              <li class="disabled"><a href="#">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
             </ul>
           </li>
           <li class="divider-vertical"></li>
@@ -136,7 +132,7 @@
                 <li><%= link_to t(:faculties), faculties_path %></li>
                 <li><%= link_to t(:careers), careers_path  %></li>
                 <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %></li>
-                <li><a href="#">Procesos y Procedimientos</a></li>
+                <li class="disabled"><a href="#">Procesos y Procedimientos</a></li>
               </ul>
             </div>
           </div>
