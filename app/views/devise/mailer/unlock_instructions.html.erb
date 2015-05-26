@@ -5,3 +5,8 @@
 <p>Acceda al siguiente enlace para desbloquear su cuenta:</p>
 
 <p><%= link_to 'Desbloquear mi cuenta', unlock_url(@resource, unlock_token: @token) %></p>
+
+<p>En caso que su navegador no le muestre el enlace, copie la URL siguiente y péguela en su navegador.</p>
+<p><%= unlock_url(@resource, confirmation_token: @token) %></p>
+
+<p>Antentamente, el equipo de la DDM</p>
