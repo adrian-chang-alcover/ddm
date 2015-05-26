@@ -70,17 +70,13 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión Docente<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Gráfico Docente') %>">Gráfico Docente</a></li>
-              <li><a href="#">Horarios Docentes</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Horarios Docentes') %>">Horarios Docentes</a></li>
               <li><a href="#">Escenarios Docentes</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Informe Integral') %>">Informe Integral</a></li>
               <li><a href="#">Fotografía</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Análisis Docente</li>
-              <li data-type="collapser" data-toggle="promocion"><a href="#">Promoción<span class="caret"></span></a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Promoción Total</a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Promoción Limpia</a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Eficiencia Vertical</a></li>
-                  <li data-type="collapsible" data-toggle="promocion"><a href="#">Eficiencia Académica</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Promoción y Eficiencia') %>">Promoción y Eficiencia</a></li>
               <li data-type="collapser" data-toggle="encuesta"><a href="#">Encuestas<span class="caret"></span></a></li>
                 <% if current_user and (current_user.ddm? or current_user.admin?) %>
                   <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Satisfacción UH') %>">Encuestas de Satisfacción UH</a></li>
