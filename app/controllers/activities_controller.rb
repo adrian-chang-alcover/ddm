@@ -8,6 +8,6 @@ class ActivitiesController < ApplicationController
     unless params['entity'].blank?
       activity = activity.where(trackable_type: params['entity'])
     end
-    @activities = activity.page(params[:page])
+    @activities = activity.order(id: :desc).page(params[:page])
   end
 end

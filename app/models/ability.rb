@@ -7,7 +7,7 @@ class Ability
     can :read, :all
     can :manage, :all if user.admin? or user.ddm?
 
-    if user.decano? or user.vicedecano? or user.ppd?
+    if user.decano? or user.vicedecano?
       can :update, Discipline, :career => {:faculty_id => user.faculty_id}
       can :update, Semester, :year => {:career => {:faculty_id => user.faculty_id}}
       can :update, Subject, :discipline => {:career => {:faculty_id => user.faculty_id}}
