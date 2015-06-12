@@ -23,6 +23,6 @@ class Ability
 
     cannot :manage, :activities unless user.admin?
     cannot :manage, :parser unless user.admin?
-    cannot :manage, :users unless user.admin? or user.ddm? or user.decano? or user.vicedecano?
+    cannot :manage, :users unless user.admin? or user.ddm?
   end
 end
