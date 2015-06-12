@@ -22,19 +22,25 @@
         <td><%= discipline.number %></td>
         <td><%=l discipline.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_discipline_path(discipline), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      discipline_path(discipline),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <% if can? :update, discipline %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_discipline_path(discipline), :class => 'btn btn-mini' %>
+          <% end %>
+          <% if can? :destroy, discipline %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        discipline_path(discipline),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_discipline_path,
-            :class => 'btn btn-primary' %>
+<% if can? :create, Discipline %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_discipline_path,
+              :class => 'btn btn-primary' %>
+<% end %>
