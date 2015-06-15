@@ -24,19 +24,25 @@
         <td><%= faculty.university.full_name %></td>
         <td><%=l faculty.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_faculty_path(faculty), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      faculty_path(faculty),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <% if can? :update, faculty %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_faculty_path(faculty), :class => 'btn btn-mini' %>
+          <% end %>
+          <% if can? :destroy, faculty %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        faculty_path(faculty),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_faculty_path,
-            :class => 'btn btn-primary' %>
+<% if can? :create, Faculty %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_faculty_path,
+              :class => 'btn btn-primary' %>
+<% end %>

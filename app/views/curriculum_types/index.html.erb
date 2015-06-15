@@ -18,19 +18,25 @@
         <td><%= curriculum_type.name %></td>
         <td><%=l curriculum_type.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_curriculum_type_path(curriculum_type), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      curriculum_type_path(curriculum_type),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <% if can? :update, curriculum_type %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_curriculum_type_path(curriculum_type), :class => 'btn btn-mini' %>
+          <% end %>
+          <% if can? :destroy, curriculum_type %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        curriculum_type_path(curriculum_type),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<% if can? :create, CurriculumType %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_curriculum_type_path,
             :class => 'btn btn-primary' %>
+<% end %>

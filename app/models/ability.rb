@@ -7,7 +7,7 @@ class Ability
     can :read, :all
     can :manage, :all if user.admin? or user.ddm?
 
-    if user.decano? or user.vicedecano? or user.ppd?
+    if user.decano? or user.vicedecano?
       can :update, Discipline, :career => {:faculty_id => user.faculty_id}
       can :update, Semester, :year => {:career => {:faculty_id => user.faculty_id}}
       can :update, Subject, :discipline => {:career => {:faculty_id => user.faculty_id}}
@@ -23,6 +23,6 @@ class Ability
 
     cannot :manage, :activities unless user.admin?
     cannot :manage, :parser unless user.admin?
-    cannot :manage, :users unless user.admin? or user.ddm? or user.decano? or user.vicedecano?
+    cannot :manage, :users unless user.admin? or user.ddm?
   end
 end
