@@ -90,7 +90,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión Metodológica<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li class="disabled"><a href="#">Plan de Trabajo Metodológico</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Plan de Trabajo Metodológico') %>">Plan de Trabajo Metodológico</a></li>
               <li class="disabled"><a href="#">Comisión Nacional de Carrera</a></li>
               <li class="disabled"><a href="#">Colectivo de Carrera</a></li>
               <li class="disabled"><a href="#">Literatura Docente</a></li>
@@ -137,6 +137,7 @@
                 <li><%= link_to t(:careers), careers_path  %></li>
                 <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %></li>
                 <li class="disabled"><a href="#">Procesos y Procedimientos</a></li>
+                <li><%= link_to 'Noticias', repositorio_index_path(path: 'repo/Noticias') %></li>
               </ul>
             </div>
           </div>
