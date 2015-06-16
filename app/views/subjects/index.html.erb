@@ -8,6 +8,9 @@
 <%= paginate @subjects %>
 
 </br>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_subject_path,
-            :class => 'btn btn-primary' %>
+
+<% if can? :create, Subject %>
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+	            new_subject_path,
+	            :class => 'btn btn-primary' %>
+<% end %>
