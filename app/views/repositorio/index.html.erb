@@ -1,16 +1,13 @@
 <% def bfs_walk(directory, level=0) %>
 	<a class="directory" href="#">
-		<h<%= 2+level %>><%= directory.name %>
-			<% if new? directory %><span class="badge">nuevo</span><% end %>
-		</h<%= 2+level %>>
+		<h<%= 2+level %> class=" <%= 'new' if new?(directory) %>"><%= directory.name %></h<%= 2+level %>>
 	</a>
 	<div>
 		<ul data-level="<%= level %>">
 			<% directory.files.sort.each do |file|
 	  			file_path = File.join(directory.path.gsub(Rails.root.join('public').to_s,''), file) %>
 	  			<li>
-	  				<a href="<%= file_path %>"><%= file %>
-	  					<% if new? File.join(directory, file) %><span class="badge">nuevo</span><% end %>
+	  				<a href="<%= file_path %>" class="file <%= 'new' if new?(File.join(directory, file)) %>"><%= file %>
 	  				</a>
 	  			</li>
 			<% end %>

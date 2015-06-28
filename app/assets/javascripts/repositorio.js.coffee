@@ -6,3 +6,7 @@ $ ->
 	$('div#repo a.directory').click ->
 		$(this).next().slideToggle()
 		return false
+
+$ ->
+	$('a.new, :header.new').append(' <span class="badge">nuevo</span>')
+	
