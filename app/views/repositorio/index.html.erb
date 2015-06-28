@@ -1,3 +1,28 @@
+<% def bfs_walk(directory, level=0) %>
+	<a class="directory" href="#">
+		<h<%= 2+level %>><%= directory.name %>
+			<% if File.stat(directory).mtime > 5.days.ago %><span class="badge">nuevo</span><% end %>
+		</h<%= 2+level %>>
+	</a>
+	<div>
+		<ul data-level="<%= level %>">
+			<% directory.files.sort.each do |file|
+	  			file_path = File.join(directory.path.gsub(Rails.root.join('public').to_s,''), file) %>
+	  			<li>
+	  				<a href="<%= file_path %>"><%= file %>
+	  					<% if File.stat(File.join(directory, file)).mtime > 5.days.ago %><span class="badge">nuevo</span><% end %>
+	  				</a>
+	  			</li>
+			<% end %>
+		</ul>
+		<% directory.directories.sort.each do |dir|
+		  bfs_walk(Dir.new(File.join(directory, dir)), level + 1)
+		end %>
+	</div>
+<% end %>
+
 <div id="repo">
-	<%= raw bfs_walk(@directory) %>
+	<% bfs_walk(@directory) %>
 </div>
+
+
