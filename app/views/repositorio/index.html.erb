@@ -1,6 +1,9 @@
 <% def bfs_walk(directory, level=0) %>
 	<a class="directory" href="#">
-		<h<%= 2+level %> class=" <%= 'new' if new?(directory) %>"><%= directory.name %></h<%= 2+level %>>
+		<h<%= 2+level %> class="<%= 'new' if new?(directory) %>">
+			<span class="glyphicon glyphicon-minus"></span>
+			<%= directory.name %>
+		</h<%= 2+level %>>
 	</a>
 	<div>
 		<ul data-level="<%= level %>">
