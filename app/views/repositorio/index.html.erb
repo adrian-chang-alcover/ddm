@@ -22,6 +22,7 @@
 <% end %>
 
 <div id="repo">
+	<input type='hidden' name='manage' value="<%= current_user and (current_user.admin? or current_user.ddm?) %>">
 	<% bfs_walk(@directory) %>
 </div>
 
