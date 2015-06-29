@@ -1,3 +1,29 @@
+<% def bfs_walk(directory, level=0) %>
+	<a class="directory" href="#">
+		<h<%= 2+level %> class="<%= 'new' if new?(directory) %>">
+			<span class="glyphicon glyphicon-minus"></span>
+			<%= directory.name %>
+		</h<%= 2+level %>>
+	</a>
+	<div>
+		<ul data-level="<%= level %>">
+			<% directory.files.sort.each do |file|
+	  			file_path = File.join(directory.path.gsub(Rails.root.join('public').to_s,''), file) %>
+	  			<li>
+	  				<a href="<%= file_path %>" class="file <%= 'new' if new?(File.join(directory, file)) %>"><%= file %>
+	  				</a>
+	  			</li>
+			<% end %>
+		</ul>
+		<% directory.directories.sort.each do |dir|
+		  	bfs_walk(Dir.new(File.join(directory, dir)), level + 1)
+		end %>
+	</div>
+<% end %>
+
 <div id="repo">
-	<%= raw bfs_walk(@directory) %>
+	<input type='hidden' name='manage' value="<%= current_user and (current_user.admin? or current_user.ddm?) %>">
+	<% bfs_walk(@directory) %>
 </div>
+
+
