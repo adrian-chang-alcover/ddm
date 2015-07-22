@@ -281,7 +281,7 @@ ActiveRecord::Schema.define(version: 20150722140057) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
   create_table "visit_counters", force: true do |t|
-    t.string   "username"
+    t.string   "user_id"
     t.string   "ip"
     t.string   "url"
     t.datetime "created_at"

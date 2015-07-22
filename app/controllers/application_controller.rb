@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   check_authorization
 
+  before_action :record_visit
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
@@ -29,6 +31,14 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).concat([:username, :faculty_id, :career_id])
     devise_parameter_sanitizer.for(:account_update).concat([:username, :faculty_id, :career_id])
+  end
+
+  def record_visit
+    visit = VisitCounter.new
+    visit.ip = request.ip
+    visit.url = request.url
+    visit.user_id = current_user.id if current_user
+    visit.save
   end
 
 end

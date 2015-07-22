@@ -1,7 +1,7 @@
 class CreateVisitCounters < ActiveRecord::Migration
   def change
     create_table :visit_counters do |t|
-      t.string :username
+      t.string :user_id
       t.string :ip
       t.string :url
 
