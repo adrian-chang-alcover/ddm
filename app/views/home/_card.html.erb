@@ -1,0 +1,17 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= name %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+    	<div class="col-md-3"><%= image_tag photo, width: 100 %></div>
+    	<div class="col-md-9">
+    		<ul>
+    			<% items.each do |item| %>
+            <li><%= item %></li>
+          <% end %>
+    		</ul>
+    	</div>
+    </div>
+  </div>
+</div>
