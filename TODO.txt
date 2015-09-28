@@ -16,7 +16,7 @@
 
 [proc y procedi] Olguita
 
-unir gráfico y horario docente en planificación docente DONE
+unir gráfico y horario docente en planificación docente **DONE**
 	horario Yaima, Amanda lo que le dejó Rita
 
 [informe integral]
@@ -31,9 +31,9 @@ unir gráfico y horario docente en planificación docente DONE
 	ppt como calcular eficiencia y promoción
 
 
-[encuestas]
-	por cursos, no por años
-	encuestas UH solo DDM
+[encuestas]	**DONE**
+	por cursos, no por años	**DONE**
+	encuestas UH solo DDM	**DONE**
 
 
 [compu] 
