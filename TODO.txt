@@ -36,8 +36,8 @@ unir gráfico y horario docente en planificación docente **DONE**
 	encuestas UH solo DDM	**DONE**
 
 
-[compu] 
-	agrupar por cursos
+[TODO]
+	agrupar por cursos, facultades y carreras
 
 
 [gestion de direccion]
@@ -45,7 +45,7 @@ unir gráfico y horario docente en planificación docente **DONE**
 	plan de trabajo mensual
 	poner en generalidades
 	
-eliminar dedicacion al estudio (encuesta)
+eliminar dedicacion al estudio (encuesta)  **DONE**
 
 lengua materna del curso 14-15
 	qué falta?
@@ -56,8 +56,8 @@ lengua materna del curso 14-15
 [Alumnos Ayudan y Alto Aprove]
 	
 
-rename noticias por generalidades
-mantener noticias
+rename noticias por generalidades		**DONE**
+mantener noticias						**DONE**
 
 agrupar siempre por curso, facultades y carreras
 
@@ -65,10 +65,10 @@ agrupar siempre por curso, facultades y carreras
 
 
 araña
-	Kenia adicionar Ubicación
+	Kenia adicionar Ubicación		**DONE**
 
 
 yo:
-	todo es público
+	todo es público (todo es visible solo para Decanos y Vicedecanos, solo DDM puede modificar)
 	formularios para pedidos de tablas
 	sist. de usuarios y roles
