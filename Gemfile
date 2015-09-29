@@ -61,4 +61,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'passenger'
 
+gem 'repository-manager'
+
 ruby '2.1.5'
