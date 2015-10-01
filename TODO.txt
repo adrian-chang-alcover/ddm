@@ -1,14 +1,14 @@
-* agrupar acreditacion
+* agrupar acreditacion   **DONE**
 * en el historial de acred enlazar con el informe
-[unidades docentes]
+[unidades docentes]		**DONE**
 	extraer el listado de las unidades docentes agrupados por carrera del curso pasado, por curso
 
-[ubicacion del graduado]
+[ubicacion del graduado]	**DONE**
 	agrupar por curso
 		informe cuanti y cuali
 		modelos de ubic
 
-[orientacion voc prof]
+[orientacion voc prof]		**DONE**
 	agrupar por curso
 		notas prensa
 		relatoria
@@ -19,7 +19,7 @@
 unir gráfico y horario docente en planificación docente **DONE**
 	horario Yaima, Amanda lo que le dejó Rita
 
-[informe integral]
+[informe integral]		**DONE**
 	agrupar por curso
 		corte 1er semes
 		curso total
@@ -40,20 +40,20 @@ unir gráfico y horario docente en planificación docente **DONE**
 	agrupar por cursos, facultades y carreras
 
 
-[gestion de direccion]
+[gestion de direccion]		**DONE**
 	talleres
 	plan de trabajo mensual
 	poner en generalidades
 	
 eliminar dedicacion al estudio (encuesta)  **DONE**
 
-lengua materna del curso 14-15
+lengua materna del curso 14-15		**DONE**
 	qué falta?
 
 [Literatura Docente]
 	Aseguramiento Bilio y TND
 
-[Alumnos Ayudan y Alto Aprove]
+[Alumnos Ayudan y Alto Aprove]		**DONE**
 	
 
 rename noticias por generalidades		**DONE**
