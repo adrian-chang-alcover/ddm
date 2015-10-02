@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!, except: [:index, :show]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  check_authorization
+  check_authorization :unless => :admin_controller?
 
   before_action :record_visit
 
@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
     visit.url = request.url
     visit.user_id = current_user.id if current_user
     visit.save
+  end
+
+  def admin_controller?
+    params['controller'] == 'rails_admin/main'
   end
 
 end
