@@ -17,8 +17,16 @@
     <% @career.disciplines.each do |discipline| %>
         <% discipline.subjects.each do |subject| %>
           <tr>
-            <td><%= link_to(discipline.name, edit_discipline_path(discipline.id), target: '_blank') if subject == discipline.subjects.first %></td>
-            <td><%= link_to(subject.name, edit_subject_path(subject.id), target: '_blank') %></td>
+            <td><%= if can?(:update, :disciplines)
+              link_to(discipline.name, edit_discipline_path(discipline.id), target: '_blank') if subject == discipline.subjects.first 
+              else
+                discipline.name
+              end if subject == discipline.subjects.first%></td>
+            <td><%= if can?(:update, :subjects)
+              link_to(subject.name, edit_subject_path(subject.id), target: '_blank')
+              else
+                subject.name
+              end %></td>
             <td><%= subject.total_hours %></td>
             <td><%= subject.class_hours_1 %></td>
             <td><%= subject.practical_hours %></td>

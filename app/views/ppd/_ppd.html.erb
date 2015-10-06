@@ -27,7 +27,11 @@
           <% if d.subjects.any? { |s| s.curriculum_type == ct } %>
               <tr class="discipline">
                 <td><%= i+1 %></td>
-                <td><%= link_to(d.name, edit_discipline_path(d.id), target: '_blank') %></td>
+                <td><%= if can?(:update, :discipline)
+                  link_to(d.name, edit_discipline_path(d.id), target: '_blank')
+                 else
+                  d.name
+                 end %></td>
                 <td><%= d.subjects_by_curriculum_type(ct).sum{|s| s.total_hours} %></td>
                 <td><%= d.subjects_by_curriculum_type(ct).sum { |s| s.class_hours_1 } %></td>
                 <td><%= d.subjects_by_curriculum_type(ct).sum { |s| s.practical_hours } %></td>
@@ -41,7 +45,11 @@
                   <% if s.curriculum_type == ct %>
                       <tr class="subject">
                         <td><%= i + 1 + (j+1).fdiv(100) %></td>
-                        <td><%= link_to(s.name, edit_subject_path(s.id), target: '_blank') %></td>
+                        <td><%= if can?(:update, :subjects)
+                          link_to(s.name, edit_subject_path(s.id), target: '_blank')
+                         else
+                          s.name
+                         end %></td>
                         <td><%= s.total_hours %></td>
                         <td><%= s.class_hours_1 %></td>
                         <td><%= s.practical_hours %></td>

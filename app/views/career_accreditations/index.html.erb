@@ -34,7 +34,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:career_id).titleize %></th>
       <th><%= model_class.human_attribute_name(:year).titleize %></th>
       <th><%= model_class.human_attribute_name(:accreditation_category_id).titleize %></th>
@@ -45,7 +44,6 @@
   <tbody>
     <% @career_accreditations.each do |career_accreditation| %>
       <tr>
-        <td><%= link_to career_accreditation.id, career_accreditation_path(career_accreditation) %></td>
         <td><%= link_to career_accreditation.career.full_name, career_accreditation_path(career_accreditation) %></td>
         <td><%= career_accreditation.year %></td>
         <td><%= career_accreditation.accreditation_category.name %></td>

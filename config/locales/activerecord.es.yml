@@ -15,20 +15,20 @@ es:
     attributes:
       career:
         id: "Id"
-        short_name: "Nombre corto"
-        full_name: "Nombre completo"
+        short_name: "Nombre Corto"
+        full_name: "Nombre Completo"
         faculty_id: "Facultad"
         study_modality: "Modalidad de Estudio"
         universities: "Centros Homólogos"
         headquarters: "Centro Rector"
         created_at: "Creado"
       university:
-        short_name: "Nombre corto"
-        full_name: "Nombre completo"  
+        short_name: "Nombre Corto"
+        full_name: "Nombre Completo"  
       faculty:
         id: "Id"
-        short_name: "Nombre corto"
-        full_name: "Nombre completo"
+        short_name: "Nombre Corto"
+        full_name: "Nombre Completo"
         dean: "Decano"
         university: "Universidad"
         created_at: "Creado"
