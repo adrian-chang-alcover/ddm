@@ -6,7 +6,13 @@
         <div class="col-md-<%= 12/year.semesters.to_a.count{|s| not s.anual?} %>">
         <table class="table table-bordered table-condensed ppd">
           <thead>
-            <tr><td class="separator" colspan="4"><%= link_to(semester.pretty_name.upcase, edit_semester_path(semester.id), target: '_blank') %></td></tr>
+            <tr><td class="separator" colspan="4">
+              <%= if can?(:update, :semesters)
+                link_to(semester.pretty_name.upcase, edit_semester_path(semester.id), target: '_blank') 
+              else
+                semester.pretty_name.upcase 
+              end %>
+            </td></tr>
             <tr>
               <td>Asignatura</td>
               <td>Eval</td>
@@ -18,7 +24,13 @@
             <% total_hours = 0
                semester.subjects.to_a.concat(semester.relevant_subjects).each do |subject| %>
               <tr>
-                <td><%= link_to(subject.name, edit_subject_path(subject.id), target: '_blank') %></td>
+                <td>
+                  <%= if can?(:update, :subjects)
+                    link_to(subject.name, edit_subject_path(subject.id), target: '_blank')
+                  else
+                    subject.name
+                  end %>
+                </td>
                 <td><%= subject.evaluation_type.short_name if subject.evaluation_type %></td>
                 <td><%= hours = if semester.practica?
                       subject.practical_hours

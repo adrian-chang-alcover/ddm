@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:short_name) %></th>
       <th><%= model_class.human_attribute_name(:full_name) %></th>
       <th><%= model_class.human_attribute_name(:dean) %></th>
@@ -17,7 +16,6 @@
   <tbody>
     <% @faculties.each do |faculty| %>
       <tr>
-        <td><%= link_to faculty.id, faculty_path(faculty) %></td>
         <td><%= faculty.short_name %></td>
         <td><%= faculty.full_name %></td>
         <td><%= faculty.dean %></td>
