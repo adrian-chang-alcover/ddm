@@ -5,7 +5,7 @@ class CareersController < ApplicationController
   # GET /careers
   # GET /careers.json
   def index
-    @careers = Career.all
+    @careers = initialize_grid(Career)
   end
 
   # GET /careers/1
