@@ -37,6 +37,9 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body data-no-turbolink="">
+    <div>
+      <%# image_tag 'banner.bmp', class: 'img-responsive' %>
+    </div>
 
     <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -79,13 +82,13 @@
               <li class="divider"></li>
               <li class="dropdown-header">Análisis Docente</li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Promoción y Eficiencia') %>">Promoción y Eficiencia</a></li>
-              <li data-type="collapser" data-toggle="encuesta"><a href="#">Encuestas<span class="caret"></span></a></li>
+              <li data-type="collapser" data-toggle="encuesta"><a href="#">Instrumentos<span class="caret"></span></a></li>
                 <% if current_user and (current_user.ddm? or current_user.admin?) %>
-                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Satisfacción UH') %>">Encuestas de Satisfacción UH</a></li>
+                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Instrumentos/Satisfacción UH') %>">Encuestas de Satisfacción UH</a></li>
                 <% end %>  
-                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Satisfacción') %>">Encuestas de Satisfacción</a></li>
-                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Computación') %>">Encuestas de Computación</a></li>
-                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Encuestas/Evaluación de Lengua Materna') %>">Evaluación de Lengua Materna</a></li>
+                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Instrumentos/Satisfacción') %>">Encuestas de Satisfacción</a></li>
+                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Instrumentos/Computación') %>">Encuestas de Computación</a></li>
+                  <li data-type="collapsible" data-toggle="encuesta"><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Instrumentos/Evaluación de Lengua Materna') %>">Evaluación de Lengua Materna</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -96,11 +99,20 @@
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Colectivo de Carrera') %>">Colectivo de Carrera</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Literatura Docente') %>">Literatura Docente</a></li>
               <li class="disabled"><a href="#">Sistema Integrado de Medios</a></li>
-              <li class="disabled"><a href="#">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Alumnos Ayudantes y Alumnos de Alto Aprovechamiento') %>">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Dirección<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/ACTA DE TALLER METODOLOGICO') %>">Talleres Metodológicos</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/ACTAS DE REUNIÓN DE VDD') %>">Reuniones con Vicedecanos Docentes</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Estrategia Maestra') %>">Estrategia Maestra</a></li> 
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Objetivos Anuales DDM') %>">Objetivos Anuales DDM</a></li> 
             </ul>
           </li>
           <li class="divider-vertical"></li>
-          <% if current_user and (current_user.admin? or current_user.ddm? or current_user.decano? or current_user.vicedecano?) %>
+          <% if current_user and (current_user.admin?) %>
             <li><%= link_to 'Usuarios', users_index_path %></li>
           <% end %>
           <% if current_user and current_user.admin? %>
