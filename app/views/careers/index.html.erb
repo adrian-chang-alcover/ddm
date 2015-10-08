@@ -2,46 +2,38 @@
 <div class="page-header">
   <h1>Carreras</h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:short_name) %></th>
-      <th><%= model_class.human_attribute_name(:full_name) %></th>
-      <th><%= model_class.human_attribute_name(:faculty_id) %></th>
-      <th><%= model_class.human_attribute_name(:study_modality) %></th>
-      <th><%= model_class.human_attribute_name(:headquarters) %></th>
-      <th><%= model_class.human_attribute_name(:universities) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @careers.each do |career| %>
-      <tr>
-        <td><%= link_to career.id, career_path(career) %></td>
-        <td><%= career.short_name %></td>
-        <td><%= career.full_name %></td>
-        <td><%= career.faculty.name %></td>
-        <td><%= career.study_modality.full_name %></td>
-        <td><%= career.headquarters ? 'si' : 'no' %></td>
-        <td><%= career.universities.count %></td>
-        <td>
-          <% if can? :update, career %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_career_path(career), :class => 'btn btn-mini' %>
-          <% end %>
-          <% if can? :destroy, career %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+
+<%= grid(@careers) do |g|
+
+  g.column name: model_class.human_attribute_name(:short_name), attribute: 'short_name'
+  g.column name: model_class.human_attribute_name(:full_name), attribute: 'full_name'
+  g.column name: model_class.human_attribute_name(:faculty_id), attribute: 'faculty_id', custom_filter: Faculty.all.collect{|c| [c.name, c.id]}, allow_multiple_selection: false, auto_reload: true do |career|
+    career.faculty.name
+  end
+  g.column name: model_class.human_attribute_name(:study_modality), attribute: 'study_modality_id', custom_filter: StudyModality.all.collect{|c| [c.full_name, c.id]}, allow_multiple_selection: false, auto_reload: true do |career|
+    career.study_modality.full_name
+  end
+  g.column name: model_class.human_attribute_name(:headquarters), attribute: 'headquarters' do |career|
+    career.headquarters ? 'si' : 'no'
+  end
+  g.column name: model_class.human_attribute_name(:universities) do |career|
+    career.universities.count
+  end
+
+  g.column do |career|
+    link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_career_path(career), :class => 'btn btn-mini'
+  end
+
+  g.column do |career|
+    link_to t('.destroy', :default => t("helpers.links.destroy")),
                         career_path(career),
                         :method => :delete,
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-mini btn-danger' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                        :class => 'btn btn-mini btn-danger'
+  end
+
+end %>
 
 <% if can? :create, Career %>
   <%= link_to t('.new', :default => t("helpers.links.new")),

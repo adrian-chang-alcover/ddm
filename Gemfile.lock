@@ -201,6 +201,9 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
+    wice_grid (3.5.0)
+      coffee-rails (~> 4.0)
+      kaminari (~> 0.16)
 
 PLATFORMS
   ruby
@@ -233,3 +236,4 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (= 2.6.1)
   unicorn
+  wice_grid

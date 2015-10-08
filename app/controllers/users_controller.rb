@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
   def index
     authorize! :index, :users
-    if current_user.admin? or current_user.ddm?
-      @users = User.all
-    elsif current_user.decano? or current_user.vicedecano?
-      @users = current_user.faculty.users
-    end
+    @users = User.all
   end
 
   def toggle_roles

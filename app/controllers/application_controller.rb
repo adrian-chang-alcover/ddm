@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:index, :show]
   before_action :configure_permitted_parameters, if: :devise_controller?
   check_authorization :unless => :admin_controller?
-
+  before_action :set_locale
   before_action :record_visit
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -43,6 +43,12 @@ class ApplicationController < ActionController::Base
 
   def admin_controller?
     params['controller'] == 'rails_admin/main'
+  end
+
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = :en if params['controller'] == 'rails_admin/main'
   end
 
 end
