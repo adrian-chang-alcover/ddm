@@ -140,7 +140,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">GENERALIDADES</h3>
@@ -151,15 +151,15 @@
                 <li><%= link_to t(:careers), careers_path  %></li>
                 <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %></li>
                 <li class="disabled"><a href="#">Procesos y Procedimientos</a></li>
-                <li><%= link_to 'Generalidades', repositorio_index_path(path: 'repo/Generalidades') %></li>
+                <li><%= link_to 'Documentos de Interés', repositorio_index_path(path: 'repo/Generalidades') %></li>
                 <li class="disabled"><%= link_to 'Noticias', repositorio_index_path(path: 'repo/Noticias') %></li>
               </ul>
             </div>
           </div>
 
-          <%= image_tag 'logo.png' %>
+          <%= image_tag 'logo.png', style: "width: 100%" %>
         </div><!--/span-->
-        <div class="col-md-9">
+        <div class="col-md-10">
           <% flash.instance_variable_get(:@flashes).symbolize_keys! %>
           <%= bootstrap_flash %>
           <%= yield %>
