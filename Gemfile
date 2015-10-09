@@ -57,6 +57,7 @@ gem 'cancancan'
 
 gem 'rails_admin'
 gem 'wice_grid'
+gem 'repository-manager'
 
 gem 'kaminari'
 
