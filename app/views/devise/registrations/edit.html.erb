@@ -6,7 +6,7 @@
   <div><%= f.label t('helpers.label.user.username') %><br />
   <%= f.text_field :username %></div>
 
-  <div><%= f.label :faculty_id %><br />
+  <div><%= f.label :faculty_id %> <i>(en caso que proceda)</i><br />
   <%= f.select :faculty_id, Faculty.all.collect { |f| [ f.name, f.id ] }, include_blank: true %></div>
 
   <div><%= f.label :email %><br />
