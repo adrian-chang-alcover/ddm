@@ -14,8 +14,8 @@ class SubjectsController < ApplicationController
   end
 
   # GET /subjects/new
-  def new
-    @subject = Subject.new
+  def new    
+    @subject = Subject.new(discipline_id: params['discipline'])
   end
 
   # GET /subjects/1/edit
