@@ -15,7 +15,7 @@
     <div class="control-group">
       <%= label_tag :career, nil, :class => 'control-label' %>
       <div class="controls">
-        <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name) %>
+        <%= select_tag :career, options_from_collection_for_select(Career.all, :id, :name, params['career']) %>
       </div>
     </div>
   <% end %>
@@ -86,7 +86,7 @@
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 subjects_path, :class => 'btn' %>
-    <% if can? :destroy, @subject %>
+    <% if can?(:destroy, @subject) and @subject.id %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                   subject_path(@subject),
                   :method => :delete,
