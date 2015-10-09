@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929195535) do
+ActiveRecord::Schema.define(version: 20151009025247) do
 
   create_table "accreditation_categories", force: true do |t|
     t.string   "name"
