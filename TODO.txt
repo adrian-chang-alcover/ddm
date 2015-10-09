@@ -1,0 +1,3 @@
+*	En PPD Detalles, enlazar con los dictámenes o resoluciones.
+*	Tasks management
+*	Cambiar enlaces a ddm.uh.cu
