@@ -22,5 +22,10 @@
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 disciplines_path, :class => 'btn' %>
+    <% if can?(:create, Subject) and @discipline.id %>
+      <%= link_to 'Adicionar asignatura',
+              new_subject_path(discipline: @discipline.id, career: @discipline.career.id),
+              :class => 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>
