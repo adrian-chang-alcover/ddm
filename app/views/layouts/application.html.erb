@@ -37,8 +37,8 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body data-no-turbolink="">
-    <div>
-      <%# image_tag 'banner.bmp', class: 'img-responsive' %>
+    <div style="margin-left: 0px;margin-right: 0px;">
+      <%= image_tag 'banner.JPG', class: 'img-responsive', style: "width: 100%" %>
     </div>
 
     <nav class="navbar navbar-default">
@@ -98,8 +98,9 @@
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Comisión Nacional de Carrera') %>">Comisión Nacional de Carrera</a></li>              
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Colectivo de Carrera') %>">Colectivo de Carrera</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Literatura Docente') %>">Literatura Docente</a></li>
-              <li class="disabled"><a href="#">Sistema Integrado de Medios</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Sistema Integrado de Medios') %>">Sistema Integrado de Medios</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Alumnos Ayudantes y Alumnos de Alto Aprovechamiento') %>">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/SEDER') %>">Departamento Independiente. SEDER</a></li>
             </ul>
           </li>
           <li class="dropdown">
