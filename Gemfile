@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-# source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
+# source 'https://rubygems.org'
+source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
@@ -48,7 +48,7 @@ gem 'less-rails'
 
 gem 'figaro'
 
-gem 'spreadsheet'
+# gem 'spreadsheet'
 
 gem 'devise'
 gem 'devise-i18n'
@@ -64,5 +64,7 @@ gem 'twitter-bootstrap-rails'
 gem 'passenger'
 
 gem 'repository-manager'
+# gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+# gem 'zip-zip' # will load compatibility for old rubyzip API.
 
-ruby '2.1.5'
+ruby '2.2.0'

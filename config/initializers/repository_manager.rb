@@ -11,7 +11,7 @@ RepositoryManager.setup do |config|
   # Default path for generating the zip file when a user want to download a folder
   # WARNING: DO NOT CHANGE IF YOU DON'T KNOW WHAT YOU ARE DOING
   # Default is : "download/#{member.class.to_s.underscore}/#{member.id}/#{self.class.to_s.underscore}/#{self.id}/"
-  #config.default_zip_path = true
+  config.default_zip_path = true
 
   # Define if we enable or not the versioning on the repo_item
   config.has_paper_trail = false
