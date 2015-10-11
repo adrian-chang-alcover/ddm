@@ -48,7 +48,7 @@ gem 'less-rails'
 
 gem 'figaro'
 
-gem 'spreadsheet'
+# gem 'spreadsheet'
 
 gem 'devise'
 gem 'devise-i18n'
@@ -64,4 +64,4 @@ gem 'twitter-bootstrap-rails'
 
 gem 'passenger'
 
-ruby '2.1.5'
+ruby '2.2.0'
