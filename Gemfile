@@ -58,6 +58,8 @@ gem 'cancancan'
 gem 'rails_admin'
 gem 'wice_grid'
 
+gem 'tasks_management'
+
 gem 'kaminari'
 
 gem 'twitter-bootstrap-rails'
