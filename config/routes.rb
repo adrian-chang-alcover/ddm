@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'dashboard/index'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount TasksManagement::Engine, at: "/tasks_management"
+
   get 'home/index'
+
+  get 'dashboard/index'
 
   namespace :schedule do
     resources :turns
