@@ -10,8 +10,17 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="account"></div>
-    <div role="tabpanel" class="tab-pane" id="requested_tasks">
-      <% byebug %>
+
+    <div role="tabpanel" class="tab-pane" id="requested_tasks">      
+      <%= grid(@requested_tasks) do |g|
+          g.column name: 'Título', attribute: 'title'
+          g.column  name: 'Descripción', attribute: 'description', filter: false, ordering: false
+          g.column name: 'Prioridad', attribute: 'priority'
+          g.column name: 'Estado', attribute: 'state'
+          g.column name: 'Responsable', attribute: 'owner_id'
+          g.column name: 'Tarea padre', attribute: 'parent_id'
+          g.column name: 'Fecha Límite', attribute: 'end_date'
+        end -%>
     </div>
     <div role="tabpanel" class="tab-pane" id="own_tasks"></div>
   </div>
