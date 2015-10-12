@@ -48,7 +48,7 @@ gem 'less-rails'
 
 gem 'figaro'
 
-# gem 'spreadsheet'
+gem 'spreadsheet'
 
 gem 'devise'
 gem 'devise-i18n'
@@ -58,7 +58,7 @@ gem 'cancancan'
 gem 'rails_admin'
 gem 'wice_grid'
 
-gem 'tasks_management'
+gem 'tasks_management', path: '../tasks_management'
 
 gem 'kaminari'
 
@@ -66,4 +66,4 @@ gem 'twitter-bootstrap-rails'
 
 gem 'passenger'
 
-ruby '2.2.0'
+ruby '2.1.5'

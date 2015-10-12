@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   get 'dashboard/index'
+  get 'dashboard/request_task'
 
   namespace :schedule do
     resources :turns

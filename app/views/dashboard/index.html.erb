@@ -21,6 +21,7 @@
           g.column name: 'Tarea padre', attribute: 'parent_id'
           g.column name: 'Fecha Límite', attribute: 'end_date'
         end -%>
+      <%= link_to 'Asignar tarea', dashboard_request_task_path, :class => 'btn btn-primary' %>
     </div>
     <div role="tabpanel" class="tab-pane" id="own_tasks"></div>
   </div>

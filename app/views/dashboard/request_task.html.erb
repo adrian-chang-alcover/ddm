@@ -1,0 +1,53 @@
+<h1>Asignar Tarea</h1>
+
+<%= form_for(@task, url: tasks_management.tasks_path) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br>
+    <%= f.select :priority, options_for_select(TasksManagement::Task.priorities, TasksManagement::Task.priorities[@task.priority]) %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.select :state, options_for_select(TasksManagement::Task.states, TasksManagement::Task.states[@task.state]) %>
+  </div>
+  <div class="field">
+    <%= f.label :parent_id %><br>
+    <%= f.collection_select :parent_id, current_user.requester_tasks, :id, :title, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :owner_id %><br>
+    <%= f.collection_select :owner_id, User.all, :id, :username, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :requester_id %><br>
+    <%= f.collection_select :requester_id, User.all, :id, :username %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', dashboard_index_path %>
