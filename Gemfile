@@ -64,5 +64,7 @@ gem 'twitter-bootstrap-rails'
 gem 'passenger'
 
 gem 'repository-manager'
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+gem 'zip-zip' # will load compatibility for old rubyzip API.
 
 ruby '2.1.5'
