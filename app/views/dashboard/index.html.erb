@@ -2,28 +2,45 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#account" aria-controls="account" role="tab" data-toggle="tab">Mi cuenta</a></li>
-    <li role="presentation"><a href="#requested_tasks" aria-controls="requested_tasks" role="tab" data-toggle="tab">Tareas asignadas por mi</a></li>
+    <li role="presentation" class="active"><a href="#requested_tasks" aria-controls="requested_tasks" role="tab" data-toggle="tab">Tareas asignadas por mi</a></li>
     <li role="presentation"><a href="#own_tasks" aria-controls="own_tasks" role="tab" data-toggle="tab">Tareas asignadas a mi</a></li>
+    <li role="presentation"><a href="#account" aria-controls="account" role="tab" data-toggle="tab">Mi cuenta</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="account"></div>
-
-    <div role="tabpanel" class="tab-pane" id="requested_tasks">      
+    <div role="tabpanel" class="tab-pane active" id="requested_tasks">      
       <%= grid(@requested_tasks) do |g|
           g.column name: 'Título', attribute: 'title'
+
           g.column  name: 'Descripción', attribute: 'description', filter: false, ordering: false
-          g.column name: 'Prioridad', attribute: 'priority'
-          g.column name: 'Estado', attribute: 'state'
-          g.column name: 'Responsable', attribute: 'owner_id'
-          g.column name: 'Tarea padre', attribute: 'parent_id'
+
+          g.column name: 'Prioridad', attribute: 'priority', custom_filter: {"high"=>0, "medium"=>1, "low"=>2}, allow_multiple_selection: false, auto_reload: true
+
+          g.column name: 'Estado', attribute: 'state', custom_filter: {"pending"=>0, "rejected"=>1, "started"=>2, "finished"=>3, "accepted"=>4}, allow_multiple_selection: false, auto_reload: true
+
+          g.column name: 'Responsable', attribute: 'owner_id', custom_filter: User.all.map{|u| [u.username, u.id]}, allow_multiple_selection: false, auto_reload: true do |task|
+            task.owner.username if task.owner
+          end
+
+          g.column name: 'Tarea padre', attribute: 'parent_id', filter: false do |task|
+            task.parent.title if task.parent
+          end
+
           g.column name: 'Fecha Límite', attribute: 'end_date'
+
+          g.column do |task|
+            link_to 'Aceptar', dashboard_accept_task_path(task: task.id), :class => 'btn btn-success' if task.finished?
+          end
+
+          g.column do |task|
+            link_to 'Rechazar', dashboard_reject_task_path(task: task.id), :class => 'btn btn-danger' if task.finished?
+          end
         end -%>
       <%= link_to 'Asignar tarea', dashboard_request_task_path, :class => 'btn btn-primary' %>
     </div>
     <div role="tabpanel" class="tab-pane" id="own_tasks"></div>
+    <div role="tabpanel" class="tab-pane" id="account"></div>
   </div>
 
 </div>

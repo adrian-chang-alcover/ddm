@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
   get 'dashboard/request_task'
+  get 'dashboard/start_task'
+  get 'dashboard/finish_task'
+  get 'dashboard/accept_task'
+  get 'dashboard/reject_task'
 
   namespace :schedule do
     resources :turns

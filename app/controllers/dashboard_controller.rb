@@ -9,4 +9,28 @@ class DashboardController < ApplicationController
   	@task.pending!
   	@task.medium!
   end
+
+  def start_task
+  	task = TasksManagement::Task.find(params['task'])
+  	task.start!
+  	redirect_to :back
+  end
+
+  def finish_task
+  	task = TasksManagement::Task.find(params['task'])
+  	task.finish!
+  	redirect_to :back
+  end
+
+  def accept_task
+  	task = TasksManagement::Task.find(params['task'])
+  	task.accept!
+  	redirect_to :back
+  end
+
+  def reject_task
+  	task = TasksManagement::Task.find(params['task'])
+  	task.reject!
+  	redirect_to :back
+  end
 end
