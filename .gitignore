@@ -24,4 +24,6 @@
 .ruby-version
 /vendor/cache/
 
-public/repo 2015-07-23.tar
+public/repo.tar
+/uploads
+public/uploads/
