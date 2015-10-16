@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'home/index'
 
@@ -50,6 +51,15 @@ Rails.application.routes.draw do
   namespace :schedule do
     resources :activities
   end
+=======
+  resources :groups
+
+  resources :locals
+
+  resources :turns
+
+  resources :turn_types
+>>>>>>> feature/test
 
   resources :career_accreditations
 

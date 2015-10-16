@@ -7,8 +7,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  def login_as_one
-  	sign_in(users(:one))
+  def login_as_admin
+  	sign_in(users(:admin))
   end
 
 end

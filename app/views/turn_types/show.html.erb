@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @turn_type.full_name %>
+</p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @turn_type.short_name %>
+</p>
+
+<%= link_to 'Edit', edit_turn_type_path(@turn_type) %> |
+<%= link_to 'Back', turn_types_path %>
