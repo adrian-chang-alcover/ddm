@@ -3,6 +3,7 @@ require 'test_helper'
 class YearsControllerTest < ActionController::TestCase
   setup do
     @year = years(:one)
+    login_as_admin
   end
 
   test "should get index" do

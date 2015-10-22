@@ -12,6 +12,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20151011145901) do
+ActiveRecord::Schema.define(version: 20150929195535) do
+=======
+ActiveRecord::Schema.define(version: 20150429023955) do
+>>>>>>> feature/test
 
   create_table "accreditation_categories", force: true do |t|
     t.string   "name"
@@ -137,6 +141,24 @@ ActiveRecord::Schema.define(version: 20151011145901) do
   add_index "rm_sharings_members", ["member_id", "member_type"], name: "index_rm_sharings_members_on_member_id_and_member_type"
   add_index "rm_sharings_members", ["sharing_id"], name: "index_rm_sharings_members_on_sharing_id"
 
+
+=======
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.integer  "year_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locals", force: true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> feature/test
   create_table "roles", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -302,6 +324,8 @@ ActiveRecord::Schema.define(version: 20151011145901) do
     t.date     "end_date"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "universities", force: true do |t|
