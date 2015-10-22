@@ -30,11 +30,11 @@
           g.column name: 'Fecha Límite', attribute: 'end_date'
 
           g.column do |task|
-            link_to 'Aceptar', dashboard_accept_task_path(task: task.id), :class => 'btn btn-success' if task.finished?
+            link_to 'Aceptar', dashboard_accept_task_path(task: task.id)+'#requested_tasks', :class => 'btn btn-success' if task.finished?
           end
 
           g.column do |task|
-            link_to 'Rechazar', dashboard_reject_task_path(task: task.id), :class => 'btn btn-danger' if task.finished?
+            link_to 'Rechazar', dashboard_reject_task_path(task: task.id)+'#requested_tasks', :class => 'btn btn-danger' if task.finished?
           end
         end -%>
       <%= link_to 'Asignar tarea', dashboard_request_task_path, :class => 'btn btn-primary' %>
@@ -58,13 +58,13 @@
           end
 
           g.column name: 'Fecha Límite', attribute: 'end_date'
-
+          
           g.column do |task|
-            link_to 'Empezar', dashboard_start_task_path(task: task.id), :class => 'btn btn-primary' if task.pending?
+            link_to 'Empezar', dashboard_start_task_path(task: task.id)+'#own_tasks', :class => 'btn btn-primary' if task.pending? or task.rejected?
           end
 
           g.column do |task|
-            link_to 'Finalizar', dashboard_finish_task_path(task: task.id), :class => 'btn btn-primary' if task.started?
+            link_to 'Finalizar', dashboard_finish_task_path(task: task.id)+'#own_tasks', :class => 'btn btn-primary' if task.started?
           end
         end -%>
     </div>

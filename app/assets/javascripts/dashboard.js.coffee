@@ -5,3 +5,7 @@
 $(
 	-> $('div#account').load('/users/edit div#edit_user')
 )
+
+$(
+	-> $('a[href="' + location.hash + '"]').click()
+)
