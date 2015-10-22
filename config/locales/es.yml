@@ -65,3 +65,9 @@ es:
   universities: "Universidades"   
   accreditation_categories: "Categorias de Acreditación"
   career_accreditation: "Acreditación de Carreras"   
+
+  pending: pendiente
+  started: empezada
+  finished: terminada
+  accepted: aceptada
+  rejected: rechazada
