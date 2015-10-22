@@ -13,6 +13,12 @@
       
       <h3>Tareas pendientes</h3>      
       <%= grid(@pending_requested_tasks) do |g|
+          g.row_attributes do |task|
+            if task.end_date and Date.today > task.end_date
+              {class: 'alert alert-danger'}
+            end
+          end
+
           g.column name: 'Título', attribute: 'title'
 
           g.column  name: 'Descripción', attribute: 'description', filter: false, ordering: false
