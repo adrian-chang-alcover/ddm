@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
   skip_authorization_check	
   def index
-  	@requested_tasks = initialize_grid(TasksManagement::Task.where(requester: current_user))
+  	@pending_requested_tasks = initialize_grid(TasksManagement::Task.where(requester: current_user).where.not(state: TasksManagement::Task.states['accepted']))
+    @accepted_requested_tasks = initialize_grid(TasksManagement::Task.where(requester: current_user, state: TasksManagement::Task.states['accepted']))
   	@own_tasks = initialize_grid(TasksManagement::Task.where(owner: current_user))
   end
 

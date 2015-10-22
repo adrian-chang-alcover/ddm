@@ -71,3 +71,7 @@ es:
   finished: terminada
   accepted: aceptada
   rejected: rechazada
+
+  low: baja
+  medium: media
+  high: alta
