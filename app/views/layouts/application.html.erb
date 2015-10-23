@@ -75,9 +75,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión Docente<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Planificación Docente') %>">Planificación Docente</a></li>
-              <li class="disabled"><a href="#">Escenarios Docentes</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Informe Integral') %>">Informe Integral</a></li>
-              <li class="disabled"><a href="#">Fotografía</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Docente/Asignaturas Electivas') %>">Asignaturas Electivas</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">Análisis Docente</li>
@@ -100,7 +98,7 @@
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Literatura Docente') %>">Literatura Docente</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Sistema Integrado de Medios') %>">Sistema Integrado de Medios</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Alumnos Ayudantes y Alumnos de Alto Aprovechamiento') %>">Alumnos Ayudantes y Alumnos de Alto Aprovechamiento</a></li>
-              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/SEDER') %>">Departamento Independiente. SEDER</a></li>
+              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Departamentos Independientes') %>">Departamentos Independientes</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -110,6 +108,7 @@
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/ACTAS DE REUNIÓN DE VDD') %>">Reuniones con Vicedecanos Docentes</a></li>
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Estrategia Maestra') %>">Estrategia Maestra</a></li> 
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Objetivos Anuales DDM') %>">Objetivos Anuales DDM</a></li> 
+	      <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Información acerca del trabajo educativo- UH') %>">Trabajo Educativo</a></li>
             </ul>
           </li>
           <li class="divider-vertical"></li>
@@ -144,11 +143,9 @@
             <div class="panel-body">
               <ul class="nav nav-list">
                 <li><%= link_to t(:faculties), faculties_path %></li>
-                <li><%= link_to t(:careers), careers_path  %></li>
                 <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %></li>
-                <li class="disabled"><a href="#">Procesos y Procedimientos</a></li>
                 <li><%= link_to 'Documentos de Interés', repositorio_index_path(path: 'repo/Generalidades') %></li>
-                <li class="disabled"><%= link_to 'Noticias', repositorio_index_path(path: 'repo/Noticias') %></li>
+		<li><%= link_to 'Noticias', repositorio_index_path(path: 'repo/Noticias') %></li>
               </ul>
             </div>
           </div>
