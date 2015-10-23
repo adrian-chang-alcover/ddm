@@ -121,12 +121,8 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-            <% if current_user.admin? or current_user.ddm? %>
-              <li><%= link_to current_user.email, edit_user_registration_path %></li>
-            <% else %>
-              <li><a href="#"><%= current_user.email %></a></li>
-            <% end %>
+          <% if user_signed_in? %>            
+            <li><%= link_to current_user.email, dashboard_index_path %></
             <li class="divider-vertical"></li>
             <li><%= link_to t(:sign_out).camelize, destroy_user_session_path, method: :delete %></li>
           <% else %>

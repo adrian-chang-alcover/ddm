@@ -6,6 +6,7 @@ class Year < ActiveRecord::Base
   belongs_to :career
   belongs_to :study_plan
   has_many :semesters, dependent: :destroy
+  has_many :groups, class_name: "Schedule::Group"
 
   default_scope {order :name}
 

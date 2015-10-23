@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   belongs_to :faculty
   belongs_to :career
 
+  has_tasks
+
   # validates :faculty_id, presence: true
   # validate { |user| user.career.faculty == user.faculty unless user.career.blank? }
 
