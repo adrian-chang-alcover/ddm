@@ -3,13 +3,12 @@ class DashboardController < ApplicationController
   def index
   	@pending_requested_tasks = initialize_grid(TasksManagement::Task.where(requester: current_user).where.not(state: TasksManagement::Task.states['accepted']))
     @accepted_requested_tasks = initialize_grid(TasksManagement::Task.where(requester: current_user, state: TasksManagement::Task.states['accepted']))
-  	@own_tasks = initialize_grid(TasksManagement::Task.where(owner: current_user))
+  	@pending_own_tasks = initialize_grid(TasksManagement::Task.where(owner: current_user).where.not(state: TasksManagement::Task.states['accepted']))
+    @accepted_own_tasks = initialize_grid(TasksManagement::Task.where(owner: current_user, state: TasksManagement::Task.states['accepted']))
   end
 
   def request_task
-  	@task = TasksManagement::Task.new(requester: current_user)
-  	@task.pending!
-  	@task.medium!
+  	@task = TasksManagement::Task.new(requester: current_user, priority: 'medium', state: 'pending')
   end
 
   def start_task
