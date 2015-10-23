@@ -57,6 +57,8 @@ gem 'cancancan'
 
 gem 'rails_admin'
 
+gem 'tasks_management', path: '../tasks_management'
+
 gem 'kaminari'
 
 gem 'twitter-bootstrap-rails'

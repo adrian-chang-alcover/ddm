@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label t('helpers.label.user.username') %><br />
+  <div><%= f.label 'Nombre completo' %><br />
   <%= f.text_field :username %></div>
 
   <div><%= f.label :faculty_id %> <i>(en caso que proceda)</i><br />

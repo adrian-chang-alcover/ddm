@@ -15,7 +15,7 @@ es:
         confirm_my_account: "Confirmar mi cuenta"
       reset_password_instructions:
         hello: "Hola %{email} !"
-        someone_has_requested_a_link_to_change_your_password: "Alguien ha pedido un enlace para cambiar tu contraseña. Usted lo puede hacer a través del siguiente enlace."
+        someone_has_requested_a_link_to_change_your_password: "Alguien ha pedido un enlace para cambiar su contraseña. Usted lo puede hacer a través del siguiente enlace."
   helpers:
     label:
       user:
