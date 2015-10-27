@@ -65,7 +65,7 @@ gem 'twitter-bootstrap-rails'
 
 gem 'passenger'
 
-gem 'wice_grid'
+gem 'wice_grid', '3.5.0'
 
 gem 'repository-manager'
 gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
