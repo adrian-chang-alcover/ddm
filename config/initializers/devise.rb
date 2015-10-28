@@ -4,13 +4,15 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = 'd6af841e89d6fed7573601056af125b46caf9bfa9d18928817447e110c402e30025f75f0a0c0b4226b18b59be536a15c7259650d4cf84795d655ec7e71faf670'
+  # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
+  # by default. You can change it below and use your own secret key.
+  # config.secret_key = 'e6253caaadbc2be7cb295f66fba78a028e7dd4d8e25f55f2afadb1e23b517abc9d14c66d519f59d3486d94c10934f96442efd28fb1576d7c0a4f470956dabdc1'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'adrian.chang@rect.uh.cu'
+  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -29,7 +31,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [ :email ]
+  # config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -41,12 +43,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -61,7 +63,7 @@ Devise.setup do |config|
   # :database      = Support basic authentication with authentication key + password
   # config.http_authenticatable = false
 
-  # If http headers should be returned for AJAX requests. True by default.
+  # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
 
   # The realm used in Http Basic Authentication. 'Application' by default.
@@ -97,7 +99,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = 'a848fd2aa55e30e928d5f8040ea989ffd47748b00a178735780f44e2f07db575c2ed2a7124cec00d5a0931040b823091e8529c006aebbe2660c5758c2a763fd1'
+  # config.pepper = 'd35ec4766285cbe15a3b5c62353b78874676b4bd1b2a4df22fb825e4bb7fa57925599200cd42a8ff3d4171883c907c2dda5e64afccd8af0ddf5de186a017bbbb'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -122,11 +124,14 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
-  # config.confirmation_keys = [ :email ]
+  # config.confirmation_keys = [:email]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
   # config.remember_for = 2.weeks
+
+  # Invalidates all the remember me tokens when the user signs out.
+  config.expire_all_remember_me_on_sign_out = true
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
@@ -137,7 +142,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..128
+  config.password_length = 8..72
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -149,9 +154,6 @@ Devise.setup do |config|
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
 
-  # If true, expires auth token on session timeout.
-  # config.expire_auth_token_on_timeout = false
-
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
   # :failed_attempts = Locks an account after a number of failed attempts to sign in.
@@ -159,7 +161,7 @@ Devise.setup do |config|
   # config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  # config.unlock_keys = [ :email ]
+  # config.unlock_keys = [:email]
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
@@ -176,17 +178,21 @@ Devise.setup do |config|
   # config.unlock_in = 1.hour
 
   # Warn on the last attempt before the account is locked.
-  # config.last_attempt_warning = false
+  # config.last_attempt_warning = true
 
   # ==> Configuration for :recoverable
   #
   # Defines which key will be used when recovering the password for an account
-  # config.reset_password_keys = [ :email ]
+  # config.reset_password_keys = [:email]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
   config.reset_password_within = 6.hours
+
+  # When set to false, does not sign a user in automatically after their password is
+  # reset. Defaults to true, so a user is signed in automatically after a reset.
+  # config.sign_in_after_reset_password = true
 
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use
@@ -250,7 +256,7 @@ Devise.setup do |config|
   # The router that invoked `devise_for`, in the example above, would be:
   # config.router_name = :my_engine
   #
-  # When using omniauth, Devise cannot automatically set Omniauth path,
+  # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 end
