@@ -1,0 +1,2 @@
+module DynamicNewsHelper
+end

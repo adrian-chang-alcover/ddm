@@ -5,7 +5,7 @@ PATH
       rails (~> 4.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: file:/media/adrian/DATA/Estudios/Web/Ruby/repo/
   specs:
     actionmailer (4.1.8)
       actionpack (= 4.1.8)

@@ -1,0 +1,27 @@
+<h1>Listing dynamic_news</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dynamic_news.each do |dynamic_news| %>
+      <tr>
+        <td><%= dynamic_news.title %></td>
+        <td><%= dynamic_news.description %></td>
+        <td><%= link_to 'Show', dynamic_news %></td>
+        <td><%= link_to 'Edit', edit_dynamic_news_path(dynamic_news) %></td>
+        <td><%= link_to 'Destroy', dynamic_news, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dynamic new', new_dynamic_news_path %>

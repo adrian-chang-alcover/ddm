@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011145901) do
+ActiveRecord::Schema.define(version: 20151029135835) do
 
   create_table "accreditation_categories", force: true do |t|
     t.string   "name"
@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 20151011145901) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "number",     default: 0
+  end
+
+  create_table "dynamic_news", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "evaluation_types", force: true do |t|
