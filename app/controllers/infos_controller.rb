@@ -43,6 +43,6 @@ class InfosController < ApplicationController
     end
 
     def info_params
-      params.require(:info).permit(:title, :description, :user_id)
+      params.require(:info).permit(:title, :description, :user_id, :image)
     end
 end
