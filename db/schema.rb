@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029143758) do
+ActiveRecord::Schema.define(version: 20151029144726) do
 
   create_table "accreditation_categories", force: true do |t|
     t.string   "name"
@@ -106,6 +106,14 @@ ActiveRecord::Schema.define(version: 20151029143758) do
     t.string   "name"
     t.integer  "capacity"
     t.integer  "year_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "infos", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
