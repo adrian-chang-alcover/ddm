@@ -50,7 +50,7 @@ gem 'figaro'
 
 gem 'spreadsheet'
 
-gem 'devise', '3.5.2'
+gem 'devise', '~> 3.4.1'
 gem 'devise-i18n'
 gem 'public_activity'
 gem 'cancancan'
