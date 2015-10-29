@@ -1,5 +1,4 @@
-# source 'https://rubygems.org'
-source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
@@ -70,5 +69,7 @@ gem 'wice_grid'
 gem 'repository-manager'
 gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
 gem 'zip-zip' # will load compatibility for old rubyzip API.
+
+gem "paperclip", "~> 4.3"
 
 ruby '2.1.5'
