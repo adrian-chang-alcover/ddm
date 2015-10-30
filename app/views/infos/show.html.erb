@@ -13,4 +13,11 @@
 </p>
 
 <%= link_to('Edit', edit_info_path(@info)) if can? :update, @info %> |
-<%= link_to 'Back', infos_path %>
+<%= link_to 'Back', infos_path %> |
+<% if can? :destroy, @info %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        info_path(@info),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>
