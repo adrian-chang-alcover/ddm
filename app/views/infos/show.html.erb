@@ -1,22 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @info.image.url(:medium) unless @info.image_file_name.nil? %>
+
+<h3><%= @info.title %></h3>
+
 <p>
-	<%= image_tag @info.image.url(:medium) %>
-</p>
-<p>
-  <strong>Title:</strong>
-  <%= @info.title %>
+<%= @info.description %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @info.description %>
+  <strong>Por: <%= @info.user.username %></strong>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @info.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_info_path(@info) %> |
+<%= link_to('Edit', edit_info_path(@info)) if can? :update, @info %> |
 <%= link_to 'Back', infos_path %>

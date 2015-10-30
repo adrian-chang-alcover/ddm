@@ -23,12 +23,14 @@ class InfosController < ApplicationController
 
   def create
     @info = Info.new(info_params)
+    @info.user = current_user
     @info.save
     respond_with(@info)
   end
 
   def update
     @info.update(info_params)
+    @info.user = current_user
     respond_with(@info)
   end
 
