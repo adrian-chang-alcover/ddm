@@ -1,5 +1,5 @@
-# source 'https://rubygems.org'
-source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
+source 'https://rubygems.org'
+# source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
@@ -50,7 +50,7 @@ gem 'figaro'
 
 gem 'spreadsheet'
 
-gem 'devise'
+gem 'devise', '~> 3.4.1'
 gem 'devise-i18n'
 gem 'public_activity'
 gem 'cancancan'
@@ -65,7 +65,7 @@ gem 'twitter-bootstrap-rails'
 
 gem 'passenger'
 
-gem 'wice_grid'
+gem 'wice_grid', '3.5.0'
 
 gem 'repository-manager'
 gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
