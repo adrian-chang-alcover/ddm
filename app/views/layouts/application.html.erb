@@ -101,17 +101,7 @@
               <li><a href="<%= repositorio_index_path(path: 'repo/Gestión Metodológica/Departamentos Independientes') %>">Departamentos Independientes</a></li>
             </ul>
           </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Dirección<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/ACTA DE TALLER METODOLOGICO') %>">Talleres Metodológicos</a></li>
-              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/ACTAS DE REUNIÓN DE VDD') %>">Reuniones con Vicedecanos Docentes</a></li>
-              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Estrategia Maestra') %>">Estrategia Maestra</a></li> 
-              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Objetivos Anuales DDM') %>">Objetivos Anuales DDM</a></li> 
-	            <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Información acerca del trabajo educativo- UH') %>">Trabajo Educativo</a></li>
-              <li><a href="<%= repositorio_index_path(path: 'repo/Gestión de Dirección/Biblioteca DDM') %>">Biblioteca DDM</a></li>
-            </ul>
-          </li>
+          <li><a href="<%= repositorio_index_path(path: 'repo/Biblioteca DDM') %>">Biblioteca DDM</a></li>
           <li class="divider-vertical"></li>
           <% if current_user and (current_user.admin?) %>
             <li><%= link_to 'Usuarios', users_index_path %></li>
@@ -144,9 +134,10 @@
             <div class="panel-body">
               <ul class="nav nav-list">
                 <li><%= link_to t(:faculties), faculties_path %></li>
-                <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Resoluciones y Dictámenes') %></li>
-                <li><%= link_to 'Documentos de Interés', repositorio_index_path(path: 'repo/Generalidades') %></li>
-		<li><%= link_to 'Noticias', repositorio_index_path(path: 'repo/Noticias') %></li>
+                <li><%= link_to 'Resoluciones y Dictámenes', repositorio_index_path(path: 'repo/Generalidades/Resoluciones y Dictámenes') %></li>
+                <li><%= link_to 'Documentos de Interés', repositorio_index_path(path: 'repo/Generalidades/Documentos de Interés') %></li>
+		            <li><%= link_to 'Noticias', repositorio_index_path(path: 'repo/Generalidades/Noticias') %></li>
+                <li><%= link_to 'Gestión de Dirección', repositorio_index_path(path: 'repo/Generalidades/Gestión de Dirección') %></li>
               </ul>
             </div>
           </div>
