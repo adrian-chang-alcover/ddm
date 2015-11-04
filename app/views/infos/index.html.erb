@@ -17,4 +17,6 @@
 
 <br>
 
-<%= link_to 'Nueva Noticia', new_info_path, :class => 'btn btn-mini btn-primary' %>
+<% if can? :create, @info %>
+  <%= link_to 'Nueva Noticia', new_info_path, :class => 'btn btn-mini btn-primary' %>
+<% end %>  
