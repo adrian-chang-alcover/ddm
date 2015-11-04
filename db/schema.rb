@@ -75,17 +75,6 @@ ActiveRecord::Schema.define(version: 20151029145546) do
     t.integer  "number",     default: 0
   end
 
-  create_table "dynamic_news", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
   create_table "evaluation_types", force: true do |t|
     t.string   "short_name"
     t.datetime "created_at"
@@ -125,14 +114,6 @@ ActiveRecord::Schema.define(version: 20151029145546) do
   create_table "locals", force: true do |t|
     t.string   "name"
     t.integer  "capacity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "news", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
