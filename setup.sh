@@ -4,11 +4,11 @@ echo 'backup datebase'
 cp db/production.sqlite3 db/production_$today.sqlite3
 
 echo 'backup repo'
-mv public/repo/ /media/adrian/DATA/repo/$today
+sudo mv public/repo/ /media/adrian/DATA/repo/$today
 
 echo 'updating repo'
 scp -r adrian@10.6.37.107:~/Documents/ddm/public/repo public/
-chmod -R +rwx public/repo
+sudo chmod -R +rwx public/repo
 
 echo 'git pull origin master'
 git pull origin master
@@ -19,4 +19,4 @@ bundle exec rake db:migrate RAILS_ENV=production
 bundle exec rake assets:precompile RAILS_ENV=production
 bundle exec rake assets:clean RAILS_ENV=production
 
-service apache2 reload
+sudo service apache2 restart
