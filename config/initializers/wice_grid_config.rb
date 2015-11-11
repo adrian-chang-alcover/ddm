@@ -124,7 +124,7 @@ if defined?(Wice::Defaults)
   # * <tt>:html5</tt> - HTML5 date input field
   # * <tt>:standard</tt> - standard Rails date and datetime helpers
   # * <tt>:bootstrap</tt> - Bootstrap datepicker helper
-  Wice::Defaults::HELPER_STYLE = :calendar
+  Wice::Defaults::HELPER_STYLE = :bootstrap
 
   # Format of the datetime displayed.
   # If you change the format, make sure to check if +DATETIME_PARSER+ can still parse this string.
