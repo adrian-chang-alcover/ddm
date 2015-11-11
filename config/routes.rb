@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :infos
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount TasksManagement::Engine, at: "/tasks_management"
 
