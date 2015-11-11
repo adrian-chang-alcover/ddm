@@ -48,7 +48,7 @@ gem 'less-rails'
 
 gem 'figaro'
 
-# gem 'spreadsheet'
+gem 'spreadsheet'
 
 gem 'devise', '~> 3.4.1'
 gem 'devise-i18n'
