@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @info.image.url unless @info.image_file_name.nil? %>
+
+<h3><%= @info.title %></h3>
+
+<p>
+<%= raw @info.description.lines.join('<br>') %>
+</p>
+
+<p>
+  <strong>Por: <%= @info.user.username %></strong>
+</p>
+
+<%= link_to('Edit', edit_info_path(@info)) if can? :update, @info %> |
+<%= link_to 'Back', infos_path %> |
+<% if can? :destroy, @info %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        info_path(@info),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>

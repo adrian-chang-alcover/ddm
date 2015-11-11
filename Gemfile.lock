@@ -1,11 +1,11 @@
 PATH
   remote: ../tasks_management
   specs:
-    tasks_management (0.1.3)
+    tasks_management (0.1.1)
       rails (~> 4.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: file:/media/adrian/DATA/Estudios/Web/Ruby/repo/
   specs:
     actionmailer (4.1.8)
       actionpack (= 4.1.8)
@@ -52,6 +52,10 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -104,6 +108,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
+    mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.2)
@@ -114,6 +119,12 @@ GEM
     paper_trail (3.0.8)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
+    paperclip (4.3.1)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (= 0.3.0)
     passenger (4.0.48)
       daemon_controller (>= 1.2.0)
       rack
@@ -175,7 +186,6 @@ GEM
       rubyzip (>= 1.0.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
-    ruby-ole (1.2.11.8)
     rubyzip (1.1.7)
     safe_yaml (1.0.4)
     sass (3.2.19)
@@ -187,8 +197,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spreadsheet (1.0.3)
-      ruby-ole (>= 1.0)
     spring (1.3.3)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -246,6 +254,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   less-rails
+  paperclip (~> 4.3)
   passenger
   public_activity
   rails (= 4.1.8)
@@ -255,7 +264,6 @@ DEPENDENCIES
   rubyzip (>= 1.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
-  spreadsheet
   spring
   sqlite3
   tasks_management!
