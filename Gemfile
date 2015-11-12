@@ -73,4 +73,6 @@ gem 'zip-zip' # will load compatibility for old rubyzip API.
 
 gem "paperclip", "~> 4.3"
 
+gem 'ckeditor_rails', '~> 4.5', '>= 4.5.3'
+
 ruby '2.1.5'
