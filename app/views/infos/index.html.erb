@@ -8,7 +8,7 @@
         <div class="col-md-10">
           <h3><%= link_to info_path(info) do info.title end %></h3>
           <p>por: <%= info.user.username %></p>
-          <p><%= raw info.description.lines.join('<br>').truncate(350) %><%= link_to('leer más', info_path(info)) if info.description.length > 350 %></p>
+          <p><%= raw info.description.truncate(350) %><%= link_to('leer más', info_path(info)) if info.description.length > 350 %></p>
         </div>
       </div>
     </div>

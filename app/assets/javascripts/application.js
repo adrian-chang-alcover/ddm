@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require wice_grid
+//= require ckeditor-jquery
 //= require_tree .
