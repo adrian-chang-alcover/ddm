@@ -73,4 +73,4 @@ gem 'zip-zip' # will load compatibility for old rubyzip API.
 
 gem "paperclip", "~> 4.3"
 
-ruby '2.1.5'
+ruby '2.2.0'
