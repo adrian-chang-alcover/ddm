@@ -48,7 +48,7 @@ gem 'less-rails'
 
 gem 'figaro'
 
-gem 'spreadsheet'
+# gem 'spreadsheet'
 
 gem 'devise', '~> 3.4.1'
 gem 'devise-i18n'
@@ -75,4 +75,4 @@ gem "paperclip", "~> 4.3"
 
 gem 'ckeditor_rails', '~> 4.5', '>= 4.5.3'
 
-ruby '2.1.5'
+ruby '2.2.0'

@@ -3,7 +3,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<%= form_tag  activities_index_path, method: :get %>
+<%= form_tag  public_activity_activities_index_path, method: :get %>
     <dl class="dl-horizontal">
       <dt><strong><%= label_tag :user, t(:user).titleize, :class => 'control-label' %></strong></dt>
       <dd><%= select_tag :user, options_from_collection_for_select(User.all, :id, :email, params['user'].to_i), include_blank: true, :class => 'text_field' %></dd>

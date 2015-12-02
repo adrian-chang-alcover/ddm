@@ -90,7 +90,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'activities/index'
+  namespace :public_activity do
+    get 'activities/index'
+  end
 
   get 'ppd/report'
   get 'ppd/export'
