@@ -7,7 +7,7 @@ echo 'backup repo'
 sudo mv public/repo/ /media/adrian/DATA/repo/$today
 
 echo 'updating repo'
-scp -r adrian@10.6.37.107:~/Documents/ddm/public/repo public/
+scp -r adrian@10.6.37.121:~/Documents/ddm/public/repo public/
 sudo chmod -R +rwx public/repo
 
 echo 'git pull origin master'
