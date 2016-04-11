@@ -5,7 +5,8 @@
   g.column attribute: 'item_type'
 
   g.column attribute: 'item_id' do |audit|
-    audit.item_type.constantize.find(audit.item_id).name
+    item = audit.item_type.constantize.find(audit.item_id)
+    link_to item.name, audits_show_path(item_type: audit.item_type, item_id: audit.item_id)
   end
 
   g.column attribute: 'event'
