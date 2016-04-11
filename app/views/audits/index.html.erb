@@ -1,33 +1,18 @@
-<h1>Listing audits</h1>
+<h1>Audit</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Item type</th>
-      <th>Item</th>
-      <th>Event</th>
-      <th>Whodunnit</th>
-      <th>Object</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= grid(@audits) do |g|
 
-  <tbody>
-    <% @audits.each do |audit| %>
-      <tr>
-        <td><%= audit.item_type %></td>
-        <td><%= audit.item_id %></td>
-        <td><%= audit.event %></td>
-        <td><%= audit.whodunnit %></td>
-        <td><%= audit.object %></td>
-        <td><%= link_to 'Show', audit %></td>
-        <td><%= link_to 'Edit', edit_audit_path(audit) %></td>
-        <td><%= link_to 'Destroy', audit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  g.column attribute: 'item_type'
 
-<br>
+  g.column attribute: 'item_id' do |audit|
+    audit.item_type.constantize.find(audit.item_id).name
+  end
 
-<%= link_to 'New Audit', new_audit_path %>
+  g.column attribute: 'event'
+
+  g.column attribute: 'whodunnit' do |audit|
+    User.find(audit.whodunnit).username
+  end
+
+  g.column attribute: 'object'
+end -%>

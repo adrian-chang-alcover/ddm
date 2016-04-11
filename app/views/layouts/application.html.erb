@@ -107,7 +107,7 @@
             <li><%= link_to 'Usuarios', users_index_path %></li>
           <% end %>
           <% if current_user and current_user.admin? %>
-            <li><%= link_to 'Audit', '' %></li>
+            <li><%= link_to 'Audit', audits_index_path %></li>
           <% end %>
         </ul>
 
