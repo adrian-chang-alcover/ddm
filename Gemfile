@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-# source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
+# source 'https://rubygems.org'
+source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
@@ -48,7 +48,7 @@ gem 'less-rails'
 
 gem 'figaro'
 
-# gem 'spreadsheet'
+gem 'spreadsheet'
 
 gem 'devise', '~> 3.4.1'
 gem 'devise-i18n'
@@ -74,5 +74,7 @@ gem 'zip-zip' # will load compatibility for old rubyzip API.
 gem "paperclip", "~> 4.3"
 
 gem 'ckeditor_rails', '~> 4.5', '>= 4.5.3'
+
+gem 'paper_trail'
 
 ruby '2.1.5'
