@@ -9,6 +9,8 @@ class Subject < ActiveRecord::Base
 
   default_scope {order :number}
 
+  has_paper_trail
+
   def name
     self.full_name || self.short_name
   end
