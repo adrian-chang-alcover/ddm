@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item type:</strong>
+  <%= @audit.item_type %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @audit.item_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @audit.event %>
+</p>
+
+<p>
+  <strong>Whodunnit:</strong>
+  <%= @audit.whodunnit %>
+</p>
+
+<p>
+  <strong>Object:</strong>
+  <%= @audit.object %>
+</p>
+
+<%= link_to 'Edit', edit_audit_path(@audit) %> |
+<%= link_to 'Back', audits_path %>
