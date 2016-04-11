@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   check_authorization :unless => :admin_controller?
   before_action :set_locale
   before_action :record_visit
+  # paper trail
+  before_filter :set_paper_trail_whodunnit
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
