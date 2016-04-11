@@ -1,29 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Item type:</strong>
-  <%= @audit.item_type %>
-</p>
-
-<p>
-  <strong>Item:</strong>
-  <%= @audit.item_id %>
-</p>
-
-<p>
-  <strong>Event:</strong>
-  <%= @audit.event %>
-</p>
-
-<p>
-  <strong>Whodunnit:</strong>
-  <%= @audit.whodunnit %>
-</p>
-
-<p>
-  <strong>Object:</strong>
-  <%= @audit.object %>
-</p>
-
-<%= link_to 'Edit', edit_audit_path(@audit) %> |
-<%= link_to 'Back', audits_path %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Changeset</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @item.versions.each do |version| %>
+      <tr>
+        <td><%= User.find(version.whodunnit).username %></td>
+        <td><%= version.changeset %></td>
+        <td><%= version.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>  
