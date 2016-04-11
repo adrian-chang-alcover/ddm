@@ -7,6 +7,8 @@ class Year < ActiveRecord::Base
 
   default_scope {order :name}
 
+  has_paper_trail
+
   def pretty_name
     case name
       when '1'

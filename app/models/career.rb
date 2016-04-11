@@ -7,6 +7,8 @@ class Career < ActiveRecord::Base
   has_many :counterpart_careers, dependent: :destroy
   has_and_belongs_to_many :universities
 
+  has_paper_trail
+
   def name
     _name = self.full_name || self.short_name
     "(#{self.study_modality.short_name}) #{_name}" if self.study_modality

@@ -1,0 +1,19 @@
+<h1>Audit</h1>
+
+<%= grid(@audits) do |g|
+
+  g.column name: 'Item Type', attribute: 'item_type', custom_filter: :auto, allow_multiple_selection: false, auto_reload: true
+
+  g.column name: 'Item Id', attribute: 'item_id', filter: false do |audit|
+    item = audit.item_type.constantize.find(audit.item_id)
+    link_to item.name, audits_show_path(item_type: audit.item_type, item_id: audit.item_id)
+  end
+
+  g.column name: 'Event', attribute: 'event', custom_filter: :auto, allow_multiple_selection: false, auto_reload: true
+
+  g.column name: 'User', attribute: 'whodunnit', custom_filter: User.all.select{|u| u.admin? or u.ddm?}.map{|u| [u.username, u.id]}, allow_multiple_selection: false, auto_reload: true do |audit|
+    User.find(audit.whodunnit).username
+  end
+
+  g.column name: 'Object', attribute: 'object', filter: false
+end -%>

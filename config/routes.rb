@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'audits/index'
+  get 'audits/show'
+
   resources :infos
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
