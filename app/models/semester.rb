@@ -1,12 +1,11 @@
 class Semester < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user unless controller.blank?},
-          params: {:id => :id, :name => :name, :year_id => :year_id, :begin_date => :begin_date, :end_date => :end_date, :weeks => :weeks}
-
+  
   belongs_to :year
   has_many :subjects, dependent: :destroy
 
   default_scope {order :name}
+
+  has_paper_trail
 
   def pretty_name
     case name

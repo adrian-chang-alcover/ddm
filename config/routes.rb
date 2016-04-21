@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'audits/index'
+  get 'audits/show'
+
   resources :infos
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -89,8 +92,6 @@ Rails.application.routes.draw do
   get 'users/toggle_roles'
 
   devise_for :users
-
-  get 'activities/index'
 
   get 'ppd/report'
   get 'ppd/export'

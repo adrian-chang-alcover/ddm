@@ -1,12 +1,11 @@
 class Discipline < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user unless controller.blank?},
-          params: {:id => :id, :name => :name, :career_id => :career_id, :number => :number}
-
+  
   belongs_to :career
   has_many :subjects, dependent: :destroy
 
   default_scope {order :number}
+
+  has_paper_trail
 
   def subjects_by_curriculum_type(curriculum_type)
     self.subjects.select{|s| s.curriculum_type==curriculum_type}

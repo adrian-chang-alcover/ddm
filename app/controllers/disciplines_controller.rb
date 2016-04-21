@@ -41,7 +41,6 @@ class DisciplinesController < ApplicationController
   # PATCH/PUT /disciplines/1
   # PATCH/PUT /disciplines/1.json
   def update
-    byebug
     respond_to do |format|
       if @discipline.update(discipline_params)
         format.html { redirect_to @discipline, notice: 'Discipline was successfully updated.' }

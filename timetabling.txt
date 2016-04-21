@@ -1,0 +1,10 @@
+Schedule Preferences
+
+professor: [local, day, turn]
+group: [local, day, turn]
+subject: [local, day, turn]
+local: [turn_type]
+
+belongs_to
+career: [activity, distribution, docent_week, docent_day, group, P1]
+faculty: [local, professor]

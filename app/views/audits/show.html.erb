@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Changeset</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @item.versions.each do |version| %>
+      <tr>
+        <td><%= User.find(version.whodunnit).username %></td>
+        <td><%= version.changeset %></td>
+        <td><%= version.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>  

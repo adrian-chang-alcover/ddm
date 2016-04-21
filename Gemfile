@@ -52,7 +52,6 @@ gem 'spreadsheet'
 
 gem 'devise', '~> 3.4.1'
 gem 'devise-i18n'
-gem 'public_activity'
 gem 'cancancan'
 
 gem 'rails_admin'
@@ -74,5 +73,7 @@ gem 'zip-zip' # will load compatibility for old rubyzip API.
 gem "paperclip", "~> 4.3"
 
 gem 'ckeditor_rails', '~> 4.5', '>= 4.5.3'
+
+gem 'paper_trail'
 
 ruby '2.1.5'
