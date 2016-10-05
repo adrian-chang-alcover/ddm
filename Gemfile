@@ -56,7 +56,7 @@ gem 'cancancan'
 
 gem 'rails_admin'
 
-gem 'tasks_management', path: '../tasks_management'
+gem 'tasks_management', '~> 0.1.4'
 
 gem 'kaminari'
 
@@ -75,5 +75,3 @@ gem "paperclip", "~> 4.3"
 gem 'ckeditor_rails', '~> 4.5', '>= 4.5.3'
 
 gem 'paper_trail'
-
-ruby '2.1.5'
